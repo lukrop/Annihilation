@@ -1,9 +1,8 @@
-This is a ArmA 3 COOP mission for up to 6 players, NATO version.
+This is a ArmA 3 COOP mission for up to 20 players, NATO version.
 
 The short version is, it's a dominiation like mission. But actually it doesn't have 
 too much in common with domination. The AOs are handpicked and there are different 
-mission types (like the sidemissions). Also the scale is much smaller (less vehicles, 
-less units overall), this can be edited easily though.
+mission types (like the sidemissions).
 
 The server randomly picks a mission (5) and a location (15) and waits until you finish
 the mission. After two minutes you'll get the next mission until there are no missions
