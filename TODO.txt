@@ -1,0 +1,8 @@
+for 0.2
+- make revive count adjustable
+- better parameters overall (structure)
+- adjustable enemy count
+- make ammo box spawning optional
+- localize strings
+- make ai recruitment optional
+- merge co6 and co20 version?
