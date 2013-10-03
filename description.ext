@@ -1,0 +1,30 @@
+respawn = BASE;
+respawndelay = 1;
+respawndialog = 0;
+disabledAI = true;
+
+#include "VAS\menu.hpp"
+#include "taw_vd\dialog.hpp"
+
+class Header
+{
+	gameType=Coop;
+	minPlayers=1;
+	maxPlayers=20;
+};
+
+author="lukrop";
+onLoadName = "Annihilation NATO";
+onLoadMission = "Complete random QRF missions.<br/>Version: 0.1.2";
+loadScreen = "images\loadingscreen.jpg";
+
+class CfgFunctions
+{
+	#include "VAS\cfgfunctions.hpp"
+};
+
+#include "ani_recruit\recruitDialog.hpp"
+
+#include "=BTC=_revive\=BTC=_respawn.h"
+
+#include "params.hpp"

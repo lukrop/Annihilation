@@ -1,0 +1,7 @@
+This mission/source code is licensed under the 
+Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+license. 
+More information:
+http://creativecommons.org/licenses/by-sa/3.0/
+
+The license ONLY applies to the content created by lukrop. I DO NOT claim ownership of ANY of the included third party source code/content.
