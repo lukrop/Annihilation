@@ -42,6 +42,23 @@
       <German>Wir haben den Kontakt zu einer unserer Drohnen verloren. Sie müssen die Drohne finden und zerstören bevor sie in die Hände des Feindes fällt.</German>
     </Key>
   </Package>
+  <Package name="Diary">
+    <Key ID="STR_ANI_DIARY_MISSION">
+      <Original>After 2 minutes you'll get a mission asigned, gear up in the meantime.&lt;br/&gt;&lt;br/&gt;Squad leaders can recruit AI units at the flagpole near the recruit barracks.&lt;br/&gt;&lt;br/&gt;The Eagle recon squad has access to artillery and mortar support.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 has access to a AH-99 Blackfoot for CAS missions.</Original>
+      <German>Nach 2 Minuten wir Ihnen eine Mission erteilt, Sie können sich in der Zwischenzeit ausrüsten.&lt;br/&gt;&lt;br/&gt;Squad Leader können KI Einheiten beim Flaggenmast rekrutieren.&lt;br/&gt;&lt;br/&gt;Der Eagle recon squad hat Zugriff auf Artillerie- und Mörserunterstützung.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 hat die Möglichkeit einen AH-99 Blackfoot für CAS zu rufen.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_SITUATION">
+      <Original>NATO forces have been deployed on Altis and are trying to hold off a massive Iranian military offensive from the east.&lt;br/&gt;&lt;br/&gt;Your task as QRF is to conduct various small operations in the north-western part of Altis.</Original>
+      <German>NATO Kräfte wurden auf Altis positioniert und versuchen eine massive iranische Militäroffensive aus dem Osten abzuhalten.&lt;br/&gt;&lt;br/&gt;Ihre Aufgabe als QRF ist verschiedene kleine Operationen im nord-westlichen Teil von Altis durchzuführen.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_EXECUTION">
+      <Original>At commanders discretion.</Original>
+      <German>Nach Ermessen des Kommandos.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_SIGNAL">
+      <Original>Reaper 1-1 - SR 1&lt;br/&gt;Reaper 1-2 - SR 2&lt;br/&gt;Reaper 1-3 - SR3&lt;br/&gt;Eagle - SR4&lt;br/&gt;Stallion 1 - SR5&lt;br/&gt;Stallion 2 - SR6&lt;br/&gt;&lt;br/&gt;Platoon net - LR 1</Original>
+    </Key>
+  </Package>
 </Project>
 <Project name="Virtual Ammobox System">
 	<Package name="Main">

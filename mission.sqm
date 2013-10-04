@@ -51,7 +51,7 @@ class Mission
 	randomSeed=14187951;
 	class Intel
 	{
-		briefingName="CO20 Annihilation NATO 0.1.2";
+		briefingName="CO20 Annihilation NATO 0.2.0";
 		overviewText="Complete random QRF missions.";
 		resistanceWest=0;
 		startWeather=0.29999998;
@@ -130,7 +130,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15180.617,17.897999,17312.117};
+					position[]={15177.87,17.895092,17309.42};
 					azimut=96.878906;
 					class args
 					{
@@ -795,7 +795,7 @@ class Mission
 						};
 						class Item4
 						{
-							value="NATO forces have been deployed on Altis and are trying to hold off a massive Iranian military offensive from the east.<br/><br/>Your task as QRF is to conduct various small operations in the north-western part of Altis to support the NATO goal of fighting off the CSAT offensive.";
+							value="STR_ANI_DIARY_SITUATION";
 							parentCls="ModuleCreateDiaryRecord_F";
 							typeName="Description";
 						};
@@ -847,7 +847,7 @@ class Mission
 						};
 						class Item4
 						{
-							value="At commanders discretion.";
+							value="STR_ANI_DIARY_EXECUTION";
 							parentCls="ModuleCreateDiaryRecord_F";
 							typeName="Description";
 						};
@@ -899,7 +899,7 @@ class Mission
 						};
 						class Item4
 						{
-							value="Reaper 1-1 - SR 1<br/>Reaper 1-2 - SR 2<br/>Reaper 1-3 - SR3<br/>Eagle - SR4<br/>Stallion 1 - SR5<br/>Stallion 2 - SR6<br/><br/>Platoon net - LR 1";
+							value="STR_ANI_DIARY_SIGNAL";
 							parentCls="ModuleCreateDiaryRecord_F";
 							typeName="Description";
 						};
@@ -1003,7 +1003,7 @@ class Mission
 						};
 						class Item4
 						{
-							value="After 2 minutes you'll get a mission asigned, gear up in the meantime.<br/><br/>Squad leaders can recruit AI units at the flagpole near the recruit barracks.<br/><br/>The Eagle recon squad has access to artillery and mortar support.<br/><br/>Reaper 3, weapons and support, has access to a AH-99 Blackfoot for CAS missions.";
+							value="STR_ANI_DIARY_MISSION";
 							parentCls="ModuleCreateDiaryRecord_F";
 							typeName="Description";
 						};
@@ -1183,7 +1183,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15184.141,17.908356,17307.873};
+					position[]={15181.577,17.908413,17305.268};
 					azimut=96.878906;
 					class args
 					{
@@ -1262,7 +1262,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15188.533,17.919821,17303.668};
+					position[]={15185.971,17.919817,17301.107};
 					azimut=96.878906;
 					class args
 					{
@@ -1341,7 +1341,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15193.447,17.932159,17299.328};
+					position[]={15190.016,17.931301,17296.539};
 					azimut=96.878906;
 					class args
 					{
@@ -2082,7 +2082,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15197.517,17.939535,17295.35};
+					position[]={15194.083,17.938778,17292.561};
 					azimut=96.878906;
 					class args
 					{
@@ -2161,7 +2161,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15201.878,17.940001,17291.504};
+					position[]={15198.31,17.940001,17288.256};
 					azimut=96.878906;
 					class args
 					{
@@ -2610,7 +2610,7 @@ class Mission
 		};
 		class Item20
 		{
-			position[]={15179.859,17.907928,17303.771};
+			position[]={15177.708,17.908112,17301.623};
 			azimut=406.87888;
 			id=73;
 			side="EMPTY";
@@ -2622,7 +2622,7 @@ class Mission
 		};
 		class Item21
 		{
-			position[]={15176.201,17.89259,17307.961};
+			position[]={15174.05,17.893229,17305.813};
 			azimut=406.87888;
 			id=74;
 			side="EMPTY";
@@ -2654,7 +2654,7 @@ class Mission
 		};
 		class Item24
 		{
-			position[]={15188.102,17.930803,17294.988};
+			position[]={15185.95,17.927935,17292.84};
 			azimut=406.87888;
 			id=77;
 			side="EMPTY";
@@ -2666,7 +2666,7 @@ class Mission
 		};
 		class Item25
 		{
-			position[]={15183.865,17.919296,17299.395};
+			position[]={15181.714,17.919291,17297.246};
 			azimut=406.87888;
 			id=78;
 			side="EMPTY";
@@ -2730,7 +2730,7 @@ class Mission
 		};
 		class Item31
 		{
-			position[]={15196.502,17.940001,17286.479};
+			position[]={15194.351,17.939137,17284.33};
 			azimut=406.87888;
 			id=84;
 			side="EMPTY";
@@ -2742,7 +2742,7 @@ class Mission
 		};
 		class Item32
 		{
-			position[]={15192.188,17.936253,17290.689};
+			position[]={15190.037,17.933384,17288.541};
 			azimut=406.87888;
 			id=85;
 			side="EMPTY";
@@ -3408,7 +3408,7 @@ class Mission
 		};
 		class Item88
 		{
-			position[]={15179.759,17.911526,17301.115};
+			position[]={15177.607,17.91152,17298.967};
 			name="vecs";
 			text="Wheeled";
 			type="mil_marker";
