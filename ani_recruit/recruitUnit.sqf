@@ -21,25 +21,25 @@ else {
   
   switch (_unitType) do {
     case 0: {
-      ani_recruit_ARClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_ARClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 1: {
-      ani_recruit_MGClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_MGClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 2: {
-      ani_recruit_ATClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_ATClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 3: {
-      ani_recruit_LATClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_LATClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 4: {
-      ani_recruit_MedicClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_MedicClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 5: {
-      ani_recruit_PilotClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_PilotClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
     case 6: {
-      ani_recruit_EngineerClass createUnit [(getMarkerPos "recruit_spawn"), group _leader];
+      ani_recruit_EngineerClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
     };
   };
 

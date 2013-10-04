@@ -31,7 +31,7 @@ _taskID = "uavSearch";
 [
 west, // who gets the task
 _taskID, // task id
-["We lost contact to one of our drones. You need to search and destroy it","SAD UAV","SAD"], // description, title, marker
+[localize "STR_ANI_UAV_DESCRIPTION", localize "STR_ANI_UAV", localize "STR_ANI_SAD"], // description, title, marker
 _aocenter, // destination
 "Assigned", // set as current / state
 9 // priority

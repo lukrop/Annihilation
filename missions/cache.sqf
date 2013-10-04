@@ -35,7 +35,7 @@ _taskID = "cacheSearch";
 [
 west, // who gets the task
 _taskID, // task id
-["We got intel on a weapon cache in the AO. You need to find it and destroy it.","SAD Cache","SAD"], // description, title, marker
+[localize "STR_ANI_CACHE_DESCRIPTION", localize "STR_ANI_CACHE", localize "STR_ANI_SAD"], // description, title, marker
 _aocenter, // destination
 "Assigned", // set as current / state
 9 // priority

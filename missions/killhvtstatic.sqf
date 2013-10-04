@@ -33,7 +33,7 @@ _taskID = "killhvtstatic";
 [
 west, // who gets the task
 _taskID, // task id
-["We got intel that a high-ranking enemy officer is in the AO. Find him and eliminate him.","Kill HVT","HVT"], // description, title, marker
+[localize "STR_ANI_KILLHVT_DESCRIPTION", localize "STR_ANI_KILLHVT", localize "STR_ANI_HVT"], // description, title, marker
 _aocenter, // destination
 "Assigned", // set as current / state
 9 // priority

@@ -18,6 +18,8 @@ setDate [2035,09,30,ani_daytime,0];
 // mcc_sandbox bug workaround
 [[0,0,0], "STATE:", ["time > 15", "setDate [2035,09,30,ani_daytime,0];", ""]] call CBA_fnc_createTrigger;
 
+// add recruiting action
+ani_recruit_flag addAction ["<t color='#11ffff'>Recruit units</t>", "ani_recruit\openDialog.sqf"];
 
 _gearbox1 = "Box_mas_usd_NATO_equip_F" createVehicle getMarkerPos "gearbox1";
 _gearbox2 = "Box_mas_usn_NATO_equip_F" createVehicle getMarkerPos "gearbox2";

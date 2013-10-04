@@ -65,8 +65,8 @@ while {(count _landMissionType > 0) or (count _cityMissionType > 0)} do {
   // ##### DEBUG/TESTING #####
   /*
   _missionStyle = 0;
-  _missionType = "killhvtstatic";
-  _posArray = _citys call BIS_fnc_selectRandom;
+  _missionType = "killhvt";
+  _posArray = ani_citys call BIS_fnc_selectRandom;
   hint format ["%1 | %2", _missionType, _posArray select 0];
   */
   // ##### DEBUG/TESTING #####

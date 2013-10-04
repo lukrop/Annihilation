@@ -1,4 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
+<Project name="Annihilation">
+  <Package name="Missions">
+    <Key ID="STR_ANI_HVT">
+      <Original>HVT</Original>
+      <German>HVT</German>
+    </Key>
+    <Key ID="STR_ANI_SAD">
+      <Original>SAD</Original>
+      <German>SuZ</German>
+    </Key>
+    <Key ID="STR_ANI_CACHE">
+      <Original>SAD Cache</Original>
+      <German>SuZ Waffenlager</German>
+    </Key>
+    <Key ID="STR_ANI_CACHE_DESCRIPTION">
+      <Original>We got intel on a weapon cache in the AO. You need to find it and destroy it.</Original>
+      <German>Wir haben Information über ein Waffenlager im Einsatzgebiet erhalten. Sie müsssen es finden und zerstören.</German>
+    </Key>
+    <Key ID="STR_ANI_KILLHVT">
+      <Original>Eliminate HVT</Original>
+      <German>HVT eliminieren</German>
+    </Key>
+    <Key ID="STR_ANI_KILLHVT_DESCRIPTION">
+      <Original>We got intel that a high-ranking enemy officer is in the AO. Find him and eliminate him.</Original>
+      <German>Wir haben Information, dass sich ein feindlicher Offizier (HVT) im Einsatzgebiet aufhält. Sie müsssen ihn finden und eliminieren.</German>
+    </Key>
+    <Key ID="STR_ANI_MORTAR">
+      <Original>Take out mortar</Original>
+      <German>Mörser ausschalten</German>
+    </Key>
+    <Key ID="STR_ANI_MORTAR_DESCRIPTION">
+      <Original>Our troops are taking mortar fire from the AO. Find the mortar emplacement and destroy it.</Original>
+      <German>Unsere Truppen stehen unter schwerem Mörserbeschuss aus dem Einsatzgebiet. Sie müssen die Mörserstellung finden und ausschalten.</German>
+    </Key>
+    <Key ID="STR_ANI_UAV">
+      <Original>Take out mortar</Original>
+      <German>Mörser ausschalten</German>
+    </Key>
+    <Key ID="STR_ANI_UAV_DESCRIPTION">
+      <Original>We lost contact to one of our drones. You need to search and destroy it before the enemy gets his hands on it.</Original>
+      <German>Wir haben den Kontakt zu einer unserer Drohnen verloren. Sie müssen die Drohne finden und zerstören bevor sie in die Hände des Feindes fällt.</German>
+    </Key>
+  </Package>
+</Project>
 <Project name="Virtual Ammobox System">
 	<Package name="Main">
 		<Key ID="STR_VAS_Main_Weapons">

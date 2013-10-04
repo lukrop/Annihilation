@@ -2606,7 +2606,7 @@ class Mission
 			vehicle="Flag_Blue_F";
 			leader=1;
 			skill=0.60000002;
-			init="this addAction [""<t color='#11ffff'>Recruit units</t>"", ""ani_recruit\openDialog.sqf""];";
+			text="ani_recruit_flag";
 		};
 		class Item20
 		{
@@ -3386,7 +3386,7 @@ class Mission
 		class Item85
 		{
 			position[]={15149.938,17.84004,17339.607};
-			name="recruit_spawn";
+			name="ani_recruit_spawn";
 			type="Empty";
 		};
 		class Item86

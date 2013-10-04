@@ -24,7 +24,7 @@ case 0: //opfor
 						"O_Soldier_AA_F","O_engineer_F","O_recon_F","O_recon_M_F","O_recon_LAT_F","O_recon_medic_F","O_recon_exp_F","O_recon_JTAC_F",
 						"O_Soldier_AAR_F","O_Soldier_AAT_F","O_Soldier_AAA_F"
 						];//"O_Soldier_diver_base_F","O_diver_F","O_diver_TL_F","O_diver_exp_F",
-		_vehicles = 	["O_MRAP_02_F","O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Wheeled_02_rcws_F"];//,"O_Quadbike_01_F","O_Truck_02_covered_F","O_Truck_02_transport_F",
+		_vehicles = 	["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Wheeled_02_rcws_F"];//,"O_Quadbike_01_F","O_Truck_02_covered_F","O_Truck_02_transport_F",
 		_tanks = 		["O_APC_Wheeled_02_rcws_F"];
 		_helo = 		["O_Heli_Light_02_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_F","O_Heli_Attack_02_black_F"];
 		_plane =     	[];
@@ -38,7 +38,7 @@ case 1: //bluefor
 						"B_spotter_F","B_sniper_F","B_RangeMaster_F","B_Soldier_A_F","B_soldier_AT_F","B_soldier_AA_F","B_engineer_F","B_Competitor_F",
 						"B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_medic_F","B_recon_M_F","B_recon_JTAC_F","B_soldier_AAR_F","B_soldier_AAT_F","B_soldier_AAA_F"
 						];//,"Underwear_F","B_diver_exp_F","B_diver_TL_F","B_Soldier_diver_base_F","B_diver_F",
-		_vehicles = 	["B_MRAP_01_F","B_MRAP_01_gmg_F","B_MRAP_01_hmg_F","B_APC_Wheeled_01_cannon_F"];//,"B_Quadbike_01_F","B_Truck_01_transport_F","B_Truck_01_covered_F",
+		_vehicles = 	["B_MRAP_01_gmg_F","B_MRAP_01_hmg_F","B_APC_Wheeled_01_cannon_F"];//,"B_Quadbike_01_F","B_Truck_01_transport_F","B_Truck_01_covered_F",
 		_tanks = 		["B_APC_Tracked_01_rcws_F"];
 		_helo = 		["B_Heli_Light_01_F","B_Heli_Light_01_armed_F","B_Heli_Attack_01_F","B_Heli_Transport_01_F"];
 		_plane =        [];
@@ -51,7 +51,7 @@ case 2: //greenfor
 						"I_Soldier_AT_F","I_Soldier_AA_F","I_medic_F","I_Soldier_repair_F","I_Soldier_exp_F","I_engineer_F","I_helicrew_F","I_officer_F","I_Spotter_F",
 						"I_Sniper_F","I_Soldier_AAR_F","I_Soldier_AAT_F","I_Soldier_AAA_F"
 						];//"I_Soldier_diver_base_F","I_diver_F","I_diver_exp_F","I_diver_TL_F",
-		_vehicles = 	["I_MRAP_03_F","I_MRAP_03_hmg_F","I_MRAP_03_gmg_F"];//,"I_Quadbike_01_F","I_Truck_02_covered_F","I_Truck_02_transport_F"
+		_vehicles = 	["I_MRAP_03_hmg_F","I_MRAP_03_gmg_F"];//,"I_Quadbike_01_F","I_Truck_02_covered_F","I_Truck_02_transport_F"
 		_tanks = 		[];
 		_helo = 		["I_Heli_Transport_02_F"];
 		_plane =		[];

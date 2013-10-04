@@ -31,7 +31,7 @@ _taskID = "mortar";
 [
 west, // who gets the task
 _taskID, // task id
-["Our troops are taking mortar fire from the AO. Find the mortar emplacement and destroy it.","SAD mortar","SAD"], // description, title, marker
+[localize "STR_ANI_MORTAR_DESCRIPTION", localize "STR_ANI_MORTAR", localize "STR_ANI_SAD"], // description, title, marker
 _aocenter, // destination
 "Assigned", // set as current / state
 9 // priority
