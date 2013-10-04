@@ -7,14 +7,15 @@
 	Parameters:
         ARRAY: position markers array
               [center marker name, vec spawn marker, [reinforcment pos markers], [spawn pos markers]]
-        NUMBER: mission type. 0=city, 1=land
+        NUMBER: mission style. 0=city, 1=land
 	
 	Returns: -
   
 */
+private ["_posArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_aocenter", "_taskID", "_reinfCount", "_reinfSpawn"];
 
 _posArray = _this select 0;
-_missionType = _this select 1;
+_missionStyle = _this select 1;
 
 _vecSpawnMarker = _posArray select 1;
 _reinfMarkers = _posArray select 2;
@@ -42,28 +43,19 @@ _aocenter, // destination
 ] call BIS_fnc_taskCreate;
 
 // CREATE CACHE
-_cacheClass = "Box_East_Ammo_F";
 //_cachePos = [_aocenter, random 360, 30 max (random 100)] call SHK_pos;
 _cachePos = getMarkerPos (_spawnMarkers call BIS_fnc_selectRandom);
-ani_cache = _cacheClass createVehicle _cachePos;
+ani_cache = ani_cacheClass createVehicle _cachePos;
 ani_cache setDir (random 360);
+clearWeaponCargo ani_cache;
+clearMagazineCargo ani_cache;
 
 // LOGIC
 ani_cacheDestroyed = false;
 [_cachePos, "STATE:", ["!alive ani_cache", "ani_cacheDestroyed=true", ""]] call CBA_fnc_createTrigger;
 
-// SPAWN ENEMIES
-// 1-2 patrols with 2-4 man
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_marker, 100],[[1,3],[3,4]],[[0,2],1,false],[],[],["patrol_gc", 100]] spawn SLP_spawn;
-sleep 5 + (random 5);
-[_marker,[ani_enemySide,ani_enemyFaction,20],[ani_cache, 10],[1,[4,6]],[],[],[],["defend_gc", 30]] spawn SLP_spawn;
-
-
-// REINFORCEMENTS
-sleep 5 + (random 5);
-_reinfSpawn = _reinfMarkers call BIS_fnc_selectRandom;
-// 1 squad 10 man
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_reinfSpawn, 20],[1,[6,10]],[],[],[],["reinforcement_o_gc", ani_cache]] spawn SLP_spawn;
+// spawn enemies and reinforcements
+[_missionStyle, _marker, _reinfMarkers, ani_cache] call ani_spawnEnemies;
 
 waitUntil{sleep 0.1; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";

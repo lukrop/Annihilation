@@ -14,7 +14,7 @@
 */
 
 _aoArray = _this select 0;
-_missionType = _this select 1;
+_missionStyle = _this select 1;
 
 _vecSpawnMarker = _aoArray select 1;
 _reinfMarkers = _aoArray select 2;
@@ -58,22 +58,9 @@ if((round random 5) >= 3) then {
 
 [_hvtGrp, _hvtGrp, 50] call CBA_fnc_taskDefend;
 
-// SPAWN ENEMIES
-// 2-3 patrols with 2-4 man 1 defend with 4-6 man
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_marker, 100],[2,[3,4]],[[0,1],1,false],[],[],["patrol_gc", 100]] spawn SLP_spawn;
-sleep 5 + (random 5);
-[_marker,[ani_enemySide,ani_enemyFaction,20],[ani_hvt, 10],[1,[4,6]],[],[],[],["defend_gc", 50]] spawn SLP_spawn;
+// spawn enemies and reinforcements
+[_missionStyle, _marker, _reinfMarkers, ani_hvt] call ani_spawnEnemies;
 
-
-// REINFORCEMENTS
-sleep 5 + (random 5);
-_reinfSpawn = _reinfMarkers call BIS_fnc_selectRandom;
-_reinfMarkers = _reinfMarkers - [_reinfSpawn];
-_reinfSpawn2 = _reinfMarkers call BIS_fnc_selectRandom;
-// 1 squad 10 man
-[_marker,[ani_enemySide,ani_enemyFaction,10],[_reinfSpawn, 10],[1,[6,8]],[],[],[],["reinforcement_o_gc", ani_hvt]] spawn SLP_spawn;
-sleep 5 + (random 5);
-[_marker,[ani_enemySide,ani_enemyFaction,10],[_reinfSpawn2, 10],[1,[6,8]],[],[],[],["reinforcement_o_gc", ani_hvt]] spawn SLP_spawn;
 // LOGIC
 ani_hvtKilled = false;
 [_hvtPos, "STATE:", ["!alive ani_hvt", "ani_hvtKilled=true", ""]] call CBA_fnc_createTrigger;

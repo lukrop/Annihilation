@@ -42,8 +42,44 @@ ani_suppression = paramsArray select _i; _i = _i + 1;
 ani_tpwlos = paramsArray select _i; _i = _i + 1;
 ani_acre = paramsArray select _i; _i = _i + 1;
 
-switch (ani_enemyCount) {
-  
+switch (ani_enemyCount) do {
+  case 0: {
+    // inf format [[min groups, max groups], [min units per group, max units per group]]
+    // it's also possible to set a fixed amount of groups or units. [1,2] would be 1 group with 2 units
+    
+    // vec format [[min groups, max groups], [min vecs per group, max vecs per group], fill cargo space?]
+    // alternative vec format [[min groups, max groups], fixed vecs per group, fill cargo space?]
+    ani_enemyInfPatrolCount = [[1,3],[3,4]];
+    ani_enemyInfDefendCount = [1,[4,6]]; // 1 group with 4 to 6 units
+    ani_enemyVecPatrolCount = [[0,2],1,false];
+    ani_enemyVecDefendCount = [];
+    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyReinforcments = [1,2]; // amount of reinforcments (with diffrent positions) - [0,0] disables 4 is the maximum 
+  };
+  case 1: {
+    ani_enemyInfPatrolCount = [[2,4],[3,4]];
+    ani_enemyInfDefendCount = [[1,2],[4,6]];
+    ani_enemyVecPatrolCount = [[1,2],1,false];
+    ani_enemyVecDefendCount = [];
+    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyReinforcments = [2,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 4 is the maximum
+  };
+  case 2: {
+    ani_enemyInfPatrolCount = [[3,5],[3,4]];
+    ani_enemyInfDefendCount = [[2,3],[4,6]];
+    ani_enemyVecPatrolCount = [[1,3],1,false];
+    ani_enemyVecDefendCount = [];
+    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyReinforcments = [2,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 4 is the maximum
+  };
+  case 3: {
+    ani_enemyInfPatrolCount = [[4,6],[3,4]];
+    ani_enemyInfDefendCount = [[2,4],[4,6]];
+    ani_enemyVecPatrolCount = [[2,4],1,false];
+    ani_enemyVecDefendCount = [];
+    ani_enemyInfReinfCount = [2,[6,10]];
+    ani_enemyReinforcments = [3,4]; // amount of reinforcments (with diffrent positions) - [0,0] disables 4 is the maximum
+  };
 };
 
 switch (ani_enemySkill) do {
@@ -66,7 +102,7 @@ if(ani_recruit == 1) then {
   ani_recruit_flag addAction ["<t color='#11ffff'>Recruit units</t>", "ani_recruit\openDialog.sqf"];
 } else {
   deleteVehicle ani_recruit_flag;
-  "recruit" setMarkerAlpha 0;
+  "recruitment" setMarkerAlpha 0;
 };
 
 switch(ani_suppression) do {
@@ -107,8 +143,10 @@ if(ani_revive == 1) then {
 
 // init SLP (Spawning)
 SLP_init = [] execvm "SLP\SLP_init.sqf";
-// init SHK_pos
+// compile SHK_pos
 SHK_pos = compile preprocessFile "SLP\scripts\SHK_pos.sqf";
+// compile ani enemies spawn
+ani_spawnEnemies = compile preprocessFile "scripts\spawnEnemies.sqf";
 
 #include "config.sqf"
 

@@ -34,8 +34,8 @@
       <German>Unsere Truppen stehen unter schwerem Mörserbeschuss aus dem Einsatzgebiet. Sie müssen die Mörserstellung finden und ausschalten.</German>
     </Key>
     <Key ID="STR_ANI_UAV">
-      <Original>Take out mortar</Original>
-      <German>Mörser ausschalten</German>
+      <Original>SAD UAV</Original>
+      <German>Drone zerstören</German>
     </Key>
     <Key ID="STR_ANI_UAV_DESCRIPTION">
       <Original>We lost contact to one of our drones. You need to search and destroy it before the enemy gets his hands on it.</Original>

@@ -15,7 +15,7 @@
 */
 
 _aoArray = _this select 0;
-_missionType = _this select 1;
+_missionStyle = _this select 1;
 
 _reinfMarkers = _aoArray select 1;
 
@@ -82,18 +82,8 @@ while {!ani_mortarDestroyed} do {
 }
 };
 
-// SPAWN ENEMIES
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_marker, 200],[[1,3],[4,5]],[[0,2],1,false],[],[],["patrol_gc", 250]] spawn SLP_spawn;
-sleep 5 + (random 5);
-[_marker,[ani_enemySide,ani_enemyFaction,20],[ani_mortar1, 10],[1,[4,6]],[],[],[],["defend_gc", 50]] spawn SLP_spawn;
-
-
-// REINFORCEMENTS
-sleep 5 + (random 5);
-_reinfSpawn1 = _reinfMarkers call BIS_fnc_selectRandom;
-_reinfMarkers = _reinfMarkers - [_reinfSpawn1];
-_reinfSpawn2 = _reinfMarkers call BIS_fnc_selectRandom;
-[_marker,[ani_enemySide,ani_enemyFaction,10],[_reinfSpawn1, 10],[1,[6,8]],[],[],[],["reinforcement_o_gc", ani_mortar1]] spawn SLP_spawn;
+// spawn enemies and reinforcements
+[_missionStyle, _marker, _reinfMarkers, ani_mortar1] call ani_spawnEnemies;
 
 waitUntil{sleep 0.1; ani_mortarDestroyed};
 ani_missionState = "SUCCESS";

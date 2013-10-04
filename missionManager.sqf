@@ -65,14 +65,14 @@ while {(count _landMissionType > 0) or (count _cityMissionType > 0)} do {
   // ##### DEBUG/TESTING #####
   /*
   _missionStyle = 0;
-  _missionType = "killhvt";
+  _missionType = "cache";
   _posArray = ani_citys call BIS_fnc_selectRandom;
   hint format ["%1 | %2", _missionType, _posArray select 0];
   */
   // ##### DEBUG/TESTING #####
   
   diag_log format ["### ANI: Starting mission %1 at %2 ###", _missionType, (_posArray select 0)];
-  [_posArray, _missionType] execVM format ["missions\%1.sqf", _missionType];
+  [_posArray, _missionStyle] execVM format ["missions\%1.sqf", _missionType];
   
   // wait until mission is finished
   waitUntil{sleep 1; ani_missionState != "IN_PROGRESS"};

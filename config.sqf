@@ -39,6 +39,7 @@ case 0: {
     ani_mortarGunnerClass = "O_Soldier_F";
     ani_hvtClass = "O_officer_F";
     ani_hvtGuardClass = "O_Soldier_F";
+    ani_cacheClass = "O_supplyCrate_F";
   };
 case 1: {
     // NATO
@@ -46,6 +47,7 @@ case 1: {
     ani_mortarGunnerClass = "B_Soldier_F";
     ani_hvtClass = "B_officer_F";
     ani_hvtGuardClass = "B_Soldier_F";
+    ani_cacheClass = "B_supplyCrate_F";
   };
 case 2: {
     // AAF
@@ -53,6 +55,7 @@ case 2: {
     ani_mortarGunnerClass = "I_Soldier_F";
     ani_hvtClass = "I_officer_F";
     ani_hvtGuardClass = "I_Soldier_F";
+    ani_cacheClass = "I_supplyCrate_F";
   };
 case 4: {
     // russian GRU by massi
@@ -60,6 +63,7 @@ case 4: {
     ani_mortarGunnerClass = "O_mas_rus_Soldier_F";
     ani_hvtClass = "O_mas_rus_Soldier_off_F_u";
     ani_hvtGuardClass = "O_mas_rus_Soldier_F";
+    ani_cacheClass = "O_supplyCrate_F";
   };
 case 5: {
     // african rebel army by massi
@@ -67,6 +71,7 @@ case 5: {
     ani_mortarGunnerClass = "O_mas_afr_Soldier_F";
     ani_hvtClass = "O_mas_afr_Soldier_off_F";
     ani_hvtGuardClass = "O_mas_afr_Soldier_F";
+    ani_cacheClass = "O_supplyCrate_F";
   };
 case 6: {
     // african civilian rebels by massi
@@ -74,6 +79,7 @@ case 6: {
     ani_mortarGunnerClass = "O_mas_afr_Rebel8a_F";
     ani_hvtClass = "O_mas_afr_Soldier_off_F";
     ani_hvtGuardClass = "O_mas_afr_Soldier_F";
+    ani_cacheClass = "O_supplyCrate_F";
   };
 case 7: {
     // SOCOM DEVGRU by massi
@@ -81,6 +87,7 @@ case 7: {
     ani_mortarGunnerClass = "B_mas_usn_Soldier_F";
     ani_hvtClass = "B_mas_usn_Soldier_off_F";
     ani_hvtGuardClass = "B_mas_usn_Soldier_F";
+    ani_cacheClass = "B_supplyCrate_F";
   };
 };
 
@@ -172,6 +179,7 @@ ani_citys = [
 ["city4", "city4_vecSpawn", [ "city4_reinf0",  "city4_reinf1",  "city4_reinf2",  "city4_reinf3"], ["city4_spawn0", "city4_spawn1", "city4_spawn2", "city4_spawn3"] ]
 ];
 
+// TODO add another (4th) reinf pos per land mission
 ani_lands = [
 ["land0", [ "city3_reinf1", "city1_vecSpawn", "reinf_spawn0"]],
 ["land1", [ "city0_reinf1", "city3_reinf0", "reinf_spawn1"]],

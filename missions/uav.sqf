@@ -14,7 +14,7 @@
 */
 
 _posArray = _this select 0;
-_missionType = _this select 1;
+_missionStyle = _this select 1;
 
 _reinfMarkers = _posArray select 1;
 
@@ -47,20 +47,8 @@ ani_uav setDir (random 360);
 ani_uavDestroyed = false;
 [_uavPos, "STATE:", ["!alive ani_uav", "ani_uavDestroyed=true", ""]] call CBA_fnc_createTrigger;
 
-// SPAWN ENEMIES
-// 1-2 patrols with 2-4 man
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_marker, 200],[[2,3],[3,4]],[[1,2],1,false],[],[],["patrol_gc", 250]] spawn SLP_spawn;
-
-
-// REINFORCEMENTS
-sleep 5 + (random 5);
-_reinfSpawn1 = _reinfMarkers call BIS_fnc_selectRandom;
-_reinfMarkers = _reinfMarkers - [_reinfSpawn1];
-_reinfSpawn2 = _reinfMarkers call BIS_fnc_selectRandom;
-// 2 squad 10 man
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_reinfSpawn1, 10],[1,[6,8]],[],[],[],["reinforcement_o_gc", ani_uav]] spawn SLP_spawn;
-sleep 5 + (random 5);
-[_marker,[ani_enemySide,ani_enemyFaction,20],[_reinfSpawn2, 10],[1,[6,8]],[],[],[],["reinforcement_o_gc", ani_uav]] spawn SLP_spawn;
+// spawn enemies and reinforcements
+[_missionStyle, _marker, _reinfMarkers, ani_uav] call ani_spawnEnemies;
 
 waitUntil{sleep 0.1; ani_uavDestroyed};
 ani_missionState = "SUCCESS";
