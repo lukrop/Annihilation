@@ -11,7 +11,7 @@ _debug =                   						0;    // 0:off  1:on  //If on shows markers for
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
 //sets spawned units skill level can be an array.. [0.2,0.7]  or  0.2
 
-_setskill_inf=SLP_skill_inf;    // sets skill for infantry units
+_setskill_inf=ani_skill_inf;    // sets skill for infantry units
 _setskill_veh=[0.3,0.6];   	//sets skill for vehicles and armor units
 _setskill_air=[0.5,0.7]; 	// sets skill for Air units
 

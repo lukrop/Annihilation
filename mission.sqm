@@ -63,8 +63,8 @@ class Mission
 		forecastWaves=0.099999994;
 		forecastLightnings=0.099999994;
 		year=2013;
-		month=9;
-		day=30;
+		month=10;
+		day=2;
 		hour=6;
 		minute=0;
 		startFogBase=0.001;
@@ -2827,7 +2827,7 @@ class Mission
 		{
 			position[]={15178.97,17.907032,17353.801};
 			name="respawn_west";
-			text="Base";
+			text="Base/Gear";
 			type="b_hq";
 		};
 		class Item1

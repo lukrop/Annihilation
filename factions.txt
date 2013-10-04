@@ -1,0 +1,9 @@
+// Enemy faction
+// 0 = CSAT
+// 1 = NATO
+// 2 = INDFOR (AAF)
+// 3 = Civilian
+// 4 = GRU Russian by massi
+// 5 = African Rebel Army by massi
+// 6 = African Rebel civilians by massi
+// 7 = USSOCOM DEVGRU by massi

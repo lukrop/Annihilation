@@ -1,5 +1,5 @@
 respawn = BASE;
-respawndelay = 1;
+respawndelay = 5;
 respawndialog = 0;
 disabledAI = true;
 
