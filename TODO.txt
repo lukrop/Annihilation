@@ -1,2 +1,14 @@
 for 0.2.1
+---------
 - new missions (rescue pilot, convoy, bringammo)
+
+
+for 0.2.0
+---------
+-x make revive count adjustable
+-x better parameters overall (structure)
+-- adjustable enemy count
+-x make ammo box spawning optional
+-x localize strings
+-x make ai recruitment optional
+-- merge co6 and co20 version?
