@@ -15,33 +15,37 @@
 _unitType = _this select 0;
 _leader = _this select 1;
 
+private ["_unit"];
+
 if (_leader != leader (group _leader)) then {hint "You are not the squad leader."}
 else {
   if(count (units (group _leader)) < ani_maxRecruitUnits) then {
   
   switch (_unitType) do {
     case 0: {
-      ani_recruit_ARClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_ARClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 1: {
-      ani_recruit_MGClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_MGClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 2: {
-      ani_recruit_ATClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_ATClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 3: {
-      ani_recruit_LATClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_LATClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 4: {
-      ani_recruit_MedicClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_MedicClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 5: {
-      ani_recruit_PilotClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_PilotClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
     case 6: {
-      ani_recruit_EngineerClass createUnit [(getMarkerPos "ani_recruit_spawn"), group _leader];
+      _unit = (group _leader) createUnit [ani_recruit_EngineerClass, (getMarkerPos "ani_recruit_spawn"),[] , 0, "FORM"];
     };
   };
+  
+  {_unit removeWeapon _x} forEach ["Binocular", "Laserdesignator", "Rangefinder"];
 
   } else {
   hint format ["You may only have %1 units in your group (including players)", ani_maxRecruitUnits];
