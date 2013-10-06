@@ -68,7 +68,7 @@ _base = getMarkerPos "recruitment";
 ani_pilotKilled = false;
 ani_pilotRescued = false;
 [_pilotPos, "STATE:", ["(!alive ani_pilot) and (!ani_pilotRescued)", "ani_pilotKilled=true", ""]] call CBA_fnc_createTrigger;
-_trigger = [_base, "AREA:", [10, 10, 0, false], "ACT:", ["VEHICLE", "PRESENT", false],
+_trigger = [_base, "AREA:", [30, 30, 0, false], "ACT:", ["VEHICLE", "PRESENT", false],
            "STATE:", ["this and (alive ani_pilot)", "ani_pilotRescued = true", ""]] call CBA_fnc_createTrigger;
 _trigger = _trigger select 0;
 _trigger triggerAttachVehicle [ani_pilot];
@@ -85,4 +85,11 @@ if(ani_pilotKilled) then {
   [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
   _marker setMarkerColor "ColorGreen";
   _marker setMarkerAlpha 0.3;
+  [ani_pilot] join grpNull;
+  if(vehicle ani_pilot != ani_pilot) then {
+    ani_pilot leaveVehicle (vehicle ani_pilot);
+  };
+  ani_pilot move _base;
+  waitUntil{unitReady ani_pilot};
+  deleteVehicle ani_pilot;
 };
