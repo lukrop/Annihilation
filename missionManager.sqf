@@ -16,7 +16,7 @@ private ["_landMissionType", "_cityMissionType", "_missionStyle", "_posArray", "
 //_cityMissionType = ["cache", "killhvt", "hostage", "capturehvt"];
 
 _landMissionType = ["uav", "mortar"];
-_cityMissionType = ["cache", "killhvt", "killhvtstatic"];
+_cityMissionType = ["cache", "killhvt", "killhvtstatic", "rescuepilot"];
 
 ani_missionState = "";
 
@@ -65,7 +65,7 @@ while {(count _landMissionType > 0) or (count _cityMissionType > 0)} do {
   // ##### DEBUG/TESTING #####
   /*
   _missionStyle = 0;
-  _missionType = "cache";
+  _missionType = "rescuepilot";
   _posArray = ani_citys call BIS_fnc_selectRandom;
   hint format ["%1 | %2", _missionType, _posArray select 0];
   */

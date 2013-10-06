@@ -10,7 +10,7 @@
   
 */
 
-ani_timeBetweenMissions = 120;
+ani_timeBetweenMissions = 100;
 
 // Enemy side
 // east = 0 
@@ -94,7 +94,8 @@ case 7: {
 switch (ani_friendlyFaction) do {
 case 0: {
     ani_uavClass = "O_UAV_02_F";
-
+    ani_chopperClass = "O_Heli_Light_02_unarmed_F";
+    
     ani_recruit_ARClass = "O_soldier_AR_F";
     ani_recruit_MGClass = "O_soldier_AR_F";
     ani_recruit_ATClass = "O_soldier_AT_F";
@@ -105,6 +106,7 @@ case 0: {
   };
 case 1: {
     ani_uavClass = "B_UAV_02_F";
+    ani_chopperClass = "B_Heli_Transport_01_F";
 
     ani_recruit_ARClass = "B_soldier_AR_F";
     ani_recruit_MGClass = "B_soldier_AR_F";
@@ -116,6 +118,7 @@ case 1: {
   };
 case 2: {
     ani_uavClass = "I_UAV_02_F";
+    ani_chopperClass = "I_Heli_Transport_02_F";
 
     ani_recruit_ARClass = "I_soldier_AR_F";
     ani_recruit_MGClass = "I_soldier_AR_F";
@@ -127,6 +130,7 @@ case 2: {
   };
 case 4: {
     ani_uavClass = "O_UAV_02_F";
+    ani_chopperClass = "O_Heli_Light_02_unarmed_F";
 
     ani_recruit_ARClass = "O_mas_rus_Soldier_AR_F";
     ani_recruit_MGClass = "O_mas_rus_Soldier_MGh_F";
@@ -138,6 +142,7 @@ case 4: {
   };
 case 5: {
     ani_uavClass = "O_UAV_02_F";
+    ani_chopperClass = "O_Heli_Light_02_unarmed_F";
 
     ani_recruit_ARClass = "O_mas_afr_soldier_AR_F";
     ani_recruit_MGClass = "O_mas_afr_soldier_MG_F";
@@ -149,6 +154,8 @@ case 5: {
   };
 case 6: {
     ani_uavClass = "O_UAV_02_F";
+    ani_chopperClass = "O_Heli_Light_02_unarmed_F";
+    
     // need to test this out, dunno which number is what kind..
     ani_recruit_ARClass = "O_mas_afr_Rebel2_F";
     ani_recruit_MGClass = "O_mas_afr_Rebel3_F";
@@ -160,6 +167,7 @@ case 6: {
   };
 case 7: {
     ani_uavClass = "B_UAV_02_F";
+    ani_chopperClass = "B_Heli_Transport_01_F";
 
     ani_recruit_ARClass = "B_mas_usn_soldier_AR_F";
     ani_recruit_MGClass = "B_mas_usn_soldier_MG_F";

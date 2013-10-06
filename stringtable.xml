@@ -9,6 +9,14 @@
       <Original>SAD</Original>
       <German>SuZ</German>
     </Key>
+    <Key ID="STR_ANI_CSAR">
+      <Original>CSAR</Original>
+      <German>Retten</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUE">
+      <Original>Rescue</Original>
+      <German>Retten</German>
+    </Key>
     <Key ID="STR_ANI_CACHE">
       <Original>SAD Cache</Original>
       <German>SuZ Waffenlager</German>
@@ -40,6 +48,14 @@
     <Key ID="STR_ANI_UAV_DESCRIPTION">
       <Original>We lost contact to one of our drones. You need to search and destroy it before the enemy gets his hands on it.</Original>
       <German>Wir haben den Kontakt zu einer unserer Drohnen verloren. Sie müssen die Drohne finden und zerstören bevor sie in die Hände des Feindes fällt.</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUEPILOT">
+      <Original>CSAR Pilot</Original>
+      <German>Pilot retten</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUEPILOT_DESCRIPTION">
+      <Original>One of our birds got shot down. You need to search and rescue the pilot. We marked the crashsite on the map, we suspect the enemies have already captured him an are holding him hostage in one of the nearby buildings. Bring him back to the base.</Original>
+      <German>Einer unserer Hubschrauber wurde abgeschossen. Sie müssen den Piloten retten und zurück in die Basis bringen. Wir vermuten, dass der Feind den Piloten bereits gefangen genommen hat und ihn als Geisel in einem der naheliegenden Häuser hält. Wir haben die Unglücksstelle auf der Karte markiert.</German>
     </Key>
   </Package>
   <Package name="Diary">

@@ -145,8 +145,8 @@ if(ani_revive == 1) then {
 SLP_init = [] execvm "SLP\SLP_init.sqf";
 // compile SHK_pos
 SHK_pos = compile preprocessFile "SLP\scripts\SHK_pos.sqf";
-// compile ani enemies spawn
-ani_spawnEnemies = compile preprocessFile "scripts\spawnEnemies.sqf";
+// compile ani functions
+call compile preprocessFile "fnc\compile.sqf";
 
 #include "config.sqf"
 
