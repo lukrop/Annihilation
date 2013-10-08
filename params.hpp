@@ -55,6 +55,41 @@ class Params {
     texts[]={"5","10", "15", "20", "Infinite"};
   };
   
+  class ani_mobile_respawn {
+    title="   Mobile respawn";
+    values[]={0,1};
+    default=1;
+    texts[]={"Disabled","Enabled"};
+  };
+  
+  class ani_vec_respawndelay {
+    title="Vehicle respawn delay";
+    values[]={5,15,30,60,120};
+    default=60;
+    texts[]={"5 seconds","15 seconds", "30 seconds", "60 seconds", "120 seconds"};
+  };
+  
+  class ani_vec_deserteddelay {
+    title="Vehicle deserted delay";
+    values[]={300,600,900,1200,1800};
+    default=1800;
+    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes"};
+  };
+  
+  class ani_chopper_respawndelay {
+    title="Chopper respawn delay";
+    values[]={5,15,30,60,120};
+    default=120;
+    texts[]={"5 seconds","15 seconds", "30 seconds", "60 seconds", "120 seconds"};
+  };
+
+  class ani_chopper_deserteddelay {
+    title="Chopper deserted delay";
+    values[]={300,600,900,1200,1800};
+    default=1800;
+    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes"};
+  };
+  
   class ani_ammoboxes {
     title="Spawn ammoboxes in addition to the VAS box.";
     values[]={0,1,2};

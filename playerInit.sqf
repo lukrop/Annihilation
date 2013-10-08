@@ -34,8 +34,8 @@ if(ani_ammoboxes == 2) then {
   _grenades = "Box_NATO_Grenades_F" createVehicleLocal getMarkerPos "grenades";
   _explosives = "Box_NATO_AmmoOrd_F" createVehicleLocal getMarkerPos "explosives";
 
-  {_x setDir 45} forEach [_wepbox1, _wepbox2, _wepbox3, _wepbox4, _wepbox5, _wepbox6, _wepbox7, _launchers, _grenades, _explosives];
-  {_x setDir 130} forEach [_gearbox1, _gearbox2, _gearbox3, _supply, _support, _wepbox8, _wepbox9];
+  {_x setDir 325} forEach [_wepbox1, _wepbox2, _wepbox3, _wepbox4, _wepbox5, _wepbox6, _wepbox7, _launchers, _grenades, _explosives];
+  {_x setDir 325} forEach [_gearbox1, _gearbox2, _gearbox3, _supply, _support, _wepbox8, _wepbox9];
 
   /*
   _teamBox = "Box_NATO_Ammo_F" createVehicleLocal getMarkerPos "teamBox";

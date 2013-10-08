@@ -14,9 +14,9 @@ if(!isServer) exitWith{};
 private ["_teamBox", "_infzone1", "_infzone2"];
 
 // set Date/Time
-setDate [2035,09,30,ani_daytime,0];
+setDate [2035,10,6,ani_daytime,0];
 // mcc_sandbox bug workaround
-[[0,0,0], "STATE:", ["time > 15", "setDate [2035,09,30,ani_daytime,0];", ""]] call CBA_fnc_createTrigger;
+[[0,0,0], "STATE:", ["time > 15", "setDate [2035,10,6,ani_daytime,0];", ""]] call CBA_fnc_createTrigger;
 
 if(ani_ammoboxes == 1) then {
   _gearbox1 = "Box_mas_usd_NATO_equip_F" createVehicle getMarkerPos "gearbox1";
@@ -40,8 +40,8 @@ if(ani_ammoboxes == 1) then {
   _grenades = "Box_NATO_Grenades_F" createVehicle getMarkerPos "grenades";
   _explosives = "Box_NATO_AmmoOrd_F" createVehicle getMarkerPos "explosives";
 
-  {_x setDir 45} forEach [_wepbox1, _wepbox2, _wepbox3, _wepbox4, _wepbox5, _wepbox6, _wepbox7, _launchers, _grenades, _explosives];
-  {_x setDir 130} forEach [_gearbox1, _gearbox2, _gearbox3, _supply, _support, _wepbox8, _wepbox9];
+  {_x setDir 325} forEach [_wepbox1, _wepbox2, _wepbox3, _wepbox4, _wepbox5, _wepbox6, _wepbox7, _launchers, _grenades, _explosives];
+  {_x setDir 325} forEach [_gearbox1, _gearbox2, _gearbox3, _supply, _support, _wepbox8, _wepbox9];
 
   /*
   _teamBox = "Box_NATO_Ammo_F" createVehicle getMarkerPos "teamBox";

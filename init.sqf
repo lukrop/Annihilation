@@ -22,6 +22,11 @@ if(isNil "paramsArray") then{
   8,  // recruiting max group size
   1,  // revive enabled
   10, // revive lifes
+  1, // mobile respawn
+  60, // vec respawn delay
+  1800, // vec deserted delay
+  120, // chopper respawn delay
+  1800, // chopper deserted delay
   1,  // ammoboxes
   0,  // tpwcas
   0,  // tpwlos
@@ -37,10 +42,16 @@ ani_recruit = paramsArray select _i; _i = _i + 1;
 ani_maxRecruitUnits = paramsArray select _i; _i = _i + 1;
 ani_revive = paramsArray select _i; _i = _i + 1;
 ani_reviveLifes = paramsArray select _i; _i = _i + 1;
+ani_mobileRespawn = paramsArray select _i; _i = _i + 1;
+ani_vec_respawnDelay = paramsArray select _i; _i = _i + 1;
+ani_vec_desertedDelay = paramsArray select _i; _i = _i + 1;
+ani_chopper_respawnDelay = paramsArray select _i; _i = _i + 1;
+ani_chopper_desertedDelay = paramsArray select _i; _i = _i + 1;
 ani_ammoBoxes = paramsArray select _i; _i = _i + 1;
 ani_suppression = paramsArray select _i; _i = _i + 1;
 ani_tpwlos = paramsArray select _i; _i = _i + 1;
 ani_acre = paramsArray select _i; _i = _i + 1;
+
 
 switch (ani_enemyCount) do {
   case 0: {
@@ -126,7 +137,7 @@ switch(ani_suppression) do {
 };
 
 if(ani_acre == 1) then {
-  ani_box addAction ["<t color='#11ff11'>Take AN/PRC152</t>", "scripts\addPRC152.sqf"];
+  ani_box addAction ["<t color='#11ff11'>Take AN/PRC152</t>", "fnc\addPRC152.sqf"];
 };
 
 // Viewdistance script
@@ -136,6 +147,7 @@ if(ani_revive == 1) then {
   // init revive
   call compile preprocessFile "=BTC=_revive\=BTC=_revive_init.sqf";
   BTC_lifes = ani_reviveLifes;
+  BTC_active_mobile = ani_mobileRespawn;
 } else {
   // set respawn time to 15 instead of 1 ### seems to be not working! dunno what to do for now...
   // setPlayerRespawnTime 15;
