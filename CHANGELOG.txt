@@ -1,0 +1,27 @@
+0.3.0
+- moved base to northern airfield. AI is now able to drive out of base and it's easier for humans too.
+- added mobile respawn vehicle (with the possibility to turn it off in the paramters)
+- vehicles have now a adjustable respawn and deserted delay (new paramters)
+- new mission "CSAR Pilot"
+- 6 new locations (3 city, 3 land)
+- recruited AI gets binoculars removed because they seem to get stuck with them sometimes
+- adjusted script for adding the AN-PRC/152 (addItem instead of addWeapon)
+
+0.2.0
+- changed to CO20, still playable with a low-player count
+- new paramters for: enemy count, recruitment, revive, ammoboxes
+- new way of spawning enemies and reinforcements (easier to change amount of enemies)
+- added localization for tasks (currently: english, german)
+- added localizations for diary entrys (currently: english, german)
+- removed unarmed vehicles from the opfor, blufor and indfor vehicles array
+- various small fixes
+
+arrays
+0.1.2
+- moved base
+- strechted the base a bit to have a lower object count per square meter and thus improve performance at base.
+0.1.1
+- moved recruit barracks closer to spawn
+- kinda fixed the vec respawn issues
+- removed one ghost hawk
+- moved humming birds around a bit
