@@ -184,7 +184,10 @@ ani_citys = [
 ["city1", "city1_vecSpawn", [ "city1_reinf0",  "city1_reinf1",  "city1_reinf2",  "city1_reinf3"], ["city1_spawn0", "city1_spawn1", "city1_spawn2", "city1_spawn3"] ],
 ["city2", "city2_vecSpawn", [ "city2_reinf0",  "city2_reinf1",  "city2_reinf2",  "city2_reinf3"], ["city2_spawn0", "city2_spawn1", "city2_spawn2", "city2_spawn3"] ],
 ["city3", "city3_vecSpawn", [ "city3_reinf0",  "city3_reinf1",  "city3_reinf2",  "city3_reinf3"], ["city3_spawn0", "city3_spawn1", "city3_spawn2", "city3_spawn3"] ],
-["city4", "city4_vecSpawn", [ "city4_reinf0",  "city4_reinf1",  "city4_reinf2",  "city4_reinf3"], ["city4_spawn0", "city4_spawn1", "city4_spawn2", "city4_spawn3"] ]
+["city4", "city4_vecSpawn", [ "city4_reinf0",  "city4_reinf1",  "city4_reinf2",  "city4_reinf3"], ["city4_spawn0", "city4_spawn1", "city4_spawn2", "city4_spawn3"] ],
+["city5", "city5_vecSpawn", [ "city5_reinf0",  "city5_reinf1",  "city5_reinf2",  "city5_reinf3"], ["city5_spawn0", "city5_spawn1", "city5_spawn2", "city5_spawn3"] ],
+["city6", "city6_vecSpawn", [ "city6_reinf0",  "city6_reinf1",  "city6_reinf2",  "city6_reinf3"], ["city6_spawn0", "city6_spawn1", "city6_spawn2", "city6_spawn3"] ],
+["city7", "city7_vecSpawn", [ "city7_reinf0",  "city7_reinf1",  "city7_reinf2",  "city7_reinf3"], ["city7_spawn0", "city7_spawn1", "city7_spawn2", "city7_spawn3"] ]
 ];
 
 // TODO add another (4th) reinf pos per land mission
@@ -198,5 +201,8 @@ ani_lands = [
 ["land6", [ "city1_reinf3", "city1_vecSpawn", "reinf_spawn0"]],
 ["land7", [ "city3_reinf0", "city3_spawn1", "city2_reinf3"]],
 ["land8", [ "city3_spawn0", "reinf_spawn3", "city0_spawn1"]],
-["land9", [ "city2_spawn1", "city2_reinf3", "city2_spawn2"]]
+["land9", [ "city2_spawn1", "city2_reinf3", "city2_spawn2"]],
+["land10", [ "city6_reinf0", "reinf_spawn4", "reinf_spawn5"]],
+["land11", [ "city6_reinf1", "city6_reinf2", "city5_reinf3"]],
+["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]]
 ];

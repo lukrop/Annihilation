@@ -398,7 +398,7 @@ class Mission
 					vehicle="Logic";
 					leader=1;
 					skill=0.60000002;
-					init="{_x setMarkerAlpha 0} forEach [""city0"", ""city1"", ""city2"", ""city3"", ""city4"", ""land0"", ""land1"", ""land2"", ""land3"", ""land4"", ""land5"", ""land6"", ""land7"", ""land8"", ""land9"", ""ambient_patrol1"", ""ambient_patrol2"", ""ambient_patrol3""];";
+					init="_n = [] execVM ""fnc\markerAlpha.sqf"";";
 				};
 			};
 		};
@@ -2822,7 +2822,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=91;
+		items=129;
 		class Item0
 		{
 			position[]={15178.97,17.907032,17353.801};
@@ -3412,7 +3412,7 @@ class Mission
 		};
 		class Item86
 		{
-			position[]={8083.4653,161.97507,17595.709};
+			position[]={16571.67,17.917959,19369.68};
 			name="ambient_patrol3";
 			markerType="ELLIPSE";
 			type="Empty";
@@ -3450,6 +3450,256 @@ class Mission
 			text="Air";
 			type="b_air";
 			colorName="ColorBLUFOR";
+		};
+		class Item91
+		{
+			position[]={7941.5981,174.47957,18308.33};
+			name="ambient_patrol4";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=1800;
+			b=1800;
+			angle=-32.442101;
+		};
+		class Item92
+		{
+			position[]={8623.4922,181.50037,18264.334};
+			name="city5";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=200;
+			b=200;
+		};
+		class Item93
+		{
+			position[]={8587.7676,188.24867,18094.684};
+			name="city5_vecSpawn";
+			type="Empty";
+		};
+		class Item94
+		{
+			position[]={8546.0693,181.72284,18190.822};
+			name="city5_spawn0";
+			type="Empty";
+		};
+		class Item95
+		{
+			position[]={8582.042,175.24574,18319.58};
+			name="city5_spawn1";
+			type="Empty";
+		};
+		class Item96
+		{
+			position[]={8705.1328,178.56361,18310.367};
+			name="city5_spawn2";
+			type="Empty";
+		};
+		class Item97
+		{
+			position[]={8634.5771,186.45061,18177.523};
+			name="city5_spawn3";
+			type="Empty";
+		};
+		class Item98
+		{
+			position[]={9092.2627,161.82903,18817.844};
+			name="city5_reinf0";
+			type="Empty";
+		};
+		class Item99
+		{
+			position[]={9458.5693,143.69221,18032.961};
+			name="city5_reinf1";
+			type="Empty";
+		};
+		class Item100
+		{
+			position[]={8529.4453,156.11223,17745.84};
+			name="city5_reinf2";
+			type="Empty";
+		};
+		class Item101
+		{
+			position[]={7919.6274,113.09306,18546.855};
+			name="city5_reinf3";
+			type="Empty";
+		};
+		class Item102
+		{
+			position[]={9432.0742,123.4266,20250.842};
+			name="city6";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=200;
+			b=200;
+		};
+		class Item103
+		{
+			position[]={9431.0381,117.26271,20201.359};
+			name="city6_vecSpawn";
+			type="Empty";
+		};
+		class Item104
+		{
+			position[]={9323.2832,98.104378,20248.037};
+			name="city6_spawn0";
+			type="Empty";
+		};
+		class Item105
+		{
+			position[]={9413.666,114.46068,20183.447};
+			name="city6_spawn1";
+			type="Empty";
+		};
+		class Item106
+		{
+			position[]={9469.2861,130.35976,20223.455};
+			name="city6_spawn2";
+			type="Empty";
+		};
+		class Item107
+		{
+			position[]={9499.0137,133.46548,20336.771};
+			name="city6_spawn3";
+			type="Empty";
+		};
+		class Item108
+		{
+			position[]={10066.875,122.9708,20070.529};
+			name="city6_reinf0";
+			type="Empty";
+		};
+		class Item109
+		{
+			position[]={9208.9512,119.34447,19772.996};
+			name="city6_reinf1";
+			type="Empty";
+		};
+		class Item110
+		{
+			position[]={8704.0146,51.940971,20422.643};
+			name="city6_reinf2";
+			type="Empty";
+		};
+		class Item111
+		{
+			position[]={9998.3418,76.60347,20709.152};
+			name="city6_reinf3";
+			type="Empty";
+		};
+		class Item112
+		{
+			position[]={10521.48,147.30084,20612.672};
+			name="land10";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=500;
+			b=500;
+		};
+		class Item113
+		{
+			position[]={8329.8984,97.959007,19547.424};
+			name="land11";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=500;
+			b=500;
+		};
+		class Item114
+		{
+			position[]={11355.627,106.96976,20306.934};
+			name="reinf_spawn4";
+			type="Empty";
+		};
+		class Item115
+		{
+			position[]={10796.375,81.156639,21443.412};
+			name="reinf_spawn5";
+			type="Empty";
+		};
+		class Item116
+		{
+			position[]={7073.7905,217.75255,18580.684};
+			name="land12";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=500;
+			b=500;
+		};
+		class Item117
+		{
+			position[]={6543.9878,123.96164,17904.711};
+			name="reinf_spawn6";
+			type="Empty";
+		};
+		class Item118
+		{
+			position[]={6191.3711,134.97372,18904.494};
+			name="reinf_spawn7";
+			type="Empty";
+		};
+		class Item119
+		{
+			position[]={7125.2871,119.31399,16473.008};
+			name="city7";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=200;
+			b=200;
+		};
+		class Item120
+		{
+			position[]={7064.8408,107.70004,16409.43};
+			name="city7_vecSpawn";
+			type="Empty";
+		};
+		class Item121
+		{
+			position[]={7151.2017,109.3638,16392.996};
+			name="city7_spawn0";
+			type="Empty";
+		};
+		class Item122
+		{
+			position[]={7238.2803,109.1561,16328.65};
+			name="city7_spawn1";
+			type="Empty";
+		};
+		class Item123
+		{
+			position[]={6954.5474,118.2149,16482.443};
+			name="city7_spawn2";
+			type="Empty";
+		};
+		class Item124
+		{
+			position[]={7168.8198,134.60036,16565.58};
+			name="city7_spawn3";
+			type="Empty";
+		};
+		class Item125
+		{
+			position[]={6672.9517,46.258629,15948.162};
+			name="city7_reinf0";
+			type="Empty";
+		};
+		class Item126
+		{
+			position[]={7833.9741,121.82352,16204.387};
+			name="city7_reinf1";
+			type="Empty";
+		};
+		class Item127
+		{
+			position[]={7679.1758,181.94287,16971.387};
+			name="city7_reinf2";
+			type="Empty";
+		};
+		class Item128
+		{
+			position[]={6535.6406,129.20221,16890.299};
+			name="city7_reinf3";
+			type="Empty";
 		};
 	};
 	class Sensors

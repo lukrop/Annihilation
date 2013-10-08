@@ -50,17 +50,6 @@ if(ani_ammoboxes == 1) then {
   */
 };
 
-_infzone1 = round (random 1);
-_infzone2 = round (random 1);
-
-if((_infzone1 + _infzone2) < 1) then {
-  if((random 1) > 0.5) then {_infzone1 = 1} else {_infzone2 = 1};
-};
-
 waituntil {scriptdone SLP_init};
-
-["ambient_patrol1",[ani_enemySide,ani_enemyFaction,10],["ambient_patrol1", 1800],[_infzone1,[3,5]],[[0,1],1,false],[],[],["patrol", 1800]] spawn SLP_spawn;
-sleep 5;
-["ambient_patrol2",[ani_enemySide,ani_enemyFaction,10],["ambient_patrol2", 1800],[_infzone2,[3,5]],[[0,1],1,false],[],[],["patrol", 1800]] spawn SLP_spawn;
-
+[] execVM "ambientPatrols.sqf";
 [] execVM "missionManager.sqf";

@@ -12,6 +12,19 @@
 */
 
 _unit = _this select 1;
+_unit unassignItem "ItemRadio";
+_unit removeItem "ItemRadio";
 
-_unit removeWeapon "ACRE_PRC152";
-_unit addWeapon "ACRE_PRC152";
+_unit unassignItem "ACRE_PRC148";
+_unit removeItem "ACRE_PRC148";
+
+_unit unassignItem "ACRE_PRC343";
+_unit removeItem "ACRE_PRC343";
+
+_unit unassignItem "ACRE_PRC152";
+_unit removeItem "ACRE_PRC152";
+
+_unit addItem "ACRE_PRC152";
+
+//_unit removeWeapon "ACRE_PRC152";
+//_unit addWeapon "ACRE_PRC152";
