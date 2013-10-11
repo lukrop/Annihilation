@@ -71,7 +71,7 @@ class Params {
   
   class ani_vec_deserteddelay {
     title="Vehicle deserted delay";
-    values[]={300,600,900,1200,1800,3200};
+    values[]={300,600,900,1200,1800,3600};
     default=1800;
     texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};
   };
@@ -85,7 +85,7 @@ class Params {
 
   class ani_chopper_deserteddelay {
     title="Chopper deserted delay";
-    values[]={300,600,900,1200,1800,3200};
+    values[]={300,600,900,1200,1800,3600};
     default=1800;
     texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};
   };
