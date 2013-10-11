@@ -23,6 +23,7 @@ if(isNil "paramsArray") then{
   1,  // revive enabled
   10, // revive lifes
   1, // mobile respawn
+  1, // mobile respawn vas
   60, // vec respawn delay
   1800, // vec deserted delay
   120, // chopper respawn delay
@@ -43,6 +44,7 @@ ani_maxRecruitUnits = paramsArray select _i; _i = _i + 1;
 ani_revive = paramsArray select _i; _i = _i + 1;
 ani_reviveLifes = paramsArray select _i; _i = _i + 1;
 ani_mobileRespawn = paramsArray select _i; _i = _i + 1;
+ani_mobileRespawnVAS = paramsArray select _i; _i = _i + 1;
 ani_vec_respawnDelay = paramsArray select _i; _i = _i + 1;
 ani_vec_desertedDelay = paramsArray select _i; _i = _i + 1;
 ani_chopper_respawnDelay = paramsArray select _i; _i = _i + 1;
@@ -153,6 +155,9 @@ if(ani_revive == 1) then {
     BTC_lifes = ani_reviveLifes;
   };
   BTC_active_mobile = ani_mobileRespawn;
+  if(ani_mobileRespawn == 1) then {
+    MHQ addAction["<t color='#ff1111'>Virtual Ammobox</t>", "VAS\open.sqf"];
+  };
 } else {
   // set respawn time to 15 instead of 1 ### seems to be not working! dunno what to do for now...
   // setPlayerRespawnTime 15;

@@ -62,6 +62,13 @@ class Params {
     texts[]={"Disabled","Enabled"};
   };
   
+  class ani_mobile_respawn_vas {
+    title="   Virtual Ammobox on mobile respawn vehicle";
+    values[]={0,1};
+    default=1;
+    texts[]={"Disabled","Enabled"};
+  };
+  
   class ani_vec_respawndelay {
     title="Vehicle respawn delay";
     values[]={5,15,30,60,120};
