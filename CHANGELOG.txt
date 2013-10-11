@@ -1,4 +1,6 @@
 0.3.1
+- AI can be recruited now at the HEMTT
+- teleport to the MHQ is now at the flag available
 - ACRE compatibility improvements
 - every squad leader now gets a long range radio
 - fixed bug regarding infinite lives
