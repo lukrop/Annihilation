@@ -1,3 +1,3 @@
-for 0.3.1
----------
-- new missions (convoy, bringammo)
+- new missions (convoy, bringammo, evidence)
+- new concept for vehicle respawn
+- better ai recruitment and group handling

@@ -1,3 +1,12 @@
+0.3.1
+- ACRE compatibility improvements
+- every squad leader now gets a long range radio
+- fixed bug regarding infinite lives
+- synced transport support to every group leader
+- new paramter for VAS on the mobile respawn vehicle
+- tweaked the way reinforcements act
+- tweaked defend groups (units in group and group amount)
+
 0.3.0
 - moved base to northern airfield. AI is now able to drive out of base and it's easier for humans too.
 - added mobile respawn vehicle (with the possibility to turn it off in the paramters)
