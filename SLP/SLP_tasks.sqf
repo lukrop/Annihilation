@@ -41,13 +41,19 @@ switch (_tskname) do
       _trigger = ([_tsk1, "AREA:", [200, 200, 0, false], "ACT:", ["WEST", "EAST D", false]] call CBA_fnc_createTrigger) select 0;
       _wp1 = [_grp, getPos leader _grp, 3, "MOVE", "STEALTH", "GREEN", "NORMAL", "DIAMOND", "", [2,3,4]] call CBA_fnc_addWaypoint;
       _trigger synchronizeTrigger [_wp1];        
-      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "this spawn CBA_fnc_searchNearby", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "MOVE", "AWARE", "YELLOW", "NORMAL", "LINE", 
+      "[(group this), (getPos this), 30, 6, 'MOVE', 'AWARE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [5,10,15]] call CBA_fnc_taskPatrol",
+      [0,0,0]] call CBA_fnc_addWaypoint;
     };
   case "REINFORCEMENT_B" : {
       _trigger = ([_tsk1, "AREA:", [200, 200, 0, false], "ACT:", ["EAST", "WEST D", false]] call CBA_fnc_createTrigger) select 0;
       _wp1 = [_grp, getPos leader _grp, 3, "MOVE", "STEALTH", "GREEN", "NORMAL", "DIAMOND", "", [2,3,4]] call CBA_fnc_addWaypoint;
       _trigger synchronizeTrigger [_wp1];        
-      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "this spawn CBA_fnc_searchNearby", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "MOVE", "AWARE", "YELLOW", "NORMAL", "LINE", 
+      "[(group this), (getPos this), 30, 6, 'MOVE', 'AWARE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [5,10,15]] call CBA_fnc_taskPatrol",
+      [0,0,0]] call CBA_fnc_addWaypoint;
     };
     //  	case "":{}; ///add new task here
   case "PATROL_GC":	{[_grp, _tsk2, _tsk1, 7, "MOVE", "SAFE", "YELLOW", "LIMITED", "STAG COLUMN", "", [5+(random 5),10+(random 5),15+(random 5)]] call CBA_fnc_taskPatrol; _doGC = true;};    
@@ -63,14 +69,20 @@ switch (_tskname) do
       _trigger = ([_tsk1, "AREA:", [200, 200, 0, false], "ACT:", ["WEST", "EAST D", false]] call CBA_fnc_createTrigger) select 0;
       _wp1 = [_grp, getPos leader _grp, 3, "MOVE", "STEALTH", "GREEN", "NORMAL", "DIAMOND", "", [2,3,4]] call CBA_fnc_addWaypoint;
       _trigger synchronizeTrigger [_wp1];        
-      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "this spawn CBA_fnc_searchNearby", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "MOVE", "AWARE", "YELLOW", "NORMAL", "LINE", 
+      "[(group this), (getPos this), 30, 6, 'MOVE', 'AWARE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [5,10,15]] call CBA_fnc_taskPatrol",
+      [0,0,0]] call CBA_fnc_addWaypoint;
       _doGC = true;
     };
   case "REINFORCEMENT_B_GC" : {
       _trigger = ([_tsk1, "AREA:", [200, 200, 0, false], "ACT:", ["EAST", "WEST D", false]] call CBA_fnc_createTrigger) select 0;
       _wp1 = [_grp, getPos leader _grp, 3, "MOVE", "STEALTH", "GREEN", "NORMAL", "DIAMOND", "", [2,3,4]] call CBA_fnc_addWaypoint;
       _trigger synchronizeTrigger [_wp1];        
-      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "this spawn CBA_fnc_searchNearby", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+      [_grp, _tsk1, 30, "MOVE", "AWARE", "YELLOW", "NORMAL", "LINE", 
+      "[(group this), (getPos this), 30, 6, 'MOVE', 'AWARE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [5,10,15]] call CBA_fnc_taskPatrol",
+      [0,0,0]] call CBA_fnc_addWaypoint;
       _doGC = true;
     };
    

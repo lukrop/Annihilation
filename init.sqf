@@ -71,7 +71,7 @@ switch (ani_enemyCount) do {
   };
   case 1: {
     ani_enemyInfPatrolCount = [[2,4],[3,4]];
-    ani_enemyInfDefendCount = [[1,2],[4,6]];
+    ani_enemyInfDefendCount = [1,[6,8]];
     ani_enemyVecPatrolCount = [[1,2],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfReinfCount = [1,[6,10]];
@@ -79,7 +79,7 @@ switch (ani_enemyCount) do {
   };
   case 2: {
     ani_enemyInfPatrolCount = [[3,5],[3,4]];
-    ani_enemyInfDefendCount = [[2,3],[4,6]];
+    ani_enemyInfDefendCount = [[1,2],[6,8]];
     ani_enemyVecPatrolCount = [[1,3],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfReinfCount = [1,[6,10]];
@@ -87,11 +87,11 @@ switch (ani_enemyCount) do {
   };
   case 3: {
     ani_enemyInfPatrolCount = [[4,6],[3,4]];
-    ani_enemyInfDefendCount = [[2,4],[4,6]];
+    ani_enemyInfDefendCount = [[2,3],[6,8]];
     ani_enemyVecPatrolCount = [[2,4],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfReinfCount = [2,[6,10]];
-    ani_enemyReinforcments = [3,4]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
+    ani_enemyReinforcments = [1,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
   };
 };
 
