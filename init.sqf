@@ -110,9 +110,9 @@ case 3: {
 
 if(ani_recruit == 1) then {
   // add recruiting action
-  ani_recruit_flag addAction ["<t color='#11ffff'>Recruit units</t>", "ani_recruit\openDialog.sqf"];
+  ani_recruit_vec addAction ["<t color='#11ffff'>Recruit units</t>", "ani_recruit\openDialog.sqf"];
 } else {
-  deleteVehicle ani_recruit_flag;
+  deleteVehicle ani_recruit_vec;
   "recruitment" setMarkerAlpha 0;
 };
 
@@ -137,7 +137,8 @@ switch(ani_suppression) do {
 };
 
 if(ani_acre == 1) then {
-  ani_box addAction ["<t color='#11ff11'>Take AN/PRC152</t>", "fnc\addPRC152.sqf"];
+  ani_box addAction ["<t color='#11ff11'>Take AN/PRC-152</t>", "fnc\addPRC152.sqf"];
+  ani_box addAction ["<t color='#11ff11'>Take AN/PRC-148</t>", "fnc\addPRC148.sqf"];
 };
 
 // Viewdistance script
@@ -146,7 +147,11 @@ if(ani_acre == 1) then {
 if(ani_revive == 1) then {
   // init revive
   call compile preprocessFile "=BTC=_revive\=BTC=_revive_init.sqf";
-  BTC_lifes = ani_reviveLifes;
+  if(ani_reviveLifes == 0) then {
+    BTC_active_lifes = 0;
+  } else {
+    BTC_lifes = ani_reviveLifes;
+  };
   BTC_active_mobile = ani_mobileRespawn;
 } else {
   // set respawn time to 15 instead of 1 ### seems to be not working! dunno what to do for now...

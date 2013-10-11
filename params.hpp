@@ -50,7 +50,7 @@ class Params {
   
   class ani_revive_lifes {
     title="   Revive lifes";
-    values[]={5,10,15,20,99999999};
+    values[]={5,10,15,20,0};
     default=10;
     texts[]={"5","10", "15", "20", "Infinite"};
   };
@@ -71,9 +71,9 @@ class Params {
   
   class ani_vec_deserteddelay {
     title="Vehicle deserted delay";
-    values[]={300,600,900,1200,1800};
+    values[]={300,600,900,1200,1800,3200};
     default=1800;
-    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes"};
+    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};
   };
   
   class ani_chopper_respawndelay {
@@ -85,9 +85,9 @@ class Params {
 
   class ani_chopper_deserteddelay {
     title="Chopper deserted delay";
-    values[]={300,600,900,1200,1800};
+    values[]={300,600,900,1200,1800,3200};
     default=1800;
-    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes"};
+    texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};
   };
   
   class ani_ammoboxes {

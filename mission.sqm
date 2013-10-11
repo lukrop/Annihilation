@@ -25,7 +25,8 @@ class Mission
 		"A3_Structures_F_Mil_Flags",
 		"A3_Characters_F_BLUFOR",
 		"A3_Modules_F_Intel",
-		"a3_characters_f_beta"
+		"a3_characters_f_beta",
+		"A3_Soft_F_HEMTT"
 	};
 	addOnsAuto[]=
 	{
@@ -47,12 +48,13 @@ class Mission
 		"A3_Air_F_Beta_Heli_Transport_01",
 		"A3_Structures_F_Mil_Flags",
 		"A3_Soft_F_MRAP_01",
+		"A3_Soft_F_HEMTT",
 		"a3_map_altis"
 	};
 	randomSeed=14187951;
 	class Intel
 	{
-		briefingName="CO20 Annihilation NATO 0.3.0";
+		briefingName="CO20 Annihilation NATO 0.3.1";
 		overviewText="Complete random QRF missions.";
 		resistanceWest=0;
 		startWeather=0.29999998;
@@ -1980,7 +1982,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.60000002;
 					text="p4";
-					description="Eagle Sniper";
+					description="Eagle Recon";
 					syncId=21;
 					synchronizations[]={28,1};
 				};
@@ -1996,7 +1998,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.60000002;
 					text="p4_1";
-					description="Eagle Spotter";
+					description="Eagle Recon";
 				};
 			};
 		};
@@ -2064,6 +2066,7 @@ class Mission
 					leader=1;
 					rank="CAPTAIN";
 					skill=0.60000002;
+					text="p7";
 					description="Reaper Actual CO";
 					syncId=22;
 					synchronizations[]={28};
@@ -2079,6 +2082,7 @@ class Mission
 					player="PLAY CDG";
 					rank="SERGEANT";
 					skill=0.60000002;
+					text="p7_1";
 					description="Reaper Squad Medic";
 				};
 			};
@@ -2531,7 +2535,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=36;
+		items=37;
 		class Item0
 		{
 			position[]={9164.7881,14.4,21657.631};
@@ -2702,14 +2706,14 @@ class Mission
 		};
 		class Item15
 		{
-			position[]={9175.2139,14.372777,21672.6};
+			position[]={9178.9395,14.384927,21666.711};
 			azimut=134.966;
 			id=71;
 			side="EMPTY";
 			vehicle="Flag_Blue_F";
 			leader=1;
 			skill=0.60000002;
-			text="ani_recruit_flag";
+			text="ani_flag";
 		};
 		class Item16
 		{
@@ -2929,6 +2933,19 @@ class Mission
 			leader=1;
 			skill=0.60000002;
 			text="MHQ";
+		};
+		class Item36
+		{
+			position[]={9182.3408,14.343646,21677.48};
+			azimut=206.435;
+			id=92;
+			side="EMPTY";
+			vehicle="B_Truck_01_covered_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="ani_recruit_vec";
+			init="this allowDamage false;";
 		};
 	};
 	class Markers
@@ -3517,7 +3534,7 @@ class Mission
 		};
 		class Item85
 		{
-			position[]={9185.2178,14.337759,21677.865};
+			position[]={9192.9229,14.373433,21679.09};
 			name="ani_recruit_spawn";
 			type="Empty";
 		};
@@ -3533,7 +3550,7 @@ class Mission
 		};
 		class Item87
 		{
-			position[]={9175.1387,14.370978,21673.313};
+			position[]={9182.9248,14.333981,21679.146};
 			name="recruitment";
 			text="Recruit";
 			type="b_inf";

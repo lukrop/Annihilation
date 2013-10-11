@@ -40,7 +40,7 @@ BTC_3d_distance    = 50;
 BTC_3d_icon_size   = 0.5;
 BTC_3d_icon_color  = [1,0,0,1];
 BTC_dlg_on_respawn = 1;//1 = Mobile only - 2 Leader group and mobile - 3 = Units group and mobile - 4 = All side units and mobile
-BTC_objects_actions_west = [ani_box];
+BTC_objects_actions_west = [ani_flag];
 BTC_objects_actions_east = [];
 BTC_objects_actions_guer = [];
 BTC_objects_actions_civ  = [];

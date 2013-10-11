@@ -50,6 +50,23 @@ if(ani_ammoboxes == 1) then {
   */
 };
 
+if(ani_acre == 1) then {
+  // give all squad leaders a long range radio
+  _leaders = [];
+  
+  if(not isNil "p1") then {_leaders = _leaders + [p1]};
+  if(not isNil "p2") then {_leaders = _leaders + [p2]};
+  if(not isNil "p3") then {_leaders = _leaders + [p3]};
+  if(not isNil "p4") then {_leaders = _leaders + [p4]};
+  if(not isNil "p5") then {_leaders = _leaders + [p5]};
+  if(not isNil "p6") then {_leaders = _leaders + [p6]};
+  if(not isNil "p7") then {_leaders = _leaders + [p7]};
+  
+  {
+    _x addItem "ACRE_PRC148";
+  } forEach _leaders;
+};
+
 waituntil {scriptdone SLP_init};
 [] execVM "ambientPatrols.sqf";
 [] execVM "missionManager.sqf";

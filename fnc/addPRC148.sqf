@@ -1,7 +1,7 @@
 /*
 	Author: lukrop
 	Date: 10/1/2013
-  Description: Adds a AN/PRC-152 to the caller.
+  Description: Adds a AN/PRC-148 to the caller.
 	
 	Parameters:
         OBJECT: object with the action 
@@ -21,5 +21,6 @@ _unit removeWeapon "ACRE_PRC148";
 _unit unassignItem "ACRE_PRC152";
 _unit removeItem "ACRE_PRC152";
 _unit removeWeapon "ACRE_PRC152";
-// add the 152
-_unit addItem "ACRE_PRC152";
+
+// add the 148
+_unit addItem "ACRE_PRC148";
