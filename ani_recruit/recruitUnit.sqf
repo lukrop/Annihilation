@@ -46,6 +46,17 @@ else {
   };
   
   {_unit removeWeapon _x} forEach ["Binocular", "Laserdesignator", "Rangefinder"];
+  
+  _unit setSkill ["aimingAccuracy", 0.7];
+  _unit setSkill ["aimingShake", 0.8];
+  _unit setSkill ["aimingSpeed", 1];
+  _unit setSkill ["endurance", 1];
+  _unit setSkill ["spotDistance", 0.75];
+  _unit setSkill ["spotTime", 0.75];
+  _unit setSkill ["courage", 1];
+  _unit setSkill ["reloadSpeed", 1];
+  _unit setSkill ["commanding", 1];
+  _unit setSkill ["general", 1];
 
   } else {
   hint format ["You may only have %1 units in your group (including players)", ani_maxRecruitUnits];

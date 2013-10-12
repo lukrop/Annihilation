@@ -24,7 +24,7 @@ class Params {
     title="Enemy infantry skill";
     values[]={0,1,2,3};
     default=0;
-    texts[]={"0.2 - 0.35","0.3 - 0.45","0.4 - 0.55","0.6 - 0.85"};
+    texts[]={"0.1 - 0.3","0.3 - 0.5","0.5 - 0.7","0.7 - 0.9"};
   };
   
   class ani_recruit {

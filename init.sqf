@@ -95,18 +95,26 @@ switch (ani_enemyCount) do {
   };
 };
 
-switch (ani_enemySkill) do {
+switch (ani_enemy_skill) do {
 case 0: {
     ani_skill_inf = [0.2,0.35];
+    ani_skill_vec = [0.25,0.4];
+    ani_skill_air = [0.3,0.45];
   };
 case 1: {
     ani_skill_inf = [0.3,0.45];
+    ani_skill_vec = [0.35,0.5];
+    ani_skill_air = [0.4,0.55];
   };
 case 2: {
     ani_skill_inf = [0.4,0.55];
+    ani_skill_vec = [0.45,0.6];
+    ani_skill_air = [0.5,0.65];
   };
 case 3: {
     ani_skill_inf = [0.6,0.85];
+    ani_skill_vec = [0.65,0.9];
+    ani_skill_air = [0.7,0.95];
   };
 };
 
