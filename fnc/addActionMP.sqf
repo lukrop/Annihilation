@@ -12,19 +12,11 @@
   
 */
 
-ani_addActionMP_helper = {
-  private["_object","_actionName","_scriptToCall"];
-  _object = _this select 0;
-  _actionName = _this select 1;
-  _scriptToCall = _this select 2;
-
-  if(isNull _object) exitWith {};
-
-  _object addaction [_actionName,_scriptToCall];
-};
-
+private["_object","_actionName","_scriptToCall"];
 _object = _this select 0;
 _actionName = _this select 1;
-_script = _this select 2;
+_scriptToCall = _this select 2;
 
-[[_object, _actionName, _script],"ani_addActionMP_helper",true,false] spawn BIS_fnc_MP;
+if(isNull _object) exitWith {};
+
+_object addaction [_actionName,_scriptToCall];

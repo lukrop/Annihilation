@@ -8,7 +8,9 @@ tpwcas_fnc_debug_smoke =
 {
 	private ["_colorCode", "_coverPosition", "_color"];
 
-	diag_log format ["tpwcas_fnc_debug_smoke: %1", _this];
+	//diag_log format ["tpwcas_fnc_debug_smoke: %1 - %2 - [%3]", _this select 0, _this select 1, count _this];
+	
+	if !(count _this == 2 ) exitWith { diag_log format ["tpwcas_fnc_debug_smoke: not enough parameters: %1", _this] };
 	
 	_color 			= _this select 0;
 	_coverPosition 	= _this select 1;
@@ -21,6 +23,7 @@ tpwcas_fnc_debug_smoke =
 			case "green": 	{ [0, 1, 0, 0.5] };
 			case "cyan": 	{ [0, 1, 1, 0.5] };
 			case "yellow":	{ [1, 1, 0, 0.5] };
+			default			{ [1, 1, 1, 0.5] };
 		};	
 	
 	drop ['\a3\data_f\cl_basic.p3d', '', 'Billboard', 1, 20, _coverPosition, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[_colorCode], [0, 1], 0, 0, '', '', ''];

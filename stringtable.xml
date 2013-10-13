@@ -60,8 +60,8 @@
   </Package>
   <Package name="Diary">
     <Key ID="STR_ANI_DIARY_MISSION">
-      <Original>After 2 minutes you'll get a mission asigned, gear up in the meantime.&lt;br/&gt;&lt;br/&gt;Squad leaders can recruit AI units at the flagpole near the recruit barracks.&lt;br/&gt;&lt;br/&gt;The Eagle recon squad has access to artillery and mortar support.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 has access to a AH-99 Blackfoot for CAS missions.</Original>
-      <German>Nach 2 Minuten wir Ihnen eine Mission erteilt, Sie können sich in der Zwischenzeit ausrüsten.&lt;br/&gt;&lt;br/&gt;Squad Leader können KI Einheiten beim Flaggenmast rekrutieren.&lt;br/&gt;&lt;br/&gt;Der Eagle recon squad hat Zugriff auf Artillerie- und Mörserunterstützung.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 hat die Möglichkeit einen AH-99 Blackfoot für CAS zu rufen.</German>
+      <Original>After 2 minutes you'll get a mission asigned, gear up in the meantime.&lt;br/&gt;&lt;br/&gt;Squad leaders can recruit AI units at the HEMTT.&lt;br/&gt;&lt;br/&gt;The Eagle recon squad has access to artillery and mortar support.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 has access to a AH-99 Blackfoot for CAS missions.&lt;br/&gt;&lt;br/&gt; If the Mobile HQ is active you can teleport yourself to the MHQ at the flagpole.</Original>
+      <German>Nach 2 Minuten wir Ihnen eine Mission erteilt, Sie können sich in der Zwischenzeit ausrüsten.&lt;br/&gt;&lt;br/&gt;Squad Leader können KI Einheiten beim HEMTT (LKW) rekrutieren.&lt;br/&gt;&lt;br/&gt;Der Eagle recon squad hat Zugriff auf Artillerie- und Mörserunterstützung.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 hat die Möglichkeit einen AH-99 Blackfoot für CAS zu rufen.&lt;br/&gt;&lt;br/&gt;Wenn das Mobile HQ aktiviert ist kann sich jeder beim Flaggenmast zum MHQ telportieren.</German>
     </Key>
     <Key ID="STR_ANI_DIARY_SITUATION">
       <Original>NATO forces have been deployed on Altis and are trying to hold off a massive Iranian military offensive from the east.&lt;br/&gt;&lt;br/&gt;Your task as QRF is to conduct various small operations in the north-western part of Altis.</Original>

@@ -20,8 +20,9 @@ _reinfMarkers = _posArray select 1;
 
 // MARKER
 _marker = _posArray select 0;
-_marker setMarkerColor "ColorRed";
-_marker setMarkerAlpha 1;
+[[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+//_marker setMarkerColor "ColorRed";
+//_marker setMarkerAlpha 1;
 
 
 _aocenter = getMarkerPos _marker;
@@ -53,5 +54,6 @@ ani_uavDestroyed = false;
 waitUntil{sleep 0.1; ani_uavDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-_marker setMarkerColor "ColorGreen";
-_marker setMarkerAlpha 0.3;
+[[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+//_marker setMarkerColor "ColorGreen";
+//_marker setMarkerAlpha 0.3;

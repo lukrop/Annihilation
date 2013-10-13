@@ -95,7 +95,7 @@ switch (ani_enemyCount) do {
   };
 };
 
-switch (ani_enemy_skill) do {
+switch (ani_enemySkill) do {
 case 0: {
     ani_skill_inf = [0.2,0.35];
     ani_skill_vec = [0.25,0.4];

@@ -32,6 +32,19 @@ tpwcas_fnc_run_for_it =
 	//set move position to 125 to 350 m away from the shooting
 	_coverPosition = [((_cPos select 0) + ((125 + _factorX) * (_vPos select 0))), ((_cPos select 1) + ((125 + _factorX) * (_vPos select 1)))];
 	
+	while { (surfaceIsWater _coverPosition) } do
+	{
+		if (tpwcas_debug == 2) then 
+		{
+			diag_log format ["Civilian Unit [%1] coverPosition is water - looking for new position", _unit];
+		};
+		
+		_vPos = [vectorDir _shooter, _factorY * ((random 2) - 1)] call BIS_fnc_rotateVector2D;
+		_factorX = random 125;
+		//set move position to 125 to 350 m away from the shooting
+		_coverPosition = [((_cPos select 0) + ((125 + _factorX) * (_vPos select 0))), ((_cPos select 1) + ((125 + _factorX) * (_vPos select 1)))];
+	};
+	
 	//Visual Debug
 	if (tpwcas_debug > 0) then 
 	{		
@@ -92,8 +105,10 @@ tpwcas_fnc_run_for_it =
 					//drop["\ca\data\cl_basic", "", "Billboard", 1, 20, _coverPosition, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, "", "", ""]; //Red Smoke
 					//_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Red Smoke
 ////					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-					["['red', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
-					
+					["['red', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+		if !(isDedicated) then {
+			['red', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+		};
 					sleep 1;
 					deleteVehicle _debug_flag;
 				};
@@ -111,8 +126,11 @@ tpwcas_fnc_run_for_it =
 				//drop["\ca\data\cl_basic", "", "Billboard", 1, 20, _coverPosition, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, "", "", ""]; //Red Smoke
 ////				_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 0, 1, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Blue Smoke
 ////				[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-				["['blue', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
-				
+				["['blue', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+		if !(isDedicated) then {
+			['blue', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+		};
+		
 				sleep 1;
 				deleteVehicle _debug_flag;
 			};
@@ -144,6 +162,10 @@ tpwcas_fnc_run_for_it =
 		//drop["\ca\data\cl_basic", "", "Billboard", 1, 20, _coverPosition, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, "", "", ""]; //Red Smoke
 ////		_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
 ////		[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+			["['green', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+		if !(isDedicated) then {
+			['green', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+		};
 	};
 	
 	//reset run to cover value

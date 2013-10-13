@@ -24,10 +24,13 @@ _spawnMarkers = _posArray select 3;
 
 // MARKER
 _marker = _posArray select 0;
-_marker setMarkerColor "ColorRed";
-_marker setMarkerAlpha 1;
-
-{_x setMarkerType "hd_unknown"} forEach _spawnMarkers;
+[[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+//_marker setMarkerColor "ColorRed";
+//_marker setMarkerAlpha 1;
+{
+  //_x setMarkerType "hd_unknown"
+  [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+} forEach _spawnMarkers;
 
 _aocenter = getMarkerPos _marker;
 
@@ -60,6 +63,11 @@ ani_cacheDestroyed = false;
 waitUntil{sleep 0.1; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-_marker setMarkerColor "ColorGreen";
-_marker setMarkerAlpha 0.3;
-{_x setMarkerAlpha 0} forEach _spawnMarkers;
+
+[[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+//_marker setMarkerColor "ColorGreen";
+//_marker setMarkerAlpha 0.3;
+{
+  //_x setMarkerAlpha 0
+  [[_x, 0], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+} forEach _spawnMarkers;

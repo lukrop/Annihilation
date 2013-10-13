@@ -34,8 +34,8 @@ tpwcas_fnc_find_cover =
 				if ( !(_x isKindOf "Man") && !(_inCover) ) then
 				{
 					//_x is potential cover object
-					_bbox = boundingBox _x;
-					_dz = ((_bbox select 1) select 2) - ((_bbox select 0) select 2);
+					_bbox = boundingBoxReal _x;
+					_dz = abs(((_bbox select 1) select 2) - ((_bbox select 0) select 2));
 					
 					_cPos = (position _x);
 					_vPos = (vectorDir _shooter);
@@ -56,7 +56,10 @@ tpwcas_fnc_find_cover =
 								};
 ////								_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
 ////								[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-									["['green', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
+									["['green', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+								if !(isDedicated) then {
+									['green', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+								};
 							};
 							_inCover = true;
 						};
@@ -77,7 +80,10 @@ tpwcas_fnc_find_cover =
 					};
 ////					_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 1, 0.5]], [0, 1], 0, 0, '', '', '']", getPosATL _unit]; //Cyan Smoke
 ////					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-						["['cyan', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
+						["['cyan', getPosATL _unit]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+					if !(isDedicated) then {
+						['cyan', getPosATL _unit] spawn tpwcas_fnc_debug_smoke;
+					};
 				};
 		};
 	};
@@ -91,11 +97,14 @@ tpwcas_fnc_find_cover =
 			_coverPosition = (_cover select 0) select 1;
 			if (tpwcas_debug == 2) then 
 			{
-				diag_log format ["[%1] cover: [%2] - distance [%3] - box: [%4] - pos: [%5]", _unit, _coverTarget, _coverPosition distance _unit, boundingBox _coverTarget, getPosATL _coverTarget]; 
+				diag_log format ["[%1] cover: [%2] - distance [%3] - box: [%4] - pos: [%5]", _unit, _coverTarget, _coverPosition distance _unit, boundingBoxReal _coverTarget, getPosATL _coverTarget]; 
 			};
 ////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Yellow Smoke
 ////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-				["['yellow', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
+				["['yellow', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+			if !(isDedicated) then {
+				['yellow', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+			};
 		};
 		
 		[_unit, _cover select 0, _shooter] spawn tpwcas_fnc_move_to_cover;
@@ -170,8 +179,11 @@ tpwcas_fnc_move_to_cover =
 					};
 ////					_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Red Smoke
 ////					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-						["['red', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
-					
+						["['red', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+				if !(isDedicated) then {
+					['red', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+				};
+		
 					deleteVehicle _debug_flag;
 				};
 			};
@@ -193,8 +205,11 @@ tpwcas_fnc_move_to_cover =
 			};
 ////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 0, 1, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Blue Smoke
 ////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-				["['blue', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
-			
+				["['blue', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+			if !(isDedicated) then {
+				['blue', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+			};
+		
 			deleteVehicle _debug_flag;
 		};
 				
@@ -213,7 +228,10 @@ tpwcas_fnc_move_to_cover =
 		{
 ////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
 ////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
-				["['green', _coverPosition]","tpwcas_fnc_debug_smoke"] spawn BIS_fnc_MP;
+				["['green', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
+			if !(isDedicated) then {
+				['green', _coverPosition] spawn tpwcas_fnc_debug_smoke;
+			};
 		};
 	}
 	else

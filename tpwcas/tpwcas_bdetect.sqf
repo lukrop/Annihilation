@@ -628,7 +628,7 @@ bdetect_fnc_detect_projectile_sub =
 		};
 
 		if( isNull _projectile
-		|| !{ (alive _projectile) }
+		|| { !(alive _projectile) }
 		|| { _t - _time > _projectile_max_lifespan }
 		|| { _dist > _projectile_max_distance }
 		//|| speed _projectile < bdetect_projectile_initial_min_speed // funny rebounds handling

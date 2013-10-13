@@ -48,7 +48,7 @@ tpwcas_running = true;
 
 	//DEBUGGING. 0 = NO DEBUGGING, 1 = DISPLAY COLOURED BALLS OVER ANY SUPPRESSED UNITS, 2 = BALLS + BDETECT LOGGING. 
 	if(isNil "tpwcas_debug") then {
-		tpwcas_debug = 2;
+		tpwcas_debug = 1;
 		}; 
 
 	////////////////////
