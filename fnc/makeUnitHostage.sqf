@@ -22,4 +22,4 @@ _unit forceSpeed 0;
 // this animation name is madness.. unit has hands behind head
 _unit switchMove "amovpercmstpsnonwnondnon_amovpercmstpssurwnondnon";
 
-[[_unit, localize "STR_ANI_RESCUE", "fnc\rescueHostage.sqf"], "ani_addActionMP", call ani_getGroupLeaders, true] spawn BIS_fnc_MP;
+[[_unit, localize "STR_ANI_RESCUE", "fnc\rescueHostage.sqf"], "ani_addActionMP", nil, true] spawn BIS_fnc_MP;

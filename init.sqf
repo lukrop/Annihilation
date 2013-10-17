@@ -186,4 +186,4 @@ call compile preprocessFile "fnc\compile.sqf";
 
 [] execVM "serverInit.sqf";
 [] execVM "playerInit.sqf";
-
+[[[], "onPlayerConnected.sqf"], "BIS_fnc_execVM", false, true] spawn BIS_fnc_MP;

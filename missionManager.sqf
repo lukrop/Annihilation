@@ -38,6 +38,8 @@ ani_lands = [
 ["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]]
 ];
 
+ani_completedMissions = [];
+
 private ["_missionStyle", "_posArray", "_missionType"];
 
 //ani_landMissiontype = ["uav", "mortar", "chopper", "fueltrucks"];
@@ -74,18 +76,24 @@ while {(count ani_landMissiontype > 0) or (count ani_cityMissiontype > 0)} do {
   // city mission
   case 0: {
       // select a random entry (positions)
-      _posArray = ani_citys call BIS_fnc_selectRandom;
+      _index = round (random ((count ani_citys) - 1));
+      _posArray = ani_citys select _index;
       // choose random mission
       _missionType = ani_cityMissiontype call BIS_fnc_selectRandom;
       // remove place and mission from possible future missions
-      ani_citys = ani_citys - [_posArray];
+      ani_citys set [_index, -1];
+      ani_citys = ani_citys - [-1];
+      //ani_citys = ani_citys - [_posArray];
       ani_cityMissiontype = ani_cityMissiontype - [_missionType];
     };
   // land mission
   case 1: {
-      _posArray = ani_lands call BIS_fnc_selectRandom;
+      _index = round (random ((count ani_lands) - 1));
+      _posArray = ani_lands select _index;
       _missionType = ani_landMissiontype call BIS_fnc_selectRandom;
-      ani_lands = ani_lands - [_posArray];
+      ani_lands set [_index, -1];
+      ani_lands = ani_lands - [-1];
+      //ani_lands = ani_lands - [_posArray];
       ani_landMissiontype = ani_landMissiontype - [_missionType];
     };
   };
@@ -100,9 +108,12 @@ while {(count ani_landMissiontype > 0) or (count ani_cityMissiontype > 0)} do {
   // ##### DEBUG/TESTING #####
 
   diag_log format ["### ANI: Starting mission %1 at %2 ###", _missionType, (_posArray select 0)];
+  ani_currentMission = [_posArray select 0, _missionType];
   [_posArray, _missionStyle] execVM format ["missions\%1.sqf", _missionType];
 
   // wait until mission is finished
   waitUntil{sleep 1; ani_missionState != "IN_PROGRESS"};
   diag_log format ["### ANI: Finished mission %1 at %2 ###", _missionType, (_posArray select 0)];
+  _completed_missionState = ani_missionState;
+  ani_completedMissions = ani_completedMissions + [[_posArray select 0, _completed_missionState]];
 };

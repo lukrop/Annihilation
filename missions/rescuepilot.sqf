@@ -42,8 +42,10 @@ _aocenter, // destination
 
 // CREATE Pilot
 _crashPos = getMarkerPos (_spawnMarkers call BIS_fnc_selectRandom);
+
 // spawn downed chopper
 _chopper = ani_chopperClass createVehicle _crashPos;
+_chopper allowDamage false;
 _chopper setDamage 0.9;
 _chopper setFuel (random 0.3);
 _chopper setVehicleAmmo (random 0.5);
@@ -53,12 +55,15 @@ _chopper setVehicleAmmo (random 0.5);
 _pilotClass = ani_recruit_PilotClass;
 _pilotGrp = createGroup west;
 ani_pilot = _pilotGrp createUnit [_pilotClass, _crashPos, [], 0, "FORM"];
+//publicVariable "ani_pilot";
 // move him to random house position
 _pilotPos = [ani_pilot, (getPos ani_pilot), 30] call ani_moveInRandomBuilding;
 // make the pilot a hostage
 [ani_pilot] call ani_makeUnitHostage;
 // spawn two guards
 [_pilotPos, east, [ani_hvtGuardClass, ani_hvtGuardClass], [[1,2,0]]] call BIS_fnc_spawnGroup;
+
+_chopper allowDamage true;
 
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_pilot] call ani_spawnEnemies;
