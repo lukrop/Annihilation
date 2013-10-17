@@ -29,8 +29,8 @@ _marker = _posArray select 0;
 
 {
   //_x setMarkerType "hd_unknown"
-  // [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-  [_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
+   [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", false, true] spawn BIS_fnc_MP;
+  //[_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
 } forEach _spawnMarkers;
 
 _aocenter = getMarkerPos _marker;
@@ -68,8 +68,14 @@ ani_missionState = "SUCCESS";
 // [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
 
+sleep 60;
+while{not [ani_cache, 200] CBA_fnc_nearPlayer} do {sleep 30};
+deleteVehicle ani_cache;
+
+/*
 {
   //_x setMarkerAlpha 0
   // [[_x, 0], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
   [_x, 0] call ani_changeMarker;
 } forEach _spawnMarkers;
+*/

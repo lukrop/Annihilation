@@ -55,3 +55,6 @@ ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 // [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
+sleep 60;
+while{not [ani_uav, 200] CBA_fnc_nearPlayer} do {sleep 30};
+deleteVehicle ani_uav;
