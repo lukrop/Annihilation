@@ -3,22 +3,22 @@
   Date: 10/2/2013
   Description: Configuration. Sets classnames used in the mission scripts.
   Defines enemy faction and side.
-  
+
   Parameters: -
-  
+
   Returns: -
-  
+
 */
 
 ani_timeBetweenMissions = 100;
 
 // Enemy side
-// east = 0 
+// east = 0
 // west = 1
 // resistance = 2
 // civilian = 3 ## INOP! don't use
 ani_enemySide = 0;
-ani_friendlySide = 1; // better set this right.. 
+ani_friendlySide = 1; // better set this right..
 
 // friendly faction
 // 0 = CSAT
@@ -95,7 +95,7 @@ switch (ani_friendlyFaction) do {
 case 0: {
     ani_uavClass = "O_UAV_02_F";
     ani_chopperClass = "O_Heli_Light_02_unarmed_F";
-    
+
     ani_recruit_ARClass = "O_soldier_AR_F";
     ani_recruit_MGClass = "O_soldier_AR_F";
     ani_recruit_ATClass = "O_soldier_AT_F";
@@ -155,7 +155,7 @@ case 5: {
 case 6: {
     ani_uavClass = "O_UAV_02_F";
     ani_chopperClass = "O_Heli_Light_02_unarmed_F";
-    
+
     // need to test this out, dunno which number is what kind..
     ani_recruit_ARClass = "O_mas_afr_Rebel2_F";
     ani_recruit_MGClass = "O_mas_afr_Rebel3_F";
@@ -178,31 +178,3 @@ case 7: {
     ani_recruit_EngineerClass = "B_mas_usn_soldier_repair_F";
   };
 };
-
-ani_citys = [ 
-["city0", "city0_vecSpawn", [ "city0_reinf0",  "city0_reinf1",  "city0_reinf2",  "city0_reinf3"], ["city0_spawn0", "city0_spawn1", "city0_spawn2", "city0_spawn3"] ],
-["city1", "city1_vecSpawn", [ "city1_reinf0",  "city1_reinf1",  "city1_reinf2",  "city1_reinf3"], ["city1_spawn0", "city1_spawn1", "city1_spawn2", "city1_spawn3"] ],
-["city2", "city2_vecSpawn", [ "city2_reinf0",  "city2_reinf1",  "city2_reinf2",  "city2_reinf3"], ["city2_spawn0", "city2_spawn1", "city2_spawn2", "city2_spawn3"] ],
-["city3", "city3_vecSpawn", [ "city3_reinf0",  "city3_reinf1",  "city3_reinf2",  "city3_reinf3"], ["city3_spawn0", "city3_spawn1", "city3_spawn2", "city3_spawn3"] ],
-["city4", "city4_vecSpawn", [ "city4_reinf0",  "city4_reinf1",  "city4_reinf2",  "city4_reinf3"], ["city4_spawn0", "city4_spawn1", "city4_spawn2", "city4_spawn3"] ],
-["city5", "city5_vecSpawn", [ "city5_reinf0",  "city5_reinf1",  "city5_reinf2",  "city5_reinf3"], ["city5_spawn0", "city5_spawn1", "city5_spawn2", "city5_spawn3"] ],
-["city6", "city6_vecSpawn", [ "city6_reinf0",  "city6_reinf1",  "city6_reinf2",  "city6_reinf3"], ["city6_spawn0", "city6_spawn1", "city6_spawn2", "city6_spawn3"] ],
-["city7", "city7_vecSpawn", [ "city7_reinf0",  "city7_reinf1",  "city7_reinf2",  "city7_reinf3"], ["city7_spawn0", "city7_spawn1", "city7_spawn2", "city7_spawn3"] ]
-];
-
-// TODO add another (4th) reinf pos per land mission
-ani_lands = [
-["land0", [ "city3_reinf1", "city1_vecSpawn", "reinf_spawn0"]],
-["land1", [ "city0_reinf1", "city3_reinf0", "reinf_spawn1"]],
-["land2", [ "city3_reinf2", "city4_reinf0", "city2_spawn3"]],
-["land3", [ "city3_reinf3", "city0_reinf0", "reinf_spawn2"]],
-["land4", [ "city1_reinf2", "city4_reinf3", "city4_reinf2"]],
-["land5", [ "city3_reinf2", "city3_reinf3", "reinf_spawn2"]],
-["land6", [ "city1_reinf3", "city1_vecSpawn", "reinf_spawn0"]],
-["land7", [ "city3_reinf0", "city3_spawn1", "city2_reinf3"]],
-["land8", [ "city3_spawn0", "reinf_spawn3", "city0_spawn1"]],
-["land9", [ "city2_spawn1", "city2_reinf3", "city2_spawn2"]],
-["land10", [ "city6_reinf0", "reinf_spawn4", "reinf_spawn5"]],
-["land11", [ "city6_reinf1", "city6_reinf2", "city5_reinf3"]],
-["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]]
-];

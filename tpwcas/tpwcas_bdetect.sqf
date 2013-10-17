@@ -33,23 +33,23 @@ if(isNil "bdetect_debug_levels") then { bdetect_debug_levels = [0,1,2,3,4,5,6,7,
 if(isNil "bdetect_callback") then { bdetect_callback = "bdetect_fnc_callback"; }; 								// (String, Default "bdetect_fnc_callback") Name for your own callback function
 if(isNil "bdetect_callback_mode") then { bdetect_callback_mode = "spawn"; }; 									// (String, Default "spawn") Allowed values: "call" or "spawn"
 if(isNil "bdetect_fps_adaptation") then { bdetect_fps_adaptation = true; }; 									// (Boolean, Default true) Whether bDetect should try to keep over "bdetect_fps_min" FPS while degrading quality of detection
-if(isNil "bdetect_fps_min") then { bdetect_fps_min = 15; }; 													// (Number, Default 15) The minimum FPS you wish to keep
-if(isNil "bdetect_fps_calc_each_x_frames") then { bdetect_fps_calc_each_x_frames = 16; }; 						// (Number, Default 16) FPS check is done each "bdetect_fps_min" frames. 1 means each frame.
+if(isNil "bdetect_fps_min") then { bdetect_fps_min = 20; }; 													// (Number, Default 15) The minimum FPS you wish to keep
+if(isNil "bdetect_fps_calc_each_x_frames") then { bdetect_fps_calc_each_x_frames = 20; }; 						// (Number, Default 16) FPS check is done each "bdetect_fps_min" frames. 1 means each frame.
 if(isNil "bdetect_eh_assign_cycle_wait") then { bdetect_eh_assign_cycle_wait = 10; }; 							// (Seconds, Default 10). Wait duration foreach cyclic execution of bdetect_fnc_eh_loop()
-if(isNil "bdetect_bullet_min_delay") then { bdetect_bullet_min_delay = 0.1; }; 									// (Seconds, Default 0.1) Minimum time between 2 consecutive shots fired by an unit for the last bullet to be tracked. Very low values may cause lag.
+if(isNil "bdetect_bullet_min_delay") then { bdetect_bullet_min_delay = 0.15; }; 									// (Seconds, Default 0.1) Minimum time between 2 consecutive shots fired by an unit for the last bullet to be tracked. Very low values may cause lag.
 if(isNil "bdetect_bullet_max_delay") then { bdetect_bullet_max_delay = 2; }; 									// (Seconds, Default 2)
 if(isNil "bdetect_bullet_initial_min_speed") then { bdetect_bullet_initial_min_speed = 360 * 3.6; }; 			// (Meters/Second, Default 360 x 3.6 to convert to km/hr) Bullets slower than this are ignored.
-if(isNil "bdetect_bullet_max_proximity") then { bdetect_bullet_max_proximity = 10; }; 							// (Meters, Default 10) Maximum proximity to unit for triggering detection
+if(isNil "bdetect_bullet_max_proximity") then { bdetect_bullet_max_proximity = 6; }; 							// (Meters, Default 10) Maximum proximity to unit for triggering detection
 if(isNil "bdetect_bullet_min_distance") then { bdetect_bullet_min_distance = 20; }; 							// (Meters, Default 25) Bullets having travelled less than this distance are ignored
-if(isNil "bdetect_bullet_max_distance") then { bdetect_bullet_max_distance = 500; }; 							// (Meters, Default 500) Bullets havin travelled more than distance are ignored
-if(isNil "bdetect_bullet_max_lifespan") then { bdetect_bullet_max_lifespan = 1.0; }; 							// (Seconds, Default 1.0) Bullets living more than these seconds are ignored
-if(isNil "bdetect_projectile_max_lifespan") then { bdetect_projectile_max_lifespan = 4.5; };					// (Seconds, Default 4.5) Projectiles living more than these seconds are ignored
-if(isNil "bdetect_bullet_max_height") then { bdetect_bullet_max_height = 8; }; 									// (Meters, Default 8)  Bullets going higher than this -and- diverging from ground are ignored
+if(isNil "bdetect_bullet_max_distance") then { bdetect_bullet_max_distance = 1250; }; 							// (Meters, Default 500) Bullets havin travelled more than distance are ignored
+if(isNil "bdetect_bullet_max_lifespan") then { bdetect_bullet_max_lifespan = 1.5; }; 							// (Seconds, Default 1.0) Bullets living more than these seconds are ignored
+if(isNil "bdetect_projectile_max_lifespan") then { bdetect_projectile_max_lifespan = 5; };					// (Seconds, Default 4.5) Projectiles living more than these seconds are ignored
+if(isNil "bdetect_bullet_max_height") then { bdetect_bullet_max_height = 6; }; 									// (Meters, Default 8)  Bullets going higher than this -and- diverging from ground are ignored
 if(isNil "bdetect_bullet_skip_mags") then { bdetect_bullet_skip_mags = []; }; 									// (Array) Skip these bullet types altogether. Example: ["30rnd_9x19_MP5", "30rnd_9x19_MP5SD", "15Rnd_9x19_M9"]
 //if(isNil "bdetect_mp_enable") then { bdetect_mp_enable = false; }; 												// (Boolean, Default true) Toggle to Enable / Disable MP experimental support
 if(isNil "bdetect_mp_per_frame_emulation") then { bdetect_mp_per_frame_emulation = true; }; 					// (Boolean, Default false) Toggle to Enable / Disable experimental server per-frame-execution emulation
 if(isNil "bdetect_mp_per_frame_emulation_frame_d") then { bdetect_mp_per_frame_emulation_frame_d = 0.02; };  	// (Seconds, Default 0.02) Experimental server per-frame-execution emulation timeout
-if(isNil "bdetect_units_kindof") then { bdetect_units_kindof = ["MAN"]; }; 										// CfgVehicles classes being subject to suppression effects, example: ["Man","StaticWeapon","Car","Tank","Air"]
+if(isNil "bdetect_units_kindof") then { bdetect_units_kindof = ["CaManBase","StaticWeapon","Car_f","Tank_f","Air"]; }; 										// CfgVehicles classes being subject to suppression effects, example: ["CaManBase","StaticWeapon","Car_f","Tank_f","Air"]
 
 // NEVER edit the variables below, please.
 if(isNil "bdetect_fired_bullets") then { bdetect_fired_bullets = []; };
@@ -69,11 +69,9 @@ if(isNil "bdetect_players_count_killed") then { bdetect_players_count_killed = 0
 if(isNil "bdetect_fps") then { bdetect_fps = bdetect_fps_min; };
 if(isNil "bdetect_bullet_delay") then { bdetect_bullet_delay = bdetect_bullet_min_delay; };
 if(isNil "bdetect_frame_tstamp") then { bdetect_frame_tstamp = 0; };
-//if(isNil "bdetect_frame_min_duration") then { bdetect_frame_min_duration = (bdetect_bullet_max_proximity * 2 * .66 / 600) max .01; };
 if(isNil "bdetect_frame_min_duration") then { bdetect_frame_min_duration = 0.015; }; // 60fps
 
-//bdetect_projectile_array = [[GrenadeHandTimedWest, 15, 4.5, 50],[GrenadeBase, 15, 4.0, 1000],[ShellBase, 40, 20, 7000],[RocketBase, 30, 10, 1000],[MissileBase, 20, 8, 2500],[BombCore, 40, 10, 1000]];
-bdetect_projectile_array = [["GrenadeHand", 15, 4.5, 50],["GrenadeBase", 15, 4.0, 1000],["ShellBase", 40, 20, 7000],["RocketBase", 30, 10, 1000],["MissileBase", 20, 8, 2500],["BombCore", 40, 10, 1000]];
+bdetect_projectile_array = [["GrenadeHand", 15, 4.5, 50],["GrenadeBase", 15, 4.5, 1000],["ShellBase", 40, 20, 7000],["RocketBase", 30, 10, 1000],["MissileBase", 20, 8, 2500],["BombCore", 40, 10, 1000]];
 
 // -------------------------------------------------------------------------------------------
 // Functions
@@ -153,7 +151,7 @@ bdetect_fnc_eh_loop =
 
 		while { true } do // iteratively add EH to all units spawned at runtime
 		{
-			{ [_x] call bdetect_fnc_eh_add; } foreach playableUnits;	// Loop players only
+			{ [_x] call bdetect_fnc_eh_add; } count playableUnits;	// Loop players only
 
 			sleep bdetect_eh_assign_cycle_wait;
 		};
@@ -167,7 +165,7 @@ bdetect_fnc_eh_loop =
 		//_nul = [allUnits] call tpwcas_los_fnc_mainloop;
 		while { true } do // iteratively add EH to all units spawned at runtime
 		{
-			{ [_x] call bdetect_fnc_eh_add; } foreach allUnits;	// Loop onto all units
+			{ [_x] call bdetect_fnc_eh_add; } count allUnits;	// Loop onto all units
 
 			sleep bdetect_eh_assign_cycle_wait;
 		};
@@ -432,7 +430,7 @@ bdetect_fnc_find_other_ammo =
     {
 		_nr = _nr + 1;
         if (_projectile isKindOf _x) exitWith {_result = [true, _x, _nr]};
-	} forEach ["GrenadeHand", "GrenadeBase", "RocketBase", "MissileBase"];
+	} count ["GrenadeHand", "GrenadeBase", "RocketBase", "MissileBase"];
     //} forEach ["GrenadeHandTimedWest", "GrenadeBase", "RocketBase", "ShellBase", "MissileBase", "BombCore"];
     _result
 };
@@ -568,7 +566,7 @@ bdetect_fnc_detect_bullet_sub =
 						};
 					};
 
-				} foreach _units;
+				} count _units;
 
 				if(_update_blacklist) then {
 					bdetect_fired_bullets set[ _n + 1, [_shooter, _pos, _time, _blacklist] ]; // Update blacklist
@@ -641,7 +639,7 @@ bdetect_fnc_detect_projectile_sub =
 			//if( _dist > bdetect_bullet_min_distance ) then
 			//{
 
-				_units = _bpos nearEntities [ ["MAN"] , _projectile_max_proximity];
+				_units = _bpos nearEntities [ ["CaManBase"] , _projectile_max_proximity];
 
 				{
 					if( _x != _shooter ) then {
@@ -684,7 +682,7 @@ bdetect_fnc_detect_projectile_sub =
 						};
 					};
 
-				} foreach _units;
+				} count _units;
 
 				if(_update_blacklist) then {
 					bdetect_fired_projectiles set[ _n + 1, [_shooter, _pos, _time, _blacklist] ]; // Update blacklist

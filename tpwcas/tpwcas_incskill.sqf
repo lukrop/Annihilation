@@ -1,7 +1,7 @@
 /*
 INCREASE UNIT SKILLS
 - called from main loop
-- aiming shake, aiming accuracy and courage increase by 5%
+- aiming shake, aiming accuracy and courage increase by 1%
 */
 
 tpwcas_fnc_incskill = 
@@ -13,12 +13,11 @@ tpwcas_fnc_incskill =
 	_originalshake = _unit getvariable "tpwcas_originalshake";      
 	_originalcourage = _unit getvariable "tpwcas_originalcourage"; 
 	
-	_currentaccuracy = _unit skill "aimingaccuracy"; 
-	_currentshake = _unit skill "aimingshake"; 
+	_currentaccuracy = _unit skill "aimingAccuracy"; 
+	_currentshake = _unit skill "aimingShake"; 
 	_currentcourage = _unit skill "courage"; 
 	
-	//_inc = 0.05; //5% increment
-	_inc = 0.10; //10% increment
+	_inc = 0.02; //1% increment
 	
 	if (_currentaccuracy < _originalaccuracy) then 
 	{
@@ -27,8 +26,8 @@ tpwcas_fnc_incskill =
 		_newshake = _currentshake + (_originalshake * _inc); 
 		_newcourage = _currentcourage + (_originalcourage * _inc); 	
 		
-		_unit setskill ["aimingaccuracy",_newaccuracy];         
-		_unit setskill ["aimingshake",_newshake];        
+		_unit setskill ["aimingAccuracy",_newaccuracy];         
+		_unit setskill ["aimingShake",_newshake];        
 		_unit setskill ["courage",_newcourage];  
 		
 		//diag_log format [">>> Unit [%1] - Acc: [%2] - Shake: [%3] - Courage: [%4]", _unit, _newaccuracy, _newshake, _newcourage];
@@ -36,8 +35,8 @@ tpwcas_fnc_incskill =
 	else
 	{
 		//RESET SKILLS
-		_unit setskill ["aimingaccuracy",_originalaccuracy];         
-		_unit setskill ["aimingshake",_originalshake];        
+		_unit setskill ["aimingAccuracy",_originalaccuracy];         
+		_unit setskill ["aimingShake",_originalshake];        
 		_unit setskill ["courage",_originalcourage];
 		
 		_unit setvariable ["tpwcas_skillreset", 0];

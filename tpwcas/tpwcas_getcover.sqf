@@ -19,8 +19,8 @@ tpwcas_fnc_find_cover =
 	_unit setvariable ["tpwcas_cover", _status];	
 	
 	//potential cover objects list
-	_objects = (nearestObjects [_unit, [], tpwcas_coverdist]); // - ((position _unit) nearRoads _dist);
-
+	_objects = ((nearestObjects [_unit,[], tpwcas_coverdist]) - ((position _unit) nearRoads tpwcas_coverdist)); // 
+	
 	if ( count _objects > 0 ) then
 	{
 		// check if current location of unit already provides cover from shooter
@@ -31,20 +31,20 @@ tpwcas_fnc_find_cover =
 		{		
 			// start foreach _objects
 			{ 
-				if ( !(_x isKindOf "Man") && !(_inCover) ) then
+				if ( !(_x isKindOf "CaManBase") && !(_inCover) ) then
 				{
 					//_x is potential cover object
 					_bbox = boundingBoxReal _x;
 					_dz = abs(((_bbox select 1) select 2) - ((_bbox select 0) select 2));
 					
-					_cPos = (position _x);
+					_cPos = (getPosATL _x);
 					_vPos = (vectorDir _shooter);
 					
-					//set coverposition to 1.3 m behind the found cover
-					_coverPosition = [((_cPos select 0) + (1.3 * (_vPos select 0))), ((_cPos select 1) + (1.3 * (_vPos select 1))), (_cPos select 2)];
+					//set coverposition to 1.5 m behind the found cover
+					_coverPosition = [((_cPos select 0) + (1.5 * (_vPos select 0))), ((_cPos select 1) + (1.5 * (_vPos select 1))), (_cPos select 2)];
 					
 					//Any object which is high and wide enough is potential cover position, excluding water
-					if ( (((getPosATL _x) select 2) < 0.2) && (_dz > 0.35) && (_dz < 12) && !(surfaceIsWater _coverPosition)) then
+					if ( (((getPosATL _x) select 2) < 0.75) && (_dz > 0.75) && (_dz < 12) && !(surfaceIsWater _coverPosition)) then
 					{
 						if ( ( _coverPosition distance _unit ) < 1 )  exitWith 
 						{
@@ -54,8 +54,8 @@ tpwcas_fnc_find_cover =
 								{
 									diag_log format ["abort: [%1] close to cover [%2] now: distance [%3] m", _unit, _x, _coverPosition distance _unit];
 								};
-////								_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
-////								[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+								_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
+								[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 									["['green', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 								if !(isDedicated) then {
 									['green', _coverPosition] spawn tpwcas_fnc_debug_smoke;
@@ -67,7 +67,7 @@ tpwcas_fnc_find_cover =
 						_cover set [count _cover, [_x, _coverPosition]];					
 					};
 				};
-			} forEach _objects;
+			} count _objects;
 			// end foreach _objects
 		}
 		else
@@ -78,8 +78,8 @@ tpwcas_fnc_find_cover =
 					{
 						diag_log format ["abort: [%1] already in cover for shooter [%2]", _unit, _shooter];
 					};
-////					_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 1, 0.5]], [0, 1], 0, 0, '', '', '']", getPosATL _unit]; //Cyan Smoke
-////					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+					_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 1, 0.5]], [0, 1], 0, 0, '', '', '']", getPosATL _unit]; //Cyan Smoke
+					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 						["['cyan', getPosATL _unit]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 					if !(isDedicated) then {
 						['cyan', getPosATL _unit] spawn tpwcas_fnc_debug_smoke;
@@ -99,8 +99,8 @@ tpwcas_fnc_find_cover =
 			{
 				diag_log format ["[%1] cover: [%2] - distance [%3] - box: [%4] - pos: [%5]", _unit, _coverTarget, _coverPosition distance _unit, boundingBoxReal _coverTarget, getPosATL _coverTarget]; 
 			};
-////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Yellow Smoke
-////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+			_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Yellow Smoke
+			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 				["['yellow', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 			if !(isDedicated) then {
 				['yellow', _coverPosition] spawn tpwcas_fnc_debug_smoke;
@@ -142,7 +142,6 @@ tpwcas_fnc_move_to_cover =
 	{
 		if ( _logOnce && (tpwcas_debug > 0) ) then 
 		{
-			//_debug_flag = "FlagCarrierWhite_EP1" createVehicle _coverPosition; //ARMA
 			_debug_flag = "Flag_FD_Red_F" createVehicle _coverPosition;
 			_debug_flag setPos _coverPosition;
 
@@ -177,8 +176,8 @@ tpwcas_fnc_move_to_cover =
 					{
 						diag_log format ["Unit [%1] moving wrong way to cover [%2]: [%3] m - drop here - tooFar: [%4] - tooLong: [%5] - ([%6] seconds)", _unit, _cover, _dist, _tooFar, _tooLong, _elapsedTime];
 					};
-////					_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Red Smoke
-////					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+					_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[1, 0, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Red Smoke
+					[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 						["['red', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 				if !(isDedicated) then {
 					['red', _coverPosition] spawn tpwcas_fnc_debug_smoke;
@@ -203,8 +202,8 @@ tpwcas_fnc_move_to_cover =
 			{
 				diag_log format["[%1] reached cover [%2]",_unit, _cover];
 			};
-////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 0, 1, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Blue Smoke
-////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+			_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 0, 1, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Blue Smoke
+			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 				["['blue', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 			if !(isDedicated) then {
 				['blue', _coverPosition] spawn tpwcas_fnc_debug_smoke;
@@ -215,7 +214,7 @@ tpwcas_fnc_move_to_cover =
 				
 		doStop _unit;
 		_unit setunitpos "down"; 
-		sleep (3 + random 5);
+		sleep (5 + random 10);
 			
 		//doMove:
 		//Order the given unit(s) to move to the given position (without radio messages). 
@@ -226,8 +225,8 @@ tpwcas_fnc_move_to_cover =
 
 		if (tpwcas_debug > 0) then 
 		{
-////			_smokeString = format ["drop['\ca\data\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
-////			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
+			_smokeString = format ["drop['\a3\data_f\cl_basic', '', 'Billboard', 1, 20, %1, [0, 0, 0], 0, 1.274, 0.5, 0, [5],[[0, 1, 0, 0.5]], [0, 1], 0, 0, '', '', '']", _coverPosition]; //Green Smoke
+			[-2, {call compile _this}, _smokeString] call CBA_fnc_globalExecute;
 				["['green', _coverPosition]",tpwcas_fnc_debug_smoke,true,false] spawn BIS_fnc_MP;
 			if !(isDedicated) then {
 				['green', _coverPosition] spawn tpwcas_fnc_debug_smoke;

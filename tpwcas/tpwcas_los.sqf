@@ -85,13 +85,12 @@ tpwcas_los_fnc_mainloop =
 		};
 
 		//IF ENOUGH TIME HAS PASSED SINCE LAST LOS CHECK	
-		//if ( (diag_ticktime >= _nexttime) && (lifestate _unit == "ALIVE") && !(side _unit == civilian) ) then  //ARMA3
 		if ( (diag_ticktime >= _nexttime) && ((lifestate _unit == "HEALTHY") || (lifestate _unit == "INJURED")) && !(side _unit == civilian) ) then  
 		{	 
 			_unit setvariable ["tpwcas_los_nexttime", diag_ticktime + random 1]; 
 
 			//FIND NEAR MEN AND CARS
-			_nearUnits = (getposATL _unit) nearentities [["man","car"],tpwcas_los_maxdist]; 
+			_nearUnits = (getposATL _unit) nearEntities [["CaManBase","Car_f"],tpwcas_los_maxdist]; 
 			
 			// start foreach
 			{ 
@@ -99,7 +98,6 @@ tpwcas_los_fnc_mainloop =
 				_tpwcas_los_cansee = -1; 
 
 				//Check if unit has Line of Sight to unknown enemy
-				//if ( !(isPlayer _near) && (((side _unit) getFriend (side _near)) < 0.6) && !(side _near == civilian) && (lifestate _near == "ALIVE") && ((_near knowsAbout _unit) < tpwcas_los_knowsabout) ) then //ARMA3
 				if ( !(isPlayer _near) && (((side _unit) getFriend (side _near)) < 0.6) && !(side _near == civilian) && ((lifestate _near == "HEALTHY") || (lifestate _near == "INJURED")) && ((_near knowsAbout _unit) < tpwcas_los_knowsabout) ) then
 				{
 					_eyedv = eyedirection _near;  
@@ -117,7 +115,7 @@ tpwcas_los_fnc_mainloop =
 						
 						if ( _dist < tpwcas_los_mindist ) then 
 						{							
-							if ( _camo > 0.5 ) then 
+							if ( _camo > 0.6 ) then 
 							{
 								_tpwcas_los_cansee = 200;
 							};
@@ -177,5 +175,5 @@ tpwcas_los_fnc_mainloop =
 				};
 			} foreach _nearUnits; 
 		};
-	} forEach _unitList;
+	} count _unitList;
 };

@@ -3,14 +3,14 @@
 	Date: 10/1/2013
   Description: Mission script. Creates task, creates hvt + guards, creates the trigger,
   spawns some enemy infantry, waits until hvt is dead and sets task to succeeded.
-	
+
 	Parameters:
         ARRAY: position markers array
               [center marker name, vec spawn marker, [reinforcment pos markers], [spawn pos markers]]
         NUMBER: mission type. 0=city, 1=land
-	
+
 	Returns: -
-  
+
 */
 
 private ["_posArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_aocenter", "_taskID", "_reinfCount"];
@@ -25,9 +25,8 @@ _spawnMarkers = _posArray select 3;
 
 // MARKER
 _marker = _posArray select 0;
-[[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorRed";
-//_marker setMarkerAlpha 1;
+// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 1, "ColorRed"] call ani_changeMarker;
 
 _aocenter = getMarkerPos _marker;
 
@@ -72,6 +71,5 @@ waitUntil{sleep 0.1;ani_hvtKilled};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 
-[[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorGreen";
-//_marker setMarkerAlpha 0.3;
+// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 0.3, "ColorGreen"] call ani_changeMarker;

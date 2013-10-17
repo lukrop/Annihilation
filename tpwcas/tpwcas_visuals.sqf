@@ -26,9 +26,9 @@ tpwcas_fnc_visuals =
 			_tint ppEffectAdjust[1, 1, (-5 * _ppmod), [0,0,0,0], [0,0,0,0.8], [0,0,0,0.8]]; 
 			_tint ppEffectCommit 0;  
 			sleep 0.1;      
-		} foreach [1,2,3,4]; 
+		} count [1,2,3,4]; 
 		 
-		sleep 4;   
+		sleep 2;   
 
 		{ 
 			_ppmod = _ppmodifier * _x; 
@@ -37,7 +37,7 @@ tpwcas_fnc_visuals =
 			_tint ppEffectAdjust[1, 1, (-5 * _ppmod), [0,0,0,0], [0,0,0,0.8], [0,0,0,0.8]]; 
 			_tint ppEffectCommit 0;  
 			sleep 0.1;      
-		} foreach [4,3,2,1];  
+		} count [4,3,2,1];  
 		 
 		ppEffectDestroy _blur;   
 		ppEffectDestroy _tint;

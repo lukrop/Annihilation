@@ -168,7 +168,6 @@ tpwcas_fnc_debug =
 					};
 				};
 				
-				//if ( lifestate _x != "ALIVE" ) then //ARMA3
 				if !((lifestate _x == "HEALTHY") || (lifestate _x == "INJURED")) then
 				{
 					// hide tpwcas ball
@@ -182,7 +181,7 @@ tpwcas_fnc_debug =
 					_los_ball setPosATL [(random 15),(random 15),1];
 				};
 			};
-		} foreach allUnits;
+		} count allUnits;
 		
 		// Remove debug balls for dead ai
 		{ // foreach start
@@ -207,7 +206,7 @@ tpwcas_fnc_debug =
 				};
 			};
 			
-		} foreach allDead;
+		} count allDead;
 
 		sleep 1;
 	};

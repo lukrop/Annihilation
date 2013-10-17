@@ -27,7 +27,7 @@ Disclaimer: Feel free to use and modify this code, on the proviso that you post 
 
 private ["_version"];
 
-_version = "TPWCAS_A3 v1.1";
+_version = "TPWCAS_A3 v5.0";
 
 if (isNil "tpwcas_running") then { 	tpwcas_running = false;};
 if ( tpwcas_running ) exitWith { diag_log "EXIT: tpwcas already running" };
@@ -38,17 +38,17 @@ tpwcas_running = true;
 	
 	//STARTUP HINT (TPWCAS & BDETECT). 0 = NO HINT, 1 = HINT. 
 	if(isDedicated || isNil "tpwcas_hint") then {
-		tpwcas_hint = 0;
+		tpwcas_hint = 1;
 		}; 
 
 	//DELAY BEFORE SUPPRESSION FUNCTIONS START. ALLOWS TIME FOR OTHER MODS TO INITIALISE ETC. 
 	if(isNil "tpwcas_sleep") then {
-		tpwcas_sleep = 5;
+		tpwcas_sleep = 15;
 		}; 
 
 	//DEBUGGING. 0 = NO DEBUGGING, 1 = DISPLAY COLOURED BALLS OVER ANY SUPPRESSED UNITS, 2 = BALLS + BDETECT LOGGING. 
 	if(isNil "tpwcas_debug") then {
-		tpwcas_debug = 1;
+		tpwcas_debug = 0;
 		}; 
 
 	////////////////////
@@ -57,24 +57,24 @@ tpwcas_running = true;
 
 	//BULLET IGNORE RADIUS (M). BULLETS FROM A SHOOTER CLOSER THAN THIS WILL NOT SUPPRESS.  
 	if(isNil "tpwcas_ir") then {
-		tpwcas_ir = 20;
+		tpwcas_ir = 25;
 		}; 
 
 
 	//MAXIMUM BULLET DISTANCE (m). A BULLET FURTHER THAN THIS FROM ITS SHOOTER WILL NOT SUPPRESS. SET LARGER IF YOU PLAN ON DOING A LOT OF SNIPING - BUT MAY IMPACT PERFORMANCE.
 	if(isNil "tpwcas_maxdist") then {
-		tpwcas_maxdist = 900;
+		tpwcas_maxdist = 1200;
 		}; 
 
 	//BULLET LIFETIME (sec). BULLETS STILL ALIVE THIS LONG AFTER BEING SHOT ARE IGNORED.
 	if(isNil "tpwcas_bulletlife") then {
-		tpwcas_bulletlife = 1;
+		tpwcas_bulletlife = 1.5;
 		}; 
 
 	//SHOT THRESHOLD. MORE SHOTS THAN THIS WILL CAUSE UNIT TO DROP/CRAWL. 
 	if(isNil "tpwcas_st") then {
 		if ( isDedicated )  then 
-			{ tpwcas_st = 8; }
+			{ tpwcas_st = 10; }
 		else 
 			{ tpwcas_st = 10; };
 		};
@@ -83,53 +83,8 @@ tpwcas_running = true;
 	//ToDo: add ACR DLC Ammo
 	if(isNil "tpwcas_mags") then 
 	{
-		tpwcas_mags =   
-		[   
-			"30rnd_9x19_MP5",      
-			"30rnd_9x19_MP5SD",      
-			"15Rnd_9x19_M9",      
-			"15Rnd_9x19_M9SD",      
-			"7Rnd_45ACP_1911",      
-			"7Rnd_45ACP_1911",     
-			"8Rnd_9x18_Makarov",     
-			"8Rnd_9x18_MakarovSD",     
-			"64Rnd_9x19_Bizon",     
-			"64Rnd_9x19_SD_Bizon",     
-			"13Rnd_9mm_SLP",     
-			"17Rnd_9x19_glock17",     
-			"6Rnd_45ACP",     
-			"30Rnd_9x19_UZI",     
-			"30Rnd_9x19_UZI_SD"
-		]; 
+		tpwcas_mags =   [ "" ]; 
 	};	
-			/*
-			"ACE_17Rnd_9x19_G17",
-			"ACE_33Rnd_9x19_G18",
-			"ACE_30Rnd_9x19_S_UZI",
-			"ACE_20Rnd_765x17_vz61",
-			"ACE_20Rnd_9x39_S_SP6_OC14",
-			"ACE_20Rnd_9x39_B_SP6_OC14",
-			"ACE_20Rnd_9x39_S_OC14",
-			"ACE_20Rnd_9x39_B_OC14",
-			"ACE_20Rnd_9x39_SP6_VSS",
-			"ACE_10Rnd_9x39_SP6_VSS",
-			"ACE_64Rnd_9x19_S_Bizon",
-			"ACE_30Rnd_1143x23_B_M3",
-			"ACE_25Rnd_1143x23_S_UMP45",
-			"ACE_25Rnd_1143x23_B_UMP45",
-			"ACE_30Rnd_9x19_S_MP5",
-			"ACE_40Rnd_S_46x30_MP7",
-			"ACE_40Rnd_B_46x30_MP7",
-			"ACE_15Rnd_9x19_P8",
-			"ACE_15Rnd_9x19_P226",
-			"ACE_13Rnd_9x19_L9A1",
-			"ACE_15Rnd_9x19_S_M9",
-			"ACE_20Rnd_9x18_APSB",
-			"ACE_20Rnd_9x18_APS",
-			"ACE_8Rnd_762x25_B_Tokarev",
-			"ACE_12Rnd_45ACP_USP",
-			"ACE_12Rnd_45ACP_USPSD"
-			*/
 	
 	/////////////////////////
 	// SUPPRESSION VARIABLES
@@ -142,12 +97,12 @@ tpwcas_running = true;
 
 	//MINIMUM SKILL VALUE, NONE OF A UNIT'S SKILLS WILL DROP BELOW THIS UNDER SUPPRESSION. 
 	if(isNil "tpwcas_minskill") then {
-		tpwcas_minskill = 0.15;
+		tpwcas_minskill = 0.1;
 		};  
 
 	//REVEAL VALUE WHEN SUPPRESSED. 0 = REVEAL DISABLED. <1 = SUPPRESSED UNIT KNOWS NOTHING ABOUT SHOOTER. 4 = UNIT KNOWS THE SHOOTER'S SIDE, POSITION, SHOE SIZE ETC. 
 	if(isNil "tpwcas_reveal") then {
-		tpwcas_reveal = 3.2;
+		tpwcas_reveal = 0.01;
 		}; 
 
 	//UNITS CAN FLEE IF COURAGE AND MORALE TOO LOW. 0 = UNITS WILL NOT FLEE. 1 = UNITS WILL FLEE. SET TO 0 IF TOO MANY UNITS ARE FLEEING OR UNSUPPRESSABLE. 
@@ -161,28 +116,28 @@ tpwcas_running = true;
 
 	//MAXIMUM LOS DISTANCE (M). LOS STUFF ONLY WORKS FOR UNITS CLOSER THAN THIS.
 	if(isNil "tpwcas_los_maxdist") then {
-		tpwcas_los_maxdist = 90;
+		tpwcas_los_maxdist = 50;
 		};
 
 	//MINIMUM LOS DISTANCE (M). ENEMIES ARE CONSIDERED "VISIBLE" IF IN LOS, NO MATTER WHAT (CAMO, STANCE, VISIBILITY), IF LESS THAN THIS DISTANCE - EXCEPT FOR SNIPERS AND SPOTTER WITH GHILLIE SUITS
 	if(isNil "tpwcas_los_mindist") then {
-		tpwcas_los_mindist = 20;
+		tpwcas_los_mindist = 2;
 		};
 
 	//EMBEDDED TPWLOS: DISABLE = 0, ENABLE = 1 
 	if(isNil "tpwcas_los_enable") then {
-		tpwcas_los_enable = 0; //disabled by default
+		tpwcas_los_enable = 1; //disabled by default
 		};
 
 	//EMBEDDED TPWLOS REQUIRED MINIMAL SERVER FPS, ELSE PROCESS IS SKIPPED
 	if(isNil "tpwcas_los_minfps") then {
-		tpwcas_los_minfps = 19;
+		tpwcas_los_minfps = 10;
 		};
 	
 	//EMBEDDED TPWLOS MAXIMAL KNOWSABOUT VALUE: ABOVE WILL SKIP TPWLOS FOR THIS SPECIFIC SPOTTER-TARGET COMBI
 	//    VALUES: SEE TPWCAS_REVEAL ABOVE
 	if(isNil "tpwcas_los_knowsabout") then {
-		tpwcas_los_knowsabout = 2.9;
+		tpwcas_los_knowsabout = 3.99;
 		};
 	
 	//AI SEARCH COVER: DISABLE = 0, ENABLE = 1 
@@ -190,14 +145,14 @@ tpwcas_running = true;
 		tpwcas_getcover = 1; //enabled by default
 		};
 
-	//AI SEARCH COVER MAX DISTANCE (M). RECOMMENDED TO KEEP LOW NUMBER (5 to 12)
+	//AI SEARCH COVER MAX DISTANCE (M). RECOMMENDED TO KEEP LOW NUMBER (5 to 15)
 	if(isNil "tpwcas_coverdist") then {
-		tpwcas_coverdist = 7;
+		tpwcas_coverdist = 30;
 		};
 	
 	//AI SEARCH COVER REQUIRED MINIMAL SERVER FPS, ELSE PROCESS IS SKIPPED
 	if(isNil "tpwcas_getcover_minfps") then {
-		tpwcas_getcover_minfps = 17;
+		tpwcas_getcover_minfps = 10;
 		};
 	
 	//PLAYER SUPPRESSION SHAKE. 0 = NO SUPPRESSION, 1 = SUPPRESSION.    
@@ -209,11 +164,6 @@ tpwcas_running = true;
 	if(isNil "tpwcas_playervis") then {
 		tpwcas_playervis = 1;
 		}; 
-
-	//TEXT BASED DEBUG RATE (Hz). 0 = NO TEXT DEBUGGING. 5 = 5 UPDATES PER SECOND. => DEPRECATED
-	//if(isServer || isNil "tpwcas_textdebug") then {
-	//	tpwcas_textdebug = 0;
-	//	}; 
 
 		
 	//////////   
@@ -228,6 +178,7 @@ tpwcas_running = true;
 	{    
 		0 = [] spawn 
 		{   
+			_version = "TPWCAS_A3 v5.0";
 			hintsilent format ["%1 Starting...", _version];    
 			sleep 3;    
 			hintsilent "";
@@ -236,15 +187,15 @@ tpwcas_running = true;
 	
 	diag_log format ["%1 - %2 Initiated - tpwcas_mode: [%3]", time, _version, tpwcas_mode];    
 
-	//CHECK IF ASR_AI 1.15.1 OR GREATER IS RUNNING       
-	if (isclass (configfile >> "cfgPatches">>"asr_ai_sys_aiskill")) then    
+	//CHECK IF ASR_AI 0.0.0.0 OR GREATER IS RUNNING       
+	if (isclass (configfile >> "cfgPatches">>"asr_ai3_danger")) then    
 	{   
-		_asr_ai_va = getArray (configfile>>"cfgPatches">>"asr_ai_main">>"versionAr");  
-		if (_asr_ai_va select 0 >= 1 && _asr_ai_va select 1 >= 15 && _asr_ai_va select 2 >= 1) then   
+		_asr_ai_va = getArray (configfile>>"cfgPatches">>"asr_ai3_main">>"versionAr");  
+		if (_asr_ai_va select 0 >= 0 && _asr_ai_va select 1 >= 0 && _asr_ai_va select 2 >= 0 && _asr_ai_va select 3 >= 0) then   
 		{  
 			//DISABLE REVEAL
 			tpwcas_reveal = 0;
-			diag_log format ["%1 - %2 supported version of ASR_AI found", time, _version];    
+			diag_log format ["%1 - %2 supported version of ASR_AI found", time, _asr_ai_va];    
 		};      
 	};		
 		
@@ -257,7 +208,6 @@ tpwcas_running = true;
 	//if ( tpwcas_mode <= 2 ) then  // not used for server only or Headless client mode
 	//{
 		call compileFinal preprocessFileLineNumbers "tpwcas\tpwcas_client_debug.sqf"; //visual debugging
-		//call compileFinal preprocessFileLineNumbers "tpwcas\tpwcas_textdebug.sqf"; //text debugging => DEPRECATED
 		call compileFinal preprocessFileLineNumbers "tpwcas\tpwcas_visuals.sqf"; //player suppression visuals
 	//};
 	
@@ -282,9 +232,7 @@ tpwcas_running = true;
 	if ( tpwcas_hint == 0 ) then { 
 		bdetect_startup_hint = false;
 	};
-	//bdetect_debug_levels = [0,3,4,5,6,7,8,9,10,11];
 	bdetect_debug_levels = [0,3,6,7,8,9,10,11];
-	//bdetect_debug_levels = [0,1,2,3,4,5,6,7,8,9,10,11];
 
 	if !(tpwcas_debug == 2) then {
 		bdetect_debug_enable = false;
@@ -299,7 +247,6 @@ tpwcas_running = true;
 	{
 		bdetect_mp_per_frame_emulation = true;
 		bdetect_mp_per_frame_emulation_frame_d = 0.02;
-		//tpwcas_textdebug = 0; => DEPRECATED
 
 		if ( ( tpwcas_mode == 3 ) || ( tpwcas_mode == 4 ) ) then 
 		{
@@ -447,6 +394,7 @@ tpwcas_running = true;
 	{    
 		0 = [] spawn 
 		{   
+			_version = "TPWCAS_A3 v5.0";
 			hintsilent format ["%1 Active", _version];    
 			sleep 3;    
 			hintsilent "";

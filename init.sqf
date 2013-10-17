@@ -2,11 +2,11 @@
 	Author: lukrop
 	Date: 10/1/2013
   Description: Mission init. Sets parameters and calls player and server inits.
-	
+
 	Parameters: -
-	
+
 	Returns: -
-  
+
 */
 
 // disable saving
@@ -59,7 +59,7 @@ switch (ani_enemyCount) do {
   case 0: {
     // inf format [[min groups, max groups], [min units per group, max units per group]]
     // it's also possible to set a fixed amount of groups or units. [1,2] would be 1 group with 2 units
-    
+
     // vec format [[min groups, max groups], [min vecs per group, max vecs per group], fill cargo space?]
     // alternative vec format [[min groups, max groups], fixed vecs per group, fill cargo space?]
     ani_enemyInfPatrolCount = [[1,3],[3,4]];
@@ -67,7 +67,7 @@ switch (ani_enemyCount) do {
     ani_enemyVecPatrolCount = [[0,2],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfReinfCount = [1,[6,10]];
-    ani_enemyReinforcments = [1,2]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum 
+    ani_enemyReinforcments = [1,2]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
   };
   case 1: {
     ani_enemyInfPatrolCount = [[2,4],[3,4]];
@@ -128,17 +128,21 @@ if(ani_recruit == 1) then {
 
 switch(ani_suppression) do {
   case 1: {
-    tpwcas_mode = 3;
-    tpwcas_isHc = false;
+    //tpwcas_isHc = false;
     tpwcas_st = 5;
-    tpwcas_reveal = 2.5;
+    tpwcas_reveal = 1;
     tpwcas_debug = 0;
-    
+    tpwcas_minskill = 0.1;
+    tpwcas_playershake = 0;
+    tpwcas_playervis = 0;
+
     if(ani_tpwlos == 1) then {
       tpwcas_los_enable = 1;
+    } else {
+      tpwcas_los_enable = 0;
     };
 
-    [] execVM "tpwcas\tpwcas_init.sqf";
+    [3] execVM "tpwcas\tpwcas_script_init.sqf";
   };
   case 2: {
      // bullet threshold , delay to start, debug, max dist, player sup, ai sup, ai seek cover

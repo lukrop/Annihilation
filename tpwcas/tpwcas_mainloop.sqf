@@ -27,7 +27,6 @@ tpwcas_fnc_main_loop =
 				_unitCheck = (local _x);
 			};
 		
-			//if ( (_unitCheck) && (vehicle _x == _x) && (lifestate _x == "ALIVE") && (side _x != civilian) ) then //ARMA3
 			if ( (_unitCheck) && (vehicle _x == _x) && ((lifestate _x == "HEALTHY") || (lifestate _x == "INJURED")) && (side _x != civilian) ) then
 			{
 				_unit  = _x;
@@ -43,19 +42,13 @@ tpwcas_fnc_main_loop =
 				if (_stanceregain == -1 ) then
 				{ 
 					//SET ASR AI SKILLS IF ASR AI IS RUNNNING
-					if (!isNil "asr_ai_sys_aiskill_fnc_SetUnitSkill") then 
+					if (!isNil "asr_ai3_sys_skillsets_fnc_SetUnitSkill") then 
 					{
-						[_unit] call asr_ai_sys_aiskill_fnc_SetUnitSkill;
-					};	
+						[_unit] call asr_ai3_sys_skillsets_fnc_SetUnitSkill;
+					};
 					
-					//TEXT BASED DEBUGGING ON SP	=> DEPRECATED				
-					//if ( (tpwcas_textdebug > 0) && !(isMultiPlayer) ) then  
-					//{
-					//	[_unit,tpwcas_textdebug] spawn tpwcas_fnc_textdebug;
-					//};
-					
-					_unit setvariable ["tpwcas_originalaccuracy", _unit skill "aimingaccuracy"];      
-					_unit setvariable ["tpwcas_originalshake",  _unit skill "aimingshake"];     
+					_unit setvariable ["tpwcas_originalaccuracy", _unit skill "aimingAccuracy"];      
+					_unit setvariable ["tpwcas_originalshake",  _unit skill "aimingShake"];     
 					_unit setvariable ["tpwcas_originalcourage", _unit skill "courage"];      
 					_unit setvariable ["tpwcas_general", _unit skill "general"];     
 					_unit setvariable ["tpwcas_stanceregain", time];      
@@ -231,7 +224,6 @@ tpwcas_fnc_main_loop =
 			else
 			{
 				//if civilian
-				//if ((side _x == civilian) && (vehicle _x == _x) && (lifestate _x == "ALIVE") && !(isPlayer _x)) then //ARMA3
 				if ((side _x == civilian) && (vehicle _x == _x) && ((lifestate _x == "HEALTHY") || (lifestate _x == "INJURED")) && !(isPlayer _x)) then				
 				{
 					_unit  = _x;  

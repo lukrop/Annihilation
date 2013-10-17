@@ -3,14 +3,14 @@
 	Date: 10/1/2013
   Description: Mission script. Creates task, creates cache, creates the trigger,
   spawns some enemy infantry, waits until cache is destroyed and sets task to succeeded.
-	
+
 	Parameters:
         ARRAY: position markers array
               [center marker name, vec spawn marker, [reinforcment pos markers], [spawn pos markers]]
         NUMBER: mission style. 0=city, 1=land
-	
+
 	Returns: -
-  
+
 */
 private ["_posArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_aocenter", "_taskID", "_reinfCount", "_reinfSpawn"];
 
@@ -24,12 +24,13 @@ _spawnMarkers = _posArray select 3;
 
 // MARKER
 _marker = _posArray select 0;
-[[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorRed";
-//_marker setMarkerAlpha 1;
+// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 1, "ColorRed"] call ani_changeMarker;
+
 {
   //_x setMarkerType "hd_unknown"
-  [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+  // [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+  [_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
 } forEach _spawnMarkers;
 
 _aocenter = getMarkerPos _marker;
@@ -64,10 +65,11 @@ waitUntil{sleep 0.1; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 
-[[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorGreen";
-//_marker setMarkerAlpha 0.3;
+// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 0.3, "ColorGreen"] call ani_changeMarker;
+
 {
   //_x setMarkerAlpha 0
-  [[_x, 0], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+  // [[_x, 0], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+  [_x, 0] call ani_changeMarker;
 } forEach _spawnMarkers;

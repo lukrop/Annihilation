@@ -12,23 +12,22 @@ tpwcas_fnc_decskill =
 	_unit = _this select 0;
 	
 	//ANY FRIENDLY CASUALTIES WITHIN 50m OF UNIT
-	_nearunits = nearestobjects [_unit,["Man"],50];
+	_nearunits = nearestobjects [_unit,["CaManBase"],50];
 	_cas = 0;
 	{
-		//if ((side _x == side _unit) && (lifestate _x != "ALIVE")) then //ARMA3
 		if ( (side _x == side _unit) && !(lifestate _x == "HEALTHY") ) then
 		{
 			_cas = _cas + 1;
 		};
-	} foreach _nearunits;
+	} count _nearunits;
 		
 	if (_cas == 0) then 
 	{
-		_dec = 0.02; //2% decrease
+		_dec = 0.001; //0.1% decrease
 	}
 		else
 	{
-		_dec = 0.05; //10% decrease
+		_dec = 0.01; //1% decrease
 	};
 		
 	_originalaccuracy = _unit getvariable "tpwcas_originalaccuracy";        

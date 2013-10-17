@@ -3,14 +3,14 @@
 	Date: 10/1/2013
   Description: Mission script. Creates task, creates uav, creates the trigger,
   spawns some enemy infantry, waits until uav is destroyed and sets task to succeeded.
-	
+
 	Parameters:
         ARRAY: position markers array
               [center marker name, [reinforcment pos markers]]
         NUMBER: mission type. 0=city, 1=land
-	
+
 	Returns: -
-  
+
 */
 
 _posArray = _this select 0;
@@ -20,9 +20,8 @@ _reinfMarkers = _posArray select 1;
 
 // MARKER
 _marker = _posArray select 0;
-[[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorRed";
-//_marker setMarkerAlpha 1;
+// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 1, "ColorRed"] call ani_changeMarker;
 
 
 _aocenter = getMarkerPos _marker;
@@ -54,6 +53,5 @@ ani_uavDestroyed = false;
 waitUntil{sleep 0.1; ani_uavDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-[[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-//_marker setMarkerColor "ColorGreen";
-//_marker setMarkerAlpha 0.3;
+// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+[_marker, 0.3, "ColorGreen"] call ani_changeMarker;
