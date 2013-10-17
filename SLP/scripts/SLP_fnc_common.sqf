@@ -1,11 +1,11 @@
 /*
-common functions 
+common functions
 
 */
-if (!isServer) exitwith {}; 
+if (!isServer) exitwith {};
 ////////////////////////////Get Pos//////////////////////////////////
 SLP_fnc_getpos = {
-   
+
 private ["_pos"];
 _pos = toupper (typeName _this);
 
@@ -30,29 +30,29 @@ switch (_pos) do {
 
 /////////////////////////// Random Positon/////////////////////////
 SLP_fnc_randompos ={
-   
+
 private ["_pos","_posdist","_randompos","_position","_posa","_water"];
 _position = _this select 0;
 	_pos = _position select 0;
     _posdist = if (count _position >= 2) then {_position select 1} else {0};
  _water = if (count _this >= 2) then {_this select 1} else {false};
 
-///check if in array then select random 
+///check if in array then select random
 if (typename _pos == "ARRAY") then {
 		_pos =_pos call BIS_fnc_selectRandom;
 	};
 
-////get the position of whatever it is	
-///cba to get position of object,marker etc    
+////get the position of whatever it is
+///cba to get position of object,marker etc
 //_posa = _pos call CBA_fnc_getpos;
 _posa = _pos call SLP_fnc_getpos;
 
 ///SHK_pos to find a safe spot and random distance if called for
 if (_water) then {
-	_randompos = [ _posa,random 360,_posdist,true] call SHK_pos; 
+	_randompos = [ _posa,random 360,_posdist,true] call SHK_pos;
 }else{
-	_randompos = [ _posa,random 360,_posdist,false] call SHK_pos; 	
-}; 
+	_randompos = [ _posa,random 360,_posdist,false] call SHK_pos;
+};
 
 _randompos //return
 
@@ -84,6 +84,7 @@ private ["_delay"];
 _delay = SLP_ARRAY select 12;
 
 sleep _delay;
+while{!([_this, 100] call CBA_fnc_nearPlayer)} do {sleep 60};
 hidebody _this;
 _this removeAllEventHandlers "killed";
 sleep 20;
@@ -98,12 +99,12 @@ private ["_unit","_veh","_skill"];
 _unit = _this select 0;
 _veh = _this select 1;
 _skill = _this select 2;
- 
+
 _unit setskill _skill;
 _unit  assignAsCargo _veh;
 //[_unit] ordergetin true;
 _unit  moveInCargo _veh;
-_unit  setrank "private";  
+_unit  setrank "private";
 
 };
 ///////////////////////////////hunt///////////////////////////////////////
@@ -111,14 +112,14 @@ SLP_hunt = {
 private ["_pos","_grp","_wp"];
 
 _grp = _this select 0;
-    
+
 	while {{alive _x} count (units _grp)  > 0} do {
 
-		_pos = (_this select 1) call SLP_fnc_getpos; 
+		_pos = (_this select 1) call SLP_fnc_getpos;
 
 			_wp = _grp addWaypoint [_pos, 0];
 			_wp setWaypointSpeed "FULL";
-			_wp setWaypointType "SAD"; 
+			_wp setWaypointType "SAD";
 			_wp setWaypointBehaviour "AWARE";
 			_wp setWaypointFormation "LINE";//"COLUMN"
 			_wp setWaypointCompletionRadius 30;
@@ -132,10 +133,10 @@ SLP_attack = {
 private ["_pos","_grp","_wp"];
 
 _grp = _this select 0;
-_pos = (_this select 1) call SLP_fnc_getpos; 
+_pos = (_this select 1) call SLP_fnc_getpos;
 	_wp = _grp addWaypoint [_pos, 0];
 	_wp setWaypointSpeed "FULL";
-	_wp setWaypointType "SAD"; 
+	_wp setWaypointType "SAD";
 	_wp setWaypointBehaviour "AWARE";
 	_wp setWaypointFormation "LINE";//"COLUMN"
 	_wp setWaypointCompletionRadius 30;

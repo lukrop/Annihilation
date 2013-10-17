@@ -33,7 +33,7 @@ _Airgrp_size= 0; // Sets # of units in Air groups
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
 //Burydead: sets the delay until dead units sink into the ground and are deleted. only works with units spawned with SLP_spawn
 
-_burydead = 600;  //set the delay in secs until units are removed, does not remove vehicles
+_burydead = 900;  //set the delay in secs until units are removed, does not remove vehicles
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
 // vehicle and armor only!!
