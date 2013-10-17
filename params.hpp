@@ -108,7 +108,7 @@ class Params {
     title="Suppression";
     values[]={0,1,2};
     default=0;
-    texts[]={"Disabled","TPWCAS","TPW EBS (EXPERIMENTAL not sure if working, more likely not)"};
+    texts[]={"Disabled","TPWCAS","TPW EBS (only SP)"};
   };
 
   class ani_tpwlos {
