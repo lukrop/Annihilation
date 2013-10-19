@@ -3,17 +3,17 @@ waitUntil {!isNull player && player == player};
 [] execVM "taw_vd\functions.sqf";
 tawvd_action = player addAction["<t color='#ffff11'>View Distance Settings</t>","taw_vd\open.sqf",[],-99,false,false,"",''];
 
-if(isNil {tawvd_foot}) then 
+if(isNil {tawvd_foot}) then
 {
 //	tawvd_foot = viewDistance;
 //	tawvd_car = viewDistance;
 //	tawvd_air = viewDistance;
-	tawvd_foot = 1500;
-	tawvd_car = 1500;
-	tawvd_air = 2200;
+	tawvd_foot = 1600;
+	tawvd_car = 1600;
+	tawvd_air = 3000;
 };
 
-[] spawn 
+[] spawn
 {
 	private["_old","_recorded"];
 	while {true} do
@@ -26,17 +26,17 @@ if(isNil {tawvd_foot}) then
 			waitUntil {alive player};
 			tawvd_action = player addAction["<t color='#ffff11'>View Distance Settings</t>","taw_vd\open.sqf",[],-99,false,false,"",''];
 		};
-		
+
 		if((vehicle player) isKindOf "Man" && viewdistance != tawvd_foot) then
 		{
 			setViewDistance tawvd_foot;
 		};
-		
+
 		if((vehicle player) isKindOf "LandVehicle" || (vehicle player) isKindOf "Ship" && viewdistance != tawvd_car) then
 		{
 			setViewDistance tawvd_car;
 		};
-		
+
 		if((vehicle player) isKindOf "Air" && viewdistance != tawvd_air) then
 		{
 			setViewDistance tawvd_air;

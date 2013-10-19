@@ -98,10 +98,17 @@ class Params {
   };
   
   class ani_ammoboxes {
-    title="Spawn ammoboxes in addition to the VAS box.";
-    values[]={0,1,2};
+    title="Spawn vanilla ammoboxes in addition to the VAS box.";
+    values[]={0,1};
     default=1;
-    texts[]={"Disabled","Enabled","Enabled - local to each client (EXPERIMENTAL)"};
+    texts[]={"Disabled","Enabled"};
+  };
+
+  class ani_addonammoboxes {
+    title="Spawn addon ammoboxes (R3F, FHQ, RHARD Mk18, NATO/Spetsnaz Weps)";
+    values[]={0,1};
+    default=0;
+    texts[]={"Disabled","Enabled"};
   }; 
   
   class ani_tpwcas {
