@@ -18,8 +18,8 @@ if(ani_recruit == 1) then {
 };
 
 if(ani_acre == 1) then {
-  ani_box addAction ["<t color='#11ff11'>Take AN/PRC-152</t>", "fnc\addPRC152.sqf"];
-  ani_box addAction ["<t color='#11ff11'>Take AN/PRC-148</t>", "fnc\addPRC148.sqf"];
+  ani_vasbox addAction ["<t color='#11ff11'>Take AN/PRC-152</t>", "fnc\addPRC152.sqf"];
+  ani_vasbox addAction ["<t color='#11ff11'>Take AN/PRC-148</t>", "fnc\addPRC148.sqf"];
 };
 
 // Viewdistance script
