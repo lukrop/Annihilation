@@ -72,7 +72,7 @@ ani_missionState = "SUCCESS";
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
 
 sleep 60;
-while{not [ani_hvt, 300] CBA_fnc_nearPlayer} do {sleep 30};
+while{not [ani_hvt, 300] call CBA_fnc_nearPlayer} do {sleep 30};
 hideBody ani_hvt;
 sleep 10;
 deleteVehicle ani_hvt;
