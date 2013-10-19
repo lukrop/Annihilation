@@ -1,9 +1,11 @@
 0.3.2
+- fixed mission location selection using sometimes the same location twice
 - fixed CSAR Pilot mission
 - tweaked AI skill levels
 - updated mission briefing (typos/fixes)
 - made markers JIP compatible
 - updated TPWCAS
+- small performance improvement (unit, object deletion tweaks and less use of BIS_fnc_MP)
 
 0.3.1
 - AI can be recruited now at the HEMTT
