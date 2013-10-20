@@ -44,8 +44,8 @@ class Params {
   class ani_revive {
     title="Revive";
     values[]={0,1,2};
-    default=1;
-    texts[]={"Disabled","Enabled =BTC", "Enabled FAR"};
+    default=2;
+    texts[]={"Disabled","Enabled (=BTC=)", "Enabled (FAR)"};
   };
   
   class ani_revive_lifes {
@@ -56,7 +56,7 @@ class Params {
   };
   
   class ani_mobile_respawn {
-    title="   Mobile respawn";
+    title="   Mobile respawn (=BTC= only)";
     values[]={0,1};
     default=1;
     texts[]={"Disabled","Enabled"};
@@ -77,7 +77,7 @@ class Params {
   };
   
   class ani_vec_deserteddelay {
-    title="Vehicle deserted delay";
+    title="[INOP] Vehicle deserted delay";
     values[]={300,600,900,1200,1800,3600};
     default=1800;
     texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};
@@ -91,7 +91,7 @@ class Params {
   };
 
   class ani_chopper_deserteddelay {
-    title="Chopper deserted delay";
+    title="[INOP] Chopper deserted delay";
     values[]={300,600,900,1200,1800,3600};
     default=1800;
     texts[]={"5 minutes","10 minutes", "15 minutes", "20 minutes", "30 minutes", "1 hour"};

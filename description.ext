@@ -15,7 +15,7 @@ class Header
 
 author="lukrop";
 onLoadName = "Annihilation NATO";
-onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.2";
+onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.3-testing";
 loadScreen = "images\loadingscreen.jpg";
 
 class CfgFunctions
