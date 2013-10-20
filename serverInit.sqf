@@ -146,6 +146,16 @@ switch(ani_suppression) do {
   };
 };
 
+{
+  [_x, ani_vec_respawnDelay, ani_vec_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
+  //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
+} forEach [ani_vec1, ani_vec2, ani_vec3, ani_vec4, ani_vec5, ani_vec6, ani_vec7, ani_vec8, ani_vec9, ani_vec10];
+
+{
+  [_x, ani_chopper_respawnDelay, ani_chopper_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
+  //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
+} forEach [ani_helo1, ani_helo2, ani_helo3, ani_helo4, ani_helo5, ani_helo6, ani_helo7];
+
 // init SLP (Spawning)
 SLP_init = [] execVM "SLP\SLP_init.sqf";
 // compile SHK_pos
