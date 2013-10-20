@@ -35,7 +35,8 @@ ani_lands = [
 ["land9", [ "city2_spawn1", "city2_reinf3", "city2_spawn2"]],
 ["land10", [ "city6_reinf0", "reinf_spawn4", "reinf_spawn5"]],
 ["land11", [ "city6_reinf1", "city6_reinf2", "city5_reinf3"]],
-["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]]
+["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]],
+["land13", [ "city5_reinf2", "city7_reinf2", "reinf_spawn6"]]
 ];
 
 ani_completedMissions = [];

@@ -43,13 +43,13 @@ class Params {
   
   class ani_revive {
     title="Revive";
-    values[]={0,1};
+    values[]={0,1,2};
     default=1;
-    texts[]={"Disabled","Enabled"};
+    texts[]={"Disabled","Enabled =BTC", "Enabled FAR"};
   };
   
   class ani_revive_lifes {
-    title="   Revive lifes";
+    title="   Revive lifes (=BTC= only)";
     values[]={5,10,15,20,0};
     default=10;
     texts[]={"5","10", "15", "20", "Infinite"};

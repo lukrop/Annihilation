@@ -71,9 +71,10 @@ if(ani_revive == 1) then {
   if(ani_mobileRespawn == 1) then {
     MHQ addAction["<t color='#ff1111'>Virtual Ammobox</t>", "VAS\open.sqf"];
   };
-} else {
-  // set respawn time to 15 instead of 1 ### seems to be not working! dunno what to do for now...
-  // setPlayerRespawnTime 15;
+};
+
+if(ani_revive == 2) then {
+  call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
 };
 
 // compile ani functions
