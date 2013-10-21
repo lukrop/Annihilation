@@ -94,7 +94,7 @@ if(ani_ammoboxes == 0) then {
   deleteVehicle ani_baseWeps;
   deleteVehicle ani_specWeps;
 };
-ani_addonammoboxes = 1;
+
 if(ani_addonAmmoBoxes == 1) then {
   createVehicle ["R3F_WeaponBox", getMarkerPos "wepbox1", [], 0, "NONE"];
   createVehicle ["RHARD_Mk18_Ammobox", getMarkerPos "wepbox2", [], 0, "NONE"];
