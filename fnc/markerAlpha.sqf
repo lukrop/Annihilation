@@ -12,6 +12,5 @@
 
 {_x setMarkerAlpha 0} forEach [
 "city0", "city1", "city2", "city3", "city4", "city5", "city6", "city7",
-"land0", "land1", "land2", "land3", "land4", "land5", "land6", "land7", "land8", "land9", "land10", "land11", "land12", "land13",
-"ambient_patrol1", "ambient_patrol2", "ambient_patrol3", "ambient_patrol4"
+"land0", "land1", "land2", "land3", "land4", "land5", "land6", "land7", "land8", "land9", "land10", "land11", "land12", "land13", "land14", "land15"
 ];

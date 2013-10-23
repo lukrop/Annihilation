@@ -23,20 +23,22 @@ ani_citys = [
 
 // TODO add another (4th) reinf pos per land mission
 ani_lands = [
-["land0", [ "city3_reinf1", "city1_vecSpawn", "reinf_spawn0"]],
-["land1", [ "city0_reinf1", "city3_reinf0", "reinf_spawn1"]],
-["land2", [ "city3_reinf2", "city4_reinf0", "city2_spawn3"]],
-["land3", [ "city3_reinf3", "city0_reinf0", "reinf_spawn2"]],
-["land4", [ "city1_reinf2", "city4_reinf3", "city4_reinf2"]],
-["land5", [ "city3_reinf2", "city3_reinf3", "reinf_spawn2"]],
-["land6", [ "city1_reinf3", "city1_vecSpawn", "reinf_spawn0"]],
-["land7", [ "city3_reinf0", "city3_spawn1", "city2_reinf3"]],
-["land8", [ "city3_spawn0", "reinf_spawn3", "city0_spawn1"]],
-["land9", [ "city2_spawn1", "city2_reinf3", "city2_spawn2"]],
-["land10", [ "city6_reinf0", "reinf_spawn4", "reinf_spawn5"]],
-["land11", [ "city6_reinf1", "city6_reinf2", "city5_reinf3"]],
-["land12", [ "reinf_spawn6", "reinf_spawn7", "city5_reinf3"]],
-["land13", [ "city5_reinf2", "city7_reinf2", "reinf_spawn6"]]
+["land0", [ "land0_reinf", "land0_reinf_1", "land0_reinf_2", "land0_reinf_3"]],
+["land1", [ "land1_reinf", "land1_reinf_1", "land1_reinf_2", "land1_reinf_3"]],
+["land2", [ "land2_reinf", "land2_reinf_1", "land2_reinf_2", "land2_reinf_3"]],
+["land3", [ "land3_reinf", "land3_reinf_1", "land3_reinf_2", "land3_reinf_3"]],
+["land4", [ "land4_reinf", "land4_reinf_1", "land4_reinf_2", "land4_reinf_3"]],
+["land5", [ "land5_reinf", "land5_reinf_1", "land5_reinf_2", "land5_reinf_3"]],
+["land6", [ "land6_reinf", "land6_reinf_1", "land6_reinf_2", "land6_reinf_3"]],
+["land7", [ "land7_reinf", "land7_reinf_1", "land7_reinf_2", "land7_reinf_3"],
+["land8", [ "land8_reinf", "land8_reinf_1", "land8_reinf_2", "land8_reinf_3"]],
+["land9", [ "land9_reinf", "land9_reinf_1", "land9_reinf_2", "land9_reinf_3"]],
+["land10", [ "land10_reinf", "land10_reinf_1", "land10_reinf_2", "land10_reinf_3"]],
+["land11", [ "land11_reinf", "land11_reinf_1", "land11_reinf_2", "land11_reinf_3"]],
+["land12", [ "land12_reinf", "land12_reinf_1", "land12_reinf_2", "land12_reinf_3"]],
+["land13", [ "land13_reinf", "land13_reinf_1", "land13_reinf_2", "land13_reinf_3"]],
+["land14", [ "land14_reinf", "land14_reinf_1", "land14_reinf_2", "land14_reinf_3"]],
+["land15", [ "land15_reinf", "land15_reinf_1", "land15_reinf_2", "land15_reinf_3"]]
 ];
 
 ani_completedMissions = [];
