@@ -30,7 +30,7 @@ ani_lands = [
 ["land4", [ "land4_reinf", "land4_reinf_1", "land4_reinf_2", "land4_reinf_3"]],
 ["land5", [ "land5_reinf", "land5_reinf_1", "land5_reinf_2", "land5_reinf_3"]],
 ["land6", [ "land6_reinf", "land6_reinf_1", "land6_reinf_2", "land6_reinf_3"]],
-["land7", [ "land7_reinf", "land7_reinf_1", "land7_reinf_2", "land7_reinf_3"],
+["land7", [ "land7_reinf", "land7_reinf_1", "land7_reinf_2", "land7_reinf_3"]],
 ["land8", [ "land8_reinf", "land8_reinf_1", "land8_reinf_2", "land8_reinf_3"]],
 ["land9", [ "land9_reinf", "land9_reinf_1", "land9_reinf_2", "land9_reinf_3"]],
 ["land10", [ "land10_reinf", "land10_reinf_1", "land10_reinf_2", "land10_reinf_3"]],

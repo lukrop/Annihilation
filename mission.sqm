@@ -58,7 +58,7 @@ class Mission
 	randomSeed=14187951;
 	class Intel
 	{
-		briefingName="CO20 Annihilation NATO 0.3.3";
+		briefingName="CO20 Annihilation NATO 0.4.0";
 		overviewText="Complete random QRF missions.";
 		resistanceWest=0;
 		startWeather=0.29999998;
