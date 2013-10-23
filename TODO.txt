@@ -1,3 +1,9 @@
-- new missions (convoy, bringammo, evidence)
-- new concept for vehicle respawn
+NEXT release todo:
+- every mission has it's own hand selected locations for more immersion
+- change the way missions get their locations
+- change the way missionManager handles mission selection
+
+LONG term todo:
+- new missions
+- more locations
 - better ai recruitment and group handling

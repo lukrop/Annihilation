@@ -1,3 +1,13 @@
+0.3.3
+- mortar mission hotfix
+- hotfix for all missions (deletion of mission objects)
+- updated VAS
+- tpwcas chooses the appropriate mode now (SP/MP)
+- following three changes to minimize desync potential:
+	- using Farooq's revive by default now for better performance
+	- changed the way ammoboxes at start are handled for less/no desync at start
+	- custom vehicle respawn FSM. For now only respawn but now deserted delay are implemented
+
 0.3.2
 - fixed mission location selection using sometimes the same location twice
 - fixed CSAR Pilot mission
