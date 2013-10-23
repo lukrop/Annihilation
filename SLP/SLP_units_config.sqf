@@ -14,8 +14,8 @@ _units = [ pilot, crew , units....]
 
 *//////////////////////////////////////////////////////////////////////////////////////
 //=============================================================================================================================================
-switch (_faction) do 
-	{    
+switch (_faction) do
+	{
 case 0: //opfor
 	{
 		_Leaderunits = 	["O_Soldier_TL_F","O_officer_F","O_Soldier_SL_F","O_recon_TL_F"];
@@ -42,9 +42,9 @@ case 1: //bluefor
 		_tanks = 		["B_APC_Tracked_01_rcws_F"];
 		_helo = 		["B_Heli_Light_01_F","B_Heli_Light_01_armed_F","B_Heli_Attack_01_F","B_Heli_Transport_01_F"];
 		_plane =        [];
-		_boat = 		["B_Boat_Armed_01_minigun_F","B_Boat_Transport_01_F","B_Lifeboat"];		
+		_boat = 		["B_Boat_Armed_01_minigun_F","B_Boat_Transport_01_F","B_Lifeboat"];
 		};
-case 2: //greenfor	
+case 2: //greenfor
 	{
 		_Leaderunits = 	["I_Soldier_AR_F","I_Soldier_SL_F","I_Soldier_TL_F"];
 		_units =		["I_helipilot_F","I_crew_F","I_Soldier_02_F","I_soldier_F","I_Soldier_lite_F","I_Soldier_A_F","I_Soldier_GL_F","I_Soldier_M_F","I_Soldier_LAT_F",
@@ -55,9 +55,9 @@ case 2: //greenfor
 		_tanks = 		[];
 		_helo = 		["I_Heli_Transport_02_F"];
 		_plane =		[];
-		_boat = 		["I_Boat_Armed_01_minigun_F","I_Boat_Transport_01_F"];		
+		_boat = 		["I_Boat_Armed_01_minigun_F","I_Boat_Transport_01_F"];
 	};
-case 3: //Civilian	
+case 3: //Civilian
 	{
 		_Leaderunits = 	["C_man_1","C_man_1_1_F","C_man_polo_1_F"];
 		_units =		["Civilian_F","C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_man_polo_2_F","C_man_polo_3_F","C_man_polo_4_F","C_man_polo_5_F","C_man_polo_6_F"];
@@ -65,8 +65,8 @@ case 3: //Civilian
 		_tanks = 		[];
 		_helo = 		[];
 		_plane =		[];
-		_boat = 		["C_Rubberboat"];		
-	};		 		 
+		_boat = 		["C_Rubberboat"];
+	};
 case 4: //Russian army	(woodland) by massi
   {
     _Leaderunits = 	["O_mas_rus_Soldier_TL_F_v", "O_mas_rus_Soldier_SL_F_v"];
@@ -76,21 +76,21 @@ case 4: //Russian army	(woodland) by massi
     _helo = 		["O_mas_rus_Heli_Attack_02_F", "O_mas_rus_Heli_Attack_02b_F"];
     _plane =		[];
     _boat =         [];
-  };		
-  
+  };
+
 case 5: //African army by massi (african conflict)
   {
-    _Leaderunits = 	["O_mas_afr_Soldier_TL_Fn", "O_mas_afr_Soldier_SL_F"];
+    _Leaderunits = 	["O_mas_afr_Soldier_TL_F", "O_mas_afr_Soldier_SL_F"];
     _units =		["O_mas_afr_Soldier_lite_F","O_mas_afr_Soldier_lite_F","O_mas_afr_Soldier_F", "O_mas_afr_Soldier_GL_F", "O_mas_afr_soldier_AR_F",
-    "O_mas_afr_soldier_MG_F","O_mas_afr_soldier_M_F", "O_mas_afr_soldier_LAT_F", "O_mas_afr_medic_F", 
+    "O_mas_afr_soldier_MG_F","O_mas_afr_soldier_M_F", "O_mas_afr_soldier_LAT_F", "O_mas_afr_medic_F",
     "O_mas_afr_soldier_repair_F", "O_mas_afr_soldier_exp_F"];
     _vehicles = 	["O_mas_afr_Offroad_01_armed_F", "O_mas_afr_Offroad_01s_armed_F", "O_mas_afr_Offroad_01c_armed_F"];
     _tanks = 		[];
     _helo = 		[];
     _plane =		[];
     _boat =     [];
-  };		
-  
+  };
+
 case 6: //African civilan rebels by massi (african conflict)
   {
     _Leaderunits = 	["O_mas_afr_Rebel1_F"];
@@ -112,8 +112,8 @@ case 7: //DEVGRU/USSOCOM/Rangers units by massi
     _plane =		[];
     _boat =     [];
   };
-  
-/*case #: //Takistan army	
+
+/*case #: //Takistan army
 	{
 		_Leaderunits = 	[""];
 		_units =		["pilot class","Crew class","units"];
@@ -122,7 +122,7 @@ case 7: //DEVGRU/USSOCOM/Rangers units by massi
 		_helo = 		[];
 		_plane =		[];
 		_boat =         [];
-	};		 
+	};
 */
 Default
 	{
@@ -137,4 +137,4 @@ Default
 _temparray = _temparray + [_Leaderunits,_units ,_vehicles,_tanks,_helo,_plane,_boat];
 
 _temparray
-    
+
