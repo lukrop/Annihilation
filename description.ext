@@ -2,9 +2,12 @@ respawn = BASE;
 respawndelay = 5;
 respawndialog = 0;
 disabledAI = true;
+enableDebugConsole = 1;
 
-#include "VAS\menu.hpp"
-#include "taw_vd\dialog.hpp"
+author="lukrop";
+onLoadName = "Annihilation NATO";
+onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.3-testing";
+loadScreen = "images\loadingscreen.jpg";
 
 class Header
 {
@@ -13,18 +16,13 @@ class Header
 	maxPlayers=20;
 };
 
-author="lukrop";
-onLoadName = "Annihilation NATO";
-onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.3-testing";
-loadScreen = "images\loadingscreen.jpg";
+#include "VAS\menu.hpp"
+#include "taw_vd\dialog.hpp"
+#include "ani_recruit\recruitDialog.hpp"
+#include "=BTC=_revive\=BTC=_respawn.h"
+#include "params.hpp"
 
 class CfgFunctions
 {
 	#include "VAS\cfgfunctions.hpp"
 };
-
-#include "ani_recruit\recruitDialog.hpp"
-
-#include "=BTC=_revive\=BTC=_respawn.h"
-
-#include "params.hpp"

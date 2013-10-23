@@ -514,7 +514,7 @@ class VAS_prompt
 	name = "Virtual_Ammobox_sys_prompt";
 	movingEnabled = false;
 	enableSimulation = true;
-	
+
 	class controlsBackground {
 		class VAS_RscTitleBackground:VAS_RscText {
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.7])"};
@@ -541,7 +541,7 @@ class VAS_prompt
 		{
 			idc = 2551;
 			sizeEx = 0.020;
-			text = "<t align='center'><t size='.8px'>What do you want to do with that attachment?</t></t><br/><t align='center'><t size='0.6'>Please know that if you choose to add it to your weapon your current existing attachment in that slot will be lost.</t></t>";
+			text = "";
 			x = 0.287;
 			y = 0.2 + (11 / 250);
 			w = 0.5; h = 0.12;
@@ -549,7 +549,7 @@ class VAS_prompt
 
 		class addtogun : VAS_RscButtonMenu {
 			idc = 2552;
-			text = "Add to gun";
+			text = "$STR_VAS_Prompt_addToWeapon";
 			//colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
 			onButtonClick = "vas_prompt_choice = true; closeDialog 0;";
 			x = 0.145 + (6.25 / 40) + (1 / 250 / (safezoneW / safezoneH));
@@ -560,7 +560,7 @@ class VAS_prompt
 		
 		class addtogear : VAS_RscButtonMenu {
 			idc = 2553;
-			text = "Add to INV";
+			text = "$STR_VAS_Prompt_addToInv";
 			//colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
 			onButtonClick = "vas_prompt_choice = false; closeDialog 0;";
 			x = 0.455 + (6.25 / 40) + (1 / 250 / (safezoneW / safezoneH));

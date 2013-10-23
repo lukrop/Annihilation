@@ -1,15 +1,15 @@
 #include "macro.sqf"
 /*
-	@version: 1.7
+	@version: 2.0
 	@file_name: fn_loadGear.sqf
 	@file_author: TAW_Tonic
-	@file_edit: 8/2/2013
+	@file_edit: 9/24/2013
 	@file_description: Load saved gear in old VAS format.
 */
 private["_slot","_loadout","_primary","_launcher","_handgun","_magazines","_uniform","_vest","_backpack","_items","_primitems","_secitems","_handgunitems","_uitems","_vitems","_bitems","_handle"];
 if(!isNil {VAS_loadout_ip}) exitWith {};
 _slot = if(isNil {_this select 0}) then {lbCurSel VAS_load_list} else {_this select 0};
-if(_slot == -1) exitWith {hint "You didn't select a slot to load!";};
+if(_slot == -1) exitWith {hint localize "STR_VAS_Prompt_slotSelFail";};
 if(vas_disableLoadSave) then
 {
 	_loadout = missionNamespace getVariable format["vas_gear_new_%1",_slot];

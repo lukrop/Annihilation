@@ -1,12 +1,13 @@
 /*
-	@version: 1.8
+	@version: 2.0
 	@file_name: build_config.sqf
+	@file_edit: 9/24/2013
 	@file_author: TAW_Tonic
-	@file_edit: 8/27/2013
 	@file_description: If preload is enabled, it will build our preloaded config, otherwise fetches everything from the config.
 */
 private["_cfg","_type","_temp","_ret","_master","_class","_details","_displayName","_scope","_type","_str","_itemInfo"];
-_cfg = _this select 0;
+_cfg = [_this,0,"",[""]] call BIS_fnc_param;
+if(_cfg == "") exitWith {}; //Bad data passed, exit.
 
 if(VAS_preload) then
 {
@@ -40,8 +41,6 @@ switch(_cfg) do
 				
 				_str = [_class,4] call VAS_fnc_KRON_StrLeft;
 				
-			
-				
 				if(_scope >= 2 && _str != "ACRE") then
 				{
 					switch (true) do
@@ -67,7 +66,7 @@ switch(_cfg) do
 						
 						case (_type == 131072):
 						{
-							if(_picture != "" && !(_base in VAS_r_items) && !(_class in VAS_r_items) && _itemInfo != 0) then
+							if(_picture != "" && !(_base in VAS_r_items) && !(_class in VAS_r_items)) then
 							{
 								_ret2 set[count _ret2,_class];
 							};
@@ -83,6 +82,7 @@ switch(_cfg) do
 	
 	case "CfgMagazines":
 	{
+		if(count VAS_magazines > 0) exitWith {}; //Don't waste CPU-processing on something that isn't required.
 		_temp = [];
 		_ret = [];
 		_master = configFile >> _cfg;
@@ -114,6 +114,7 @@ switch(_cfg) do
 	
 	case "CfgVehicles":
 	{
+		if(count VAS_backpacks > 0) exitWith {}; //Don't waste CPU-processing on something that isn't required.
 		_ret = [];
 		_master = configFile >> _cfg;
 		private["_base"];
@@ -145,6 +146,7 @@ switch(_cfg) do
 	
 	case "CfgGlasses":
 	{
+		if(count VAS_glasses > 0) exitWith {}; //Don't waste CPU-processing on something that isn't required.
 		_temp = [];
 		_ret = [];
 		_master = configFile >> _cfg;

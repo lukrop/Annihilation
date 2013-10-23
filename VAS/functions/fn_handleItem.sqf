@@ -1,5 +1,5 @@
 /*
-	@version: 1.8
+	@version: 2.0
 	@file_name: fn_handleItem.sqf
 	@file_author: TAW_Tonic
 	@file_edit: 8/27/2013
@@ -19,10 +19,20 @@ _isgun = false;
 _details = [_item] call VAS_fnc_fetchCfgDetails;
 if(count _details == 0) exitWith {};
 
+//First check for restricted items
 if(
 (_item in VAS_r_weapons) OR (_item in VAS_r_backpacks) OR (_item in VAS_r_magazines) OR (_item in VAS_r_items) OR (_item in VAS_r_glasses) OR
 ((_details select 13) in VAS_r_weapons) OR ((_details select 13) in VAS_r_backpacks) OR ((_details select 13) in VAS_r_magazines) OR ((_details select 13) in VAS_r_items) OR ((_details select 13) in VAS_r_glasses)
-) exitWith {systemChat format["%1 is a restricted item and will be not added.",(_details select 1)];};
+) exitWith {systemChat format["%1 %2",_details select 1,localize "STR_VAS_Main_restricted"];};
+
+//Second check for restricted items
+if(
+(count VAS_weapons > 0 && !(_item in VAS_weapons)) &&
+(count VAS_items > 0 && !(_item in VAS_items)) &&
+(count VAS_backpacks > 0 && !(_item in VAS_backpacks)) &&
+(count VAS_magazines > 0 && !(_item in VAS_magazines)) &&
+(count VAS_glasses > 0 && !(_item in VAS_glasses))
+) exitWith {systemChat format["%1 %2",_details select 1,localize "STR_VAS_Main_restricted"]};
 
 if(_bool) then
 {
@@ -274,7 +284,7 @@ if(_bool) then
 								}
 									else
 								{
-									createDialog "VAS_prompt";
+									[] call VAS_fnc_accPrompt;
 									waitUntil {!isNil {vas_prompt_choice}};
 									if(vas_prompt_choice) then
 									{
@@ -323,7 +333,7 @@ if(_bool) then
 								}
 									else
 								{
-									createDialog "VAS_prompt";
+									[] call VAS_fnc_accPrompt;
 									waitUntil {!isNil {vas_prompt_choice}};
 									if(vas_prompt_choice) then
 									{
@@ -372,7 +382,7 @@ if(_bool) then
 								}
 									else
 								{
-									createDialog "VAS_prompt";
+									[] call VAS_fnc_accPrompt;
 									waitUntil {!isNil {vas_prompt_choice}};
 									if(vas_prompt_choice) then
 									{

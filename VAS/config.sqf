@@ -1,5 +1,5 @@
 //Allow player to respawn with his loadout? If true unit will respawn with all ammo from initial save! Set to false to disable this and rely on other scripts!
-vas_onRespawn = false;
+vas_onRespawn = true;
 //Preload Weapon Config?
 vas_preload = true;
 //If limiting weapons its probably best to set this to true so people aren't loading custom loadouts with restricted gear.
