@@ -131,6 +131,8 @@ switch(ani_suppression) do {
     tpwcas_minskill = 0.1;
     tpwcas_playershake = 0;
     tpwcas_playervis = 0;
+    tpwcas_mode = 2;
+    if(isServer and isDedicated) then {tpwcas_mode = 3};
 
     if(ani_tpwlos == 1) then {
       tpwcas_los_enable = 1;
@@ -138,7 +140,7 @@ switch(ani_suppression) do {
       tpwcas_los_enable = 0;
     };
 
-    [3] execVM "tpwcas\tpwcas_script_init.sqf";
+    [tpwcas_mode] execVM "tpwcas\tpwcas_script_init.sqf";
   };
   case 2: {
      // bullet threshold , delay to start, debug, max dist, player sup, ai sup, ai seek cover
