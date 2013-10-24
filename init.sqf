@@ -9,8 +9,12 @@
 
 */
 
+startLoadingScreen ["Loading..."];
+
 // disable saving
 enableSaving [false, false];
+
+progressLoadingScreen 0.1;
 
 // read paramters
 if(isNil "paramsArray") then{
@@ -80,7 +84,9 @@ if(ani_revive == 2) then {
 };
 
 // compile ani functions
-call compile preprocessFile "fnc\compile.sqf";
+call compile preprocessFileLineNumbers "fnc\compile.sqf";
+
+progressLoadingScreen 0.8;
 
 #include "config.sqf"
 
@@ -90,3 +96,5 @@ call compile preprocessFile "fnc\compile.sqf";
 if(ani_jip_markers == 1) then {
   [[[], "onPlayerJIP.sqf"], "BIS_fnc_execVM", false, true] spawn BIS_fnc_MP;
 };
+
+endLoadingScreen;

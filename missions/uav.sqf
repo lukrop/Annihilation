@@ -48,7 +48,7 @@ ani_uavDestroyed = false;
 [_uavPos, "STATE:", ["!alive ani_uav", "ani_uavDestroyed=true", ""]] call CBA_fnc_createTrigger;
 
 // spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_uav] call ani_spawnEnemies;
+[_missionStyle, _marker, _reinfMarkers, ani_uav] spawn ani_spawnEnemies;
 
 waitUntil{sleep 0.5; ani_uavDestroyed};
 // set mission success

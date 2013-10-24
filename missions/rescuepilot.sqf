@@ -67,9 +67,6 @@ _pilotPos = [ani_pilot, (getPos ani_pilot), 30] call ani_moveInRandomBuilding;
 
 _chopper allowDamage true;
 
-// spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_pilot] call ani_spawnEnemies;
-
 // LOGIC
 _base = getMarkerPos "recruitment";
 ani_pilotKilled = false;
@@ -80,6 +77,8 @@ _trigger = [_base, "AREA:", [30, 30, 0, false], "ACT:", ["VEHICLE", "PRESENT", f
 _trigger = _trigger select 0;
 _trigger triggerAttachVehicle [ani_pilot];
 
+// spawn enemies and reinforcements
+[_missionStyle, _marker, _reinfMarkers, ani_pilot] spawn ani_spawnEnemies;
 
 waitUntil{sleep 0.5;ani_pilotKilled or ani_pilotRescued};
 if(ani_pilotKilled) then {

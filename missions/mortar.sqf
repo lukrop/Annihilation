@@ -83,7 +83,7 @@ while {!ani_mortarDestroyed} do {
 };
 
 // spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_mortar1] call ani_spawnEnemies;
+[_missionStyle, _marker, _reinfMarkers, ani_mortar1] spawn ani_spawnEnemies;
 
 waitUntil{sleep 0.5; ani_mortarDestroyed};
 ani_missionState = "SUCCESS";

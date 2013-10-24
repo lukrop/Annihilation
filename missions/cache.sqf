@@ -61,7 +61,7 @@ ani_cacheDestroyed = false;
 [_cachePos, "STATE:", ["!alive ani_cache", "ani_cacheDestroyed=true", ""]] call CBA_fnc_createTrigger;
 
 // spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_cache] call ani_spawnEnemies;
+[_missionStyle, _marker, _reinfMarkers, ani_cache] spawn ani_spawnEnemies;
 
 waitUntil{sleep 0.5; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";

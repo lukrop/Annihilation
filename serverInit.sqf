@@ -151,12 +151,12 @@ switch(ani_suppression) do {
 {
   [_x, ani_vec_respawnDelay, ani_vec_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
   //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
-} forEach [ani_vec1, ani_vec2, ani_vec3, ani_vec4, ani_vec5, ani_vec6, ani_vec7, ani_vec8, ani_vec9, ani_vec10];
+} forEach [ani_vec1, ani_vec2, ani_vec3, ani_vec4, ani_vec5, ani_vec6, ani_vec7, ani_vec8];
 
 {
   [_x, ani_chopper_respawnDelay, ani_chopper_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
   //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
-} forEach [ani_helo1, ani_helo2, ani_helo3, ani_helo4, ani_helo5, ani_helo6, ani_helo7];
+} forEach [ani_helo1, ani_helo2, ani_helo3, ani_helo4, ani_helo5];
 
 // init SLP (Spawning)
 SLP_init = [] execVM "SLP\SLP_init.sqf";
@@ -164,6 +164,7 @@ SLP_init = [] execVM "SLP\SLP_init.sqf";
 SHK_pos = compile preprocessFile "SLP\scripts\SHK_pos.sqf";
 
 waituntil {sleep 0.1; scriptdone SLP_init};
+
 
 [] execVM "ambientPatrols.sqf";
 [] execVM "missionManager.sqf";

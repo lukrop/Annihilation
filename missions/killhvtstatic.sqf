@@ -59,7 +59,7 @@ if((round random 5) >= 3) then {
 [_hvtGrp, _hvtGrp, 50] call CBA_fnc_taskDefend;
 
 // spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_hvt] call ani_spawnEnemies;
+[_missionStyle, _marker, _reinfMarkers, ani_hvt] spawn ani_spawnEnemies;
 
 // LOGIC
 ani_hvtKilled = false;

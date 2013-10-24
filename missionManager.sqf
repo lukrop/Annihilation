@@ -54,7 +54,7 @@ ani_cityMissiontype = ["cache", "killhvt", "killhvtstatic", "rescuepilot"];
 
 ani_missionState = "";
 
-waitUntil{time > 15};
+waitUntil{sleep 0.1; time > 0};
 //waitUntil{daytime > (ani_daytime + 0.001)};
 
 while {(count ani_landMissiontype > 0) or (count ani_cityMissiontype > 0)} do {
