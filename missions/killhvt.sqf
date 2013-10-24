@@ -67,15 +67,16 @@ if((round random 5) >= 3) then {
 ani_hvtKilled = false;
 [_hvtPos, "STATE:", ["!alive ani_hvt", "ani_hvtKilled=true", ""]] call CBA_fnc_createTrigger;
 
-waitUntil{sleep 0.1;ani_hvtKilled};
+waitUntil{sleep 0.5;ani_hvtKilled};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 
 // [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
 
-sleep 60;
-while{not ([ani_hvt, 300] call CBA_fnc_nearPlayer)} do {sleep 30};
-hideBody ani_hvt;
-sleep 10;
-deleteVehicle ani_hvt;
+sleep 120;
+while{not ([ani_hvt, 500] call CBA_fnc_nearPlayer)} do {sleep 30};
+{hideBody _x} forEach units _hvtGrp;
+sleep 5;
+{deleteVehicle _x} forEach units _hvtGrp;
+deleteGroup _hvtGrp;

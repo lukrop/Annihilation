@@ -131,4 +131,11 @@ class Params {
     default=0;
     texts[]={"Disabled","Enabled"};
   };
+
+  class ani_jip_markers {
+    title="TESTING: JIP markers";
+    values[]={0,1};
+    default=0;
+    texts[]={"Disabled","Enabled"};
+  };
 };

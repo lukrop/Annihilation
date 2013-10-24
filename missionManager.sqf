@@ -9,6 +9,7 @@
 	Returns: -
 
 */
+if(!isServer) exitWith {};
 
 ani_citys = [
 ["city0", "city0_vecSpawn", [ "city0_reinf0",  "city0_reinf1",  "city0_reinf2",  "city0_reinf3"], ["city0_spawn0", "city0_spawn1", "city0_spawn2", "city0_spawn3"] ],

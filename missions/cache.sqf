@@ -27,11 +27,13 @@ _marker = _posArray select 0;
 // [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
 [_marker, 1, "ColorRed"] call ani_changeMarker;
 
-{
-  //_x setMarkerType "hd_unknown"
-   [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", false, true] spawn BIS_fnc_MP;
-  //[_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
-} forEach _spawnMarkers;
+if(ani_jip_markers == 1) then {
+  {
+    //_x setMarkerType "hd_unknown"
+     [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", false, true] spawn BIS_fnc_MP;
+    //[_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
+  } forEach _spawnMarkers;
+};
 
 _aocenter = getMarkerPos _marker;
 
@@ -61,7 +63,7 @@ ani_cacheDestroyed = false;
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_cache] call ani_spawnEnemies;
 
-waitUntil{sleep 0.1; ani_cacheDestroyed};
+waitUntil{sleep 0.5; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 

@@ -32,7 +32,8 @@ if(isNil "paramsArray") then{
   1,  // ammoboxes
   0,  // tpwcas
   0,  // tpwlos
-  0   // acre
+  0,   // acre
+  1  // jip markers
   ];
 };
 _i = 0;
@@ -55,6 +56,7 @@ ani_addonAmmoBoxes = paramsArray select _i; _i = _i + 1;
 ani_suppression = paramsArray select _i; _i = _i + 1;
 ani_tpwlos = paramsArray select _i; _i = _i + 1;
 ani_acre = paramsArray select _i; _i = _i + 1;
+ani_jip_markers = paramsArray select _i; _i = _i + 1;
 
 // set Date/Time
 setDate [2035,10,6,ani_daytime,0];
@@ -84,4 +86,7 @@ call compile preprocessFile "fnc\compile.sqf";
 
 [] execVM "serverInit.sqf";
 [] execVM "clientInit.sqf";
-[[[], "onPlayerJIP.sqf"], "BIS_fnc_execVM", false, true] spawn BIS_fnc_MP;
+
+if(ani_jip_markers == 1) then {
+  [[[], "onPlayerJIP.sqf"], "BIS_fnc_execVM", false, true] spawn BIS_fnc_MP;
+};

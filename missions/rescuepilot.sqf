@@ -50,7 +50,9 @@ _chopper setDamage 0.9;
 _chopper setFuel (random 0.3);
 _chopper setVehicleAmmo (random 0.5);
 
-["crashsite", [_crashPos select 0, _crashPos select 1], "Icon", [1, 1], "COLOR:", "ColorBlack", "TYPE:", "hd_objective", "PERSIST"] call CBA_fnc_createMarker;
+if(ani_jip_markers == 1) then {
+  ["crashsite", [_crashPos select 0, _crashPos select 1], "Icon", [1, 1], "COLOR:", "ColorBlack", "TYPE:", "hd_objective", "PERSIST"] call CBA_fnc_createMarker;
+};
 
 _pilotClass = ani_recruit_PilotClass;
 _pilotGrp = createGroup west;
@@ -79,7 +81,7 @@ _trigger = _trigger select 0;
 _trigger triggerAttachVehicle [ani_pilot];
 
 
-waitUntil{sleep 0.1;ani_pilotKilled or ani_pilotRescued};
+waitUntil{sleep 0.5;ani_pilotKilled or ani_pilotRescued};
 if(ani_pilotKilled) then {
   ani_missionState = "FAILED";
   [_taskID, "Failed"] call BIS_fnc_taskSetState;
@@ -96,6 +98,6 @@ if(ani_pilotKilled) then {
     ani_pilot leaveVehicle (vehicle ani_pilot);
   };
   ani_pilot move _base;
-  waitUntil{unitReady ani_pilot};
+  waitUntil{sleep 0.2; unitReady ani_pilot};
   deleteVehicle ani_pilot;
 };

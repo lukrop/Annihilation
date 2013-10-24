@@ -163,6 +163,7 @@ SLP_init = [] execVM "SLP\SLP_init.sqf";
 // compile SHK_pos
 SHK_pos = compile preprocessFile "SLP\scripts\SHK_pos.sqf";
 
-waituntil {scriptdone SLP_init};
+waituntil {sleep 0.1; scriptdone SLP_init};
+
 [] execVM "ambientPatrols.sqf";
 [] execVM "missionManager.sqf";

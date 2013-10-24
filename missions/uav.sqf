@@ -50,11 +50,13 @@ ani_uavDestroyed = false;
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_uav] call ani_spawnEnemies;
 
-waitUntil{sleep 0.1; ani_uavDestroyed};
+waitUntil{sleep 0.5; ani_uavDestroyed};
+// set mission success
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
+// change marker color to green
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
-sleep 60;
-while{not ([ani_uav, 200] call CBA_fnc_nearPlayer)} do {sleep 30};
+// cleanup
+sleep 120;
+while{not ([ani_uav, 500] call CBA_fnc_nearPlayer)} do {sleep 30};
 deleteVehicle ani_uav;

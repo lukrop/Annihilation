@@ -85,14 +85,13 @@ while {!ani_mortarDestroyed} do {
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_mortar1] call ani_spawnEnemies;
 
-waitUntil{sleep 0.1; ani_mortarDestroyed};
+waitUntil{sleep 0.5; ani_mortarDestroyed};
 ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 // [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
 [_marker, 0.3, "ColorGreen"] call ani_changeMarker;
-
-sleep 60;
-while{not ([ani_mortar1, 200] call CBA_fnc_nearPlayer)} do {sleep 30};
-deleteVehicle ani_mortar1;
-deleteVehicle ani_mortar2;
-deleteVehicle ani_mortar3;
+// cleanup
+sleep 120;
+while{not ([ani_mortar1, 500] call CBA_fnc_nearPlayer)} do {sleep 30};
+{deleteVehicle _x} forEach [ani_mortar1, ani_mortar2, ani_mortar3, ani_gunner1, ani_gunner2, ani_gunner3];
+deleteGroup _mortarGrp;

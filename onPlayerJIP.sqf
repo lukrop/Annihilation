@@ -8,7 +8,9 @@
 	Returns: -
 
 */
-waitUntil {sleep 0.1; not isNil "ani_currentMission"};
+if(!isServer) exitWith {};
+
+waitUntil {sleep 1; not isNil "ani_currentMission"};
 
 // set marker colors of completed missions accordingly to their states
 {
