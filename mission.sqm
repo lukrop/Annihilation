@@ -1624,7 +1624,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=182;
+		items=192;
 		class Item0
 		{
 			position[]={10449.789,84.748558,17250.152};
@@ -2810,6 +2810,69 @@ class Mission
 		{
 			position[]={8621.9365,136.26695,18825.336};
 			name="land15_reinf_3";
+			type="Empty";
+		};
+		class Item182
+		{
+			position[]={12345.555,24.156267,15680.284};
+			name="city8";
+			markerType="ELLIPSE";
+			type="Empty";
+			a=300;
+			b=300;
+		};
+		class Item183
+		{
+			position[]={12132.357,23.819101,15623.251};
+			name="city8_vecSpawn";
+			type="Empty";
+		};
+		class Item184
+		{
+			position[]={12180.885,22.420073,15659.063};
+			name="city8_spawn0";
+			type="Empty";
+		};
+		class Item185
+		{
+			position[]={12497.905,18.075544,15834.633};
+			name="city8_spawn1";
+			type="Empty";
+		};
+		class Item186
+		{
+			position[]={12493.958,22.229513,15585.447};
+			name="city8_spawn2";
+			type="Empty";
+		};
+		class Item187
+		{
+			position[]={12421.466,21.121527,15706.695};
+			name="city8_spawn3";
+			type="Empty";
+		};
+		class Item188
+		{
+			position[]={12931.014,20.770967,15396.354};
+			name="city8_reinf0";
+			type="Empty";
+		};
+		class Item189
+		{
+			position[]={12125.969,27.721418,15166.443};
+			name="city8_reinf1";
+			type="Empty";
+		};
+		class Item190
+		{
+			position[]={12594.212,48.785992,15046.837};
+			name="city8_reinf2";
+			type="Empty";
+		};
+		class Item191
+		{
+			position[]={12253.329,26.77713,16250.845};
+			name="city8_reinf3";
 			type="Empty";
 		};
 	};
