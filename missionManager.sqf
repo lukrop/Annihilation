@@ -19,7 +19,8 @@ ani_citys = [
 ["city4", "city4_vecSpawn", [ "city4_reinf0",  "city4_reinf1",  "city4_reinf2",  "city4_reinf3"], ["city4_spawn0", "city4_spawn1", "city4_spawn2", "city4_spawn3"] ],
 ["city5", "city5_vecSpawn", [ "city5_reinf0",  "city5_reinf1",  "city5_reinf2",  "city5_reinf3"], ["city5_spawn0", "city5_spawn1", "city5_spawn2", "city5_spawn3"] ],
 ["city6", "city6_vecSpawn", [ "city6_reinf0",  "city6_reinf1",  "city6_reinf2",  "city6_reinf3"], ["city6_spawn0", "city6_spawn1", "city6_spawn2", "city6_spawn3"] ],
-["city7", "city7_vecSpawn", [ "city7_reinf0",  "city7_reinf1",  "city7_reinf2",  "city7_reinf3"], ["city7_spawn0", "city7_spawn1", "city7_spawn2", "city7_spawn3"] ]
+["city7", "city7_vecSpawn", [ "city7_reinf0",  "city7_reinf1",  "city7_reinf2",  "city7_reinf3"], ["city7_spawn0", "city7_spawn1", "city7_spawn2", "city7_spawn3"] ],
+["city8", "city8_vecSpawn", [ "city8_reinf0",  "city8_reinf1",  "city8_reinf2",  "city8_reinf3"], ["city8_spawn0", "city8_spawn1", "city8_spawn2", "city8_spawn3"] ]
 ];
 
 // TODO add another (4th) reinf pos per land mission
@@ -49,75 +50,61 @@ private ["_missionStyle", "_posArray", "_missionType"];
 //ani_landMissiontype = ["uav", "mortar", "chopper", "fueltrucks"];
 //ani_cityMissiontype = ["cache", "killhvt", "hostage", "capturehvt"];
 
-ani_landMissiontype = ["uav", "mortar"];
-ani_cityMissiontype = ["cache", "killhvt", "killhvtstatic", "rescuepilot"];
+//ani_landMissiontype = ["uav", "mortar"];
+//ani_cityMissiontype = ["cache", "killhvt", "killhvtstatic", "rescuepilot"];1
+
+ani_missions = ["uav", "mortar", "cache", "killhvt", "killhvtstatic", "rescuepilot"];
 
 ani_missionState = "";
 
 waitUntil{sleep 0.1; time > 0};
-//waitUntil{daytime > (ani_daytime + 0.001)};
 
-while {(count ani_landMissiontype > 0) or (count ani_cityMissiontype > 0)} do {
+while {count ani_missions > 0} do {
   sleep ani_timeBetweenMissions;
   ani_missionState = "IN_PROGRESS";
 
-  // check if one of the mission type arrays is empty
-  if((count ani_landMissiontype == 0) or (count ani_cityMissiontype == 0)) then {
-    // choose a mission from the non empty array
-    if(count ani_cityMissiontype == 0) then {
-    _missionStyle = 1}
-    else {
-    _missionStyle = 0
-    };
-  // if both still have enough missions just choose a random type
-  } else {
-    // 0 = city 1 = land
-    _missionStyle = round random 1;
-  };
+  // select random mission and remove it from future missions
+  _missionType = ani_missions call BIS_fnc_selectRandom;
+  ani_missions = ani_missions - [_missionType];
 
-  // marker and positions (AO)
-  switch (_missionStyle) do {
-  // city mission
-  case 0: {
-      // select a random entry (positions)
-      _index = round (random ((count ani_citys) - 1));
-      _posArray = ani_citys select _index;
-      // choose random mission
-      _missionType = ani_cityMissiontype call BIS_fnc_selectRandom;
-      // remove place and mission from possible future missions
-      ani_citys set [_index, -1];
-      ani_citys = ani_citys - [-1];
-      //ani_citys = ani_citys - [_posArray];
-      ani_cityMissiontype = ani_cityMissiontype - [_missionType];
+  switch(_missionType) do {
+    case "cache": {
+      _posArray = [0] call ani_getMissionLocation;
     };
-  // land mission
-  case 1: {
-      _index = round (random ((count ani_lands) - 1));
-      _posArray = ani_lands select _index;
-      _missionType = ani_landMissiontype call BIS_fnc_selectRandom;
-      ani_lands set [_index, -1];
-      ani_lands = ani_lands - [-1];
-      //ani_lands = ani_lands - [_posArray];
-      ani_landMissiontype = ani_landMissiontype - [_missionType];
+    case "killhvt": {
+      _posArray = [0] call ani_getMissionLocation;
+    };
+    case "killhvtstatic": {
+      _posArray = [0] call ani_getMissionLocation;
+    };
+    case "rescuepilot": {
+      _posArray = [0] call ani_getMissionLocation;
+    };
+    case "mortar": {
+      _posArray = [1] call ani_getMissionLocation;
+    };
+    case "uav": {
+      _posArray = [1] call ani_getMissionLocation;
     };
   };
 
   // ##### DEBUG/TESTING #####
 /*
-  _missionStyle = 0;
+  _missionStyle = 1;
   _missionType = "mortar";
-  _posArray = ani_lands call BIS_fnc_selectRandom;
   hint format ["%1 | %2", _missionType, _posArray select 0];
 */
   // ##### DEBUG/TESTING #####
 
-  diag_log format ["### ANI: Starting mission %1 at %2 ###", _missionType, (_posArray select 0)];
   ani_currentMission = [_posArray select 0, _missionType];
+  diag_log format ["### ANI: Starting mission %1 at %2 ###", _missionType, (_posArray select 0)];
+
   [_posArray, _missionStyle] execVM format ["missions\%1.sqf", _missionType];
 
   // wait until mission is finished
   waitUntil{sleep 1; ani_missionState != "IN_PROGRESS"};
   diag_log format ["### ANI: Finished mission %1 at %2 ###", _missionType, (_posArray select 0)];
+  // add to array of finished mission for JIP marker adjustments
   _completed_missionState = ani_missionState;
   ani_completedMissions = ani_completedMissions + [[_posArray select 0, _completed_missionState]];
 };
