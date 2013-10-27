@@ -20,6 +20,7 @@ progressLoadingScreen 0.1;
 if(isNil "paramsArray") then{
   paramsArray = [
   6,  // Daytime
+  30,  // overcast
   0,  // enemy faction
   0,  // enemy count
   0,  // Enemy skill
@@ -42,6 +43,7 @@ if(isNil "paramsArray") then{
 };
 _i = 0;
 ani_daytime = paramsArray select _i; _i = _i + 1;
+ani_overcast = paramsArray select _i; _i = _i + 1;
 ani_enemyFaction = paramsArray select _i; _i = _i + 1; // see factions.txt for details
 ani_enemyCount = paramsArray select _i; _i = _i + 1;
 ani_enemySkill = paramsArray select _i; _i = _i + 1;
@@ -64,6 +66,11 @@ ani_jip_markers = paramsArray select _i; _i = _i + 1;
 
 // set Date/Time
 setDate [2035,10,6,ani_daytime,0];
+
+// set overcast
+skipTime -24;
+86400 setOvercast (ani_overcast / 100);
+skipTime 24;
 
 if(ani_revive == 1) then {
   // init revive

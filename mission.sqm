@@ -63,7 +63,7 @@ class Mission
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
-		forecastWeather=0.29999998;
+		forecastWeather=0;
 		forecastWind=0.099999994;
 		forecastWaves=0.099999994;
 		forecastLightnings=0.099999994;
