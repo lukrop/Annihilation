@@ -72,6 +72,10 @@ skipTime -24;
 86400 setOvercast (ani_overcast / 100);
 skipTime 24;
 
+if(ani_overcast >= 60) then {
+  60 setRain (ani_overcast / 100);
+}
+
 if(ani_revive == 1) then {
   // init revive
   call compile preprocessFile "=BTC=_revive\=BTC=_revive_init.sqf";
