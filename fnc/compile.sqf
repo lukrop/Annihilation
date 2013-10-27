@@ -6,3 +6,4 @@ ani_removeAllActionsMP = compile preprocessFile "fnc\removeAllActionsMP.sqf";
 ani_changeMarker = compile preprocessFile "fnc\changeMarker.sqf";
 ani_getGroupLeaders = compile preprocessFile "fnc\getGroupLeaders.sqf";
 ani_getMissionLocation = compile preprocessFile "fnc\getMissionLocation.sqf";
+ani_getClosestOP = compile preprocessFile "fnc\getClosestOP.sqf";

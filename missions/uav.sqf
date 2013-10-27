@@ -49,6 +49,9 @@ ani_uavDestroyed = false;
 
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_uav] spawn ani_spawnEnemies;
+if(ani_enemyReinforcements == 1) then {
+  [_marker] execVM "enemyReinforcements.sqf";
+};
 
 waitUntil{sleep 0.5; ani_uavDestroyed};
 // set mission success

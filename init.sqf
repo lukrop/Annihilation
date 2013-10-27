@@ -24,6 +24,9 @@ if(isNil "paramsArray") then{
   0,  // enemy faction
   0,  // enemy count
   0,  // Enemy skill
+  1,  // enemy reinforcements
+  1,  // enemy ambient patrols
+  1,  // populate enemy outposts
   1,  // recruiting enabled
   8,  // recruiting max group size
   1,  // revive enabled
@@ -47,6 +50,9 @@ ani_overcast = paramsArray select _i; _i = _i + 1;
 ani_enemyFaction = paramsArray select _i; _i = _i + 1; // see factions.txt for details
 ani_enemyCount = paramsArray select _i; _i = _i + 1;
 ani_enemySkill = paramsArray select _i; _i = _i + 1;
+ani_enemyReinforcements = paramsArray select _i; _i = _i + 1;
+ani_enemyAmbientPatrols = paramsArray select _i; _i = _i + 1;
+ani_populateEnemyOPs = paramsArray select _i; _i = _i + 1;
 ani_recruit = paramsArray select _i; _i = _i + 1;
 ani_maxRecruitUnits = paramsArray select _i; _i = _i + 1;
 ani_revive = paramsArray select _i; _i = _i + 1;
@@ -74,7 +80,7 @@ skipTime 24;
 
 if(ani_overcast >= 60) then {
   60 setRain (ani_overcast / 100);
-}
+};
 
 if(ani_revive == 1) then {
   // init revive

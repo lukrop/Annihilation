@@ -79,6 +79,9 @@ _trigger triggerAttachVehicle [ani_pilot];
 
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_pilot] spawn ani_spawnEnemies;
+if(ani_enemyReinforcements == 1) then {
+  [_marker] execVM "enemyReinforcements.sqf";
+};
 
 waitUntil{sleep 0.5;ani_pilotKilled or ani_pilotRescued};
 if(ani_pilotKilled) then {

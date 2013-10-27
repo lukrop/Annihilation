@@ -23,61 +23,65 @@ switch (ani_enemyCount) do {
 
     // vec format [[min groups, max groups], [min vecs per group, max vecs per group], fill cargo space?]
     // alternative vec format [[min groups, max groups], fixed vecs per group, fill cargo space?]
-    ani_enemyInfPatrolCount = [[1,3],[3,4]];
-    ani_enemyInfDefendCount = [1,[4,6]]; // 1 group with 4 to 6 units
+    ani_enemyInfPatrolCount = [[1,2],[3,4]];
+    ani_enemyInfDefendCount = [[1,2],[5,6]]; // 1 group with 5 to 7 units
     ani_enemyVecPatrolCount = [[0,2],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyInfScoutCount = [1,[2,4]];
+    ani_enemyInfReinfCount = [1,[4,6]];
     ani_enemyVecReinfCount = [[0,1],1];
-    ani_enemyReinforcments = [1,2]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
+    ani_enemyScouts = [1,2]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
   };
   case 1: {
-    ani_enemyInfPatrolCount = [[2,4],[3,4]];
-    ani_enemyInfDefendCount = [1,[6,8]];
+    ani_enemyInfPatrolCount = [[2,3],[3,4]];
+    ani_enemyInfDefendCount = [[1,2],[6,8]];
     ani_enemyVecPatrolCount = [[1,2],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyInfScoutCount = [1,[3,4]];
+    ani_enemyInfReinfCount = [1,[4,6]];
     ani_enemyVecReinfCount = [[0,1],1];
-    ani_enemyReinforcments = [2,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
+    ani_enemyScouts = [2,3]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
   };
   case 2: {
     ani_enemyInfPatrolCount = [[3,5],[3,4]];
     ani_enemyInfDefendCount = [[1,2],[6,8]];
     ani_enemyVecPatrolCount = [[1,3],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfReinfCount = [1,[6,10]];
+    ani_enemyInfScoutCount = [1,[4,5]];
+    ani_enemyInfReinfCount = [1,[4,6]];
     ani_enemyVecReinfCount = [1,1];
-    ani_enemyReinforcments = [2,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
+    ani_enemyScouts = [2,3]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
   };
   case 3: {
     ani_enemyInfPatrolCount = [[4,6],[3,4]];
     ani_enemyInfDefendCount = [[2,3],[6,8]];
     ani_enemyVecPatrolCount = [[2,4],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfReinfCount = [2,[6,10]];
+    ani_enemyInfScoutCount = [1,[4,6]];
+    ani_enemyInfReinfCount = [1,[4,6]];
     ani_enemyVecReinfCount = [1,1];
-    ani_enemyReinforcments = [1,3]; // amount of reinforcments (with diffrent positions) - [0,0] disables 3 is the maximum
+    ani_enemyScouts = [2,4]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
   };
 };
 
 switch (ani_enemySkill) do {
 case 0: {
-    ani_skill_inf = [0.2,0.35];
+    ani_skill_inf = [0.15,0.35];
     ani_skill_vec = [0.25,0.4];
     ani_skill_air = [0.3,0.45];
   };
 case 1: {
-    ani_skill_inf = [0.3,0.45];
+    ani_skill_inf = [0.25,0.45];
     ani_skill_vec = [0.35,0.5];
     ani_skill_air = [0.4,0.55];
   };
 case 2: {
-    ani_skill_inf = [0.4,0.55];
+    ani_skill_inf = [0.35,0.55];
     ani_skill_vec = [0.45,0.6];
     ani_skill_air = [0.5,0.65];
   };
 case 3: {
-    ani_skill_inf = [0.6,0.85];
+    ani_skill_inf = [0.45,0.85];
     ani_skill_vec = [0.65,0.9];
     ani_skill_air = [0.7,0.95];
   };
@@ -165,6 +169,12 @@ SHK_pos = compile preprocessFile "SLP\scripts\SHK_pos.sqf";
 
 waituntil {sleep 0.1; scriptdone SLP_init};
 
-
-[] execVM "ambientPatrols.sqf";
+if(ani_enemyAmbientPatrols == 1) then {
+  [] execVM "ambientPatrols.sqf";
+  sleep 15;
+};
+if(ani_populateEnemyOPs == 1) then {
+  [] execVM "enemyOP.sqf";
+  sleep 15;
+};
 [] execVM "missionManager.sqf";

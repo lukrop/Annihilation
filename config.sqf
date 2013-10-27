@@ -40,6 +40,15 @@ case 0: {
     ani_hvtClass = "O_officer_F";
     ani_hvtGuardClass = "O_Soldier_F";
     ani_cacheClass = "O_supplyCrate_F";
+
+    ani_enemyLeaders = ["O_Soldier_TL_F","O_officer_F","O_Soldier_SL_F","O_recon_TL_F"];
+    ani_enemyUnits = ["O_helipilot_F","O_crew_F","O_Soldier_F","O_Soldier_lite_F","O_Soldier_GL_F","O_Soldier_AR_F",
+                      "O_soldier_M_F","O_Soldier_LAT_F","O_medic_F","O_soldier_repair_F",
+                      "O_soldier_exp_F","O_spotter_F","O_sniper_F","O_Soldier_A_F","O_Soldier_AT_F",
+                      "O_Soldier_AA_F","O_engineer_F","O_recon_F","O_recon_M_F","O_recon_LAT_F","O_recon_medic_F",
+                      "O_recon_exp_F","O_recon_JTAC_F", "O_Soldier_AAR_F","O_Soldier_AAT_F","O_Soldier_AAA_F"];
+    ani_enemyVehicles = ["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Wheeled_02_rcws_F"];
+
   };
 case 1: {
     // NATO
@@ -56,6 +65,13 @@ case 2: {
     ani_hvtClass = "I_officer_F";
     ani_hvtGuardClass = "I_Soldier_F";
     ani_cacheClass = "I_supplyCrate_F";
+
+    ani_enemyLeaders = ["I_Soldier_AR_F","I_Soldier_SL_F","I_Soldier_TL_F"];
+    ani_enemyUnits = ["I_helipilot_F","I_crew_F","I_Soldier_02_F","I_soldier_F","I_Soldier_lite_F","I_Soldier_A_F",
+    "I_Soldier_GL_F","I_Soldier_M_F","I_Soldier_LAT_F", "I_Soldier_AT_F","I_Soldier_AA_F","I_medic_F","I_Soldier_repair_F",
+    "I_Soldier_exp_F","I_engineer_F","I_helicrew_F","I_officer_F","I_Spotter_F",
+    "I_Sniper_F","I_Soldier_AAR_F","I_Soldier_AAT_F","I_Soldier_AAA_F"];
+    ani_enemyVehicles = ["I_MRAP_03_hmg_F","I_MRAP_03_gmg_F"];
   };
 case 4: {
     // russian GRU by massi
@@ -64,6 +80,12 @@ case 4: {
     ani_hvtClass = "O_mas_rus_Soldier_off_F_u";
     ani_hvtGuardClass = "O_mas_rus_Soldier_F";
     ani_cacheClass = "O_supplyCrate_F";
+
+    ani_enemyLeaders = ["O_mas_rus_Soldier_TL_F_v", "O_mas_rus_Soldier_SL_F_v"];
+    ani_enemyUnits = ["O_mas_rus_Helipilot_F","O_mas_rus_crew_F","O_mas_rus_Soldier_F_v",
+            "O_mas_rus_Soldier_R_F_v", "O_mas_rus_Soldier_GL_F_v", "O_mas_rus_Soldier_AR_F_v",
+            "O_mas_rus_Soldier_MGh_F_v", "O_mas_rus_soldier_AT_F_v"];
+    ani_enemyVehicles = ["O_mas_rus_MRAP_02_hmg_F", "O_mas_rus_APC_Wheeled_02_rcws_F"];
   };
 case 5: {
     // african rebel army by massi
@@ -72,6 +94,12 @@ case 5: {
     ani_hvtClass = "O_mas_afr_Soldier_off_F";
     ani_hvtGuardClass = "O_mas_afr_Soldier_F";
     ani_cacheClass = "O_supplyCrate_F";
+
+    ani_enemyLeaders = ["O_mas_afr_Soldier_TL_F", "O_mas_afr_Soldier_SL_F"];
+    ani_enemyUnits = ["O_mas_afr_Soldier_lite_F","O_mas_afr_Soldier_lite_F","O_mas_afr_Soldier_F", "O_mas_afr_Soldier_GL_F",
+     "O_mas_afr_soldier_AR_F", "O_mas_afr_soldier_MG_F","O_mas_afr_soldier_M_F", "O_mas_afr_soldier_LAT_F", "O_mas_afr_medic_F",
+    "O_mas_afr_soldier_repair_F", "O_mas_afr_soldier_exp_F"];
+    ani_enemyVehicles = ["O_mas_afr_Offroad_01_armed_F", "O_mas_afr_Offroad_01s_armed_F", "O_mas_afr_Offroad_01c_armed_F"];
   };
 case 6: {
     // african civilian rebels by massi
@@ -80,6 +108,12 @@ case 6: {
     ani_hvtClass = "O_mas_afr_Soldier_off_F";
     ani_hvtGuardClass = "O_mas_afr_Soldier_F";
     ani_cacheClass = "O_supplyCrate_F";
+
+    ani_enemyLeaders = ["O_mas_afr_Rebel1_F"];
+    ani_enemyUnits = ["O_mas_afr_Rebel1_F","O_mas_afr_Rebel1_F","O_mas_afr_Rebel1_F", "O_mas_afr_Rebel2_F",
+    "O_mas_afr_Rebel3_F","O_mas_afr_Rebel4_F", "O_mas_afr_Rebel5_F", "O_mas_afr_Rebel6_F", "O_mas_afr_Rebel6a_F",
+    "O_mas_afr_Rebel7_F", "O_mas_afr_Rebel8_F", "O_mas_afr_Rebel8a_F"];
+    ani_enemyVehicles = ["O_mas_afr_Offroad_01_armed_F", "O_mas_afr_Offroad_01s_armed_F", "O_mas_afr_Offroad_01c_armed_F"];
   };
 case 7: {
     // SOCOM DEVGRU by massi

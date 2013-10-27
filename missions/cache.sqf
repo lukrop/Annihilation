@@ -62,6 +62,9 @@ ani_cacheDestroyed = false;
 
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_cache] spawn ani_spawnEnemies;
+if(ani_enemyReinforcements == 1) then {
+  [_marker] execVM "enemyReinforcements.sqf";
+};
 
 waitUntil{sleep 0.5; ani_cacheDestroyed};
 ani_missionState = "SUCCESS";

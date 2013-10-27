@@ -62,6 +62,9 @@ if((round random 5) >= 3) then {
 
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, ani_hvt] spawn ani_spawnEnemies;
+if(ani_enemyReinforcements == 1) then {
+  [_marker] execVM "enemyReinforcements.sqf";
+};
 
 // LOGIC
 ani_hvtKilled = false;

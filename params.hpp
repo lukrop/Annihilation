@@ -34,6 +34,27 @@ class Params {
     texts[]={"0.1 - 0.3","0.3 - 0.5","0.5 - 0.7","0.7 - 0.9"};
   };
   
+  class ani_enemy_reinforcement {
+    title="Enemy reinforcements";
+    values[]={0,1};
+    default=1;
+    texts[]={"Disabled", "Enabled"};
+  };
+  
+  class ani_enemy_ambient_patrols {
+    title="Enemy ambient patrols (random patrols)";
+    values[]={0,1};
+    default=1;
+    texts[]={"Disabled", "Enabled"};
+  };
+
+  class ani_enemy_ops {
+    title="Populate enemy outposts";
+    values[]={0,1};
+    default=1;
+    texts[]={"Disabled", "Enabled"};
+  };
+  
   class ani_recruit {
     title="AI Recruitment";
     values[]={0,1};
@@ -142,7 +163,7 @@ class Params {
   class ani_jip_markers {
     title="TESTING: JIP markers";
     values[]={0,1};
-    default=0;
+    default=1;
     texts[]={"Disabled","Enabled"};
   };
 };

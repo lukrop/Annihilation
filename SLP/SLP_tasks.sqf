@@ -86,6 +86,10 @@ switch (_tskname) do
       _doGC = true;
     };
 
+  case "SCOUT_GC" : {
+      [_grp, _tsk2, _tsk1, 5, "MOVE", "STEALTH", "GREEN", "LIMITED", "STAG COLUMN", "", [5+(random 5),10+(random 5),15+(random 5)]] call CBA_fnc_taskPatrol;
+      _doGC = true;
+    };
 
   } else {
   case "PATROL":	{_tsk2p = _tsk2 call SLP_fnc_getpos;[_grp, _tsk2p,_tsk1] call BIS_fnc_taskPatrol};
