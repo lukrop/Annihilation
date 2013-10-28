@@ -28,3 +28,10 @@ waitUntil {sleep 1; not isNil "ani_currentMission"};
 } forEach ani_completedMissions;
 
 [ani_currentMission select 0, 1, "ColorRed"] call ani_changeMarker;
+
+// adjust markers for outposts
+{
+  if(not (missionNamespace getVariable (format ["ani_%1_active", _x]))) then {
+    [_x, 1, "ColorBLUFOR", "hd_flag", "Cleared"] call ani_changeMarker;
+  };
+} forEach ani_enemyOPMarkers;

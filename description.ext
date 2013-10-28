@@ -6,7 +6,7 @@ enableDebugConsole = 1;
 
 author="lukrop";
 onLoadName = "Annihilation NATO";
-onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.4-testing";
+onLoadMission = "Complete random QRF missions.<br/>Version: 0.3.4";
 loadScreen = "images\loadingscreen.jpg";
 
 class Header

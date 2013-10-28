@@ -11,10 +11,9 @@
 */
 
 if(!isServer) exitWith{};
-private ["_teamBox", "_infzone1", "_infzone2"];
 
 // mcc_sandbox bug workaround
-// [[0,0,0], "STATE:", ["time > 15", "setDate [2035,10,6,ani_daytime,0];", ""]] call CBA_fnc_createTrigger;
+// [[0,0,0], "STATE:", ["time > 5", "setDate [2035,10,6,ani_daytime,0];", ""]] call CBA_fnc_createTrigger;
 
 switch (ani_enemyCount) do {
   case 0: {
@@ -28,39 +27,55 @@ switch (ani_enemyCount) do {
     ani_enemyVecPatrolCount = [[0,2],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfScoutCount = [1,[2,4]];
-    ani_enemyInfReinfCount = [1,[4,6]];
-    ani_enemyVecReinfCount = [[0,1],1];
     ani_enemyScouts = [1,2]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
+
+    ani_enemyAmbientInfCount = [[2,4],[3,5]];
+    ani_enemyAmbientVecCount = [[1,3],1,false];
+
+    ani_enemyInfReinfCount = [1,1]; // format [min groups, max groups]
+    ani_enemyVecReinfCount = [1,1]; // format [min vecs, max vecs]
   };
   case 1: {
-    ani_enemyInfPatrolCount = [[2,3],[3,4]];
-    ani_enemyInfDefendCount = [[1,2],[6,8]];
-    ani_enemyVecPatrolCount = [[1,2],1,false];
+    ani_enemyInfPatrolCount = [[2,4],[3,4]];
+    ani_enemyInfDefendCount = [2,[5,6]]; // 1 group with 5 to 7 units
+    ani_enemyVecPatrolCount = [[1,3],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfScoutCount = [1,[3,4]];
-    ani_enemyInfReinfCount = [1,[4,6]];
-    ani_enemyVecReinfCount = [[0,1],1];
-    ani_enemyScouts = [2,3]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
+    ani_enemyInfScoutCount = [[1,2],[2,4]];
+    ani_enemyScouts = [1,2];
+
+    ani_enemyAmbientInfCount = [[3,4],[3,5]];
+    ani_enemyAmbientVecCount = [[2,4],1,false];
+
+    ani_enemyInfReinfCount = [1,2]; // format [min groups, max groups]
+    ani_enemyVecReinfCount = [1,2]; // format [min vecs, max vecs]
   };
   case 2: {
     ani_enemyInfPatrolCount = [[3,5],[3,4]];
-    ani_enemyInfDefendCount = [[1,2],[6,8]];
-    ani_enemyVecPatrolCount = [[1,3],1,false];
+    ani_enemyInfDefendCount = [[2,3],[5,6]]; // 1 group with 5 to 7 units
+    ani_enemyVecPatrolCount = [[2,3],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfScoutCount = [1,[4,5]];
-    ani_enemyInfReinfCount = [1,[4,6]];
-    ani_enemyVecReinfCount = [1,1];
-    ani_enemyScouts = [2,3]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
+    ani_enemyInfScoutCount = [[1,2],[2,4]];
+    ani_enemyScouts = [[2,3]];
+
+    ani_enemyAmbientInfCount = [[4,6],[3,5]];
+    ani_enemyAmbientVecCount = [[3,5],1,false];
+
+    ani_enemyInfReinfCount = [1,3]; // format [min groups, max groups]
+    ani_enemyVecReinfCount = [1,3]; // format [min vecs, max vecs]
   };
   case 3: {
     ani_enemyInfPatrolCount = [[4,6],[3,4]];
-    ani_enemyInfDefendCount = [[2,3],[6,8]];
-    ani_enemyVecPatrolCount = [[2,4],1,false];
+    ani_enemyInfDefendCount = [[3,4],[5,6]]; // 1 group with 5 to 7 units
+    ani_enemyVecPatrolCount = [[3,4],1,false];
     ani_enemyVecDefendCount = [];
-    ani_enemyInfScoutCount = [1,[4,6]];
-    ani_enemyInfReinfCount = [1,[4,6]];
-    ani_enemyVecReinfCount = [1,1];
-    ani_enemyScouts = [2,4]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
+    ani_enemyInfScoutCount = [[1,2],[2,4]];
+    ani_enemyScouts = [[2,4]];
+
+    ani_enemyAmbientInfCount = [[4,6],[3,5]];
+    ani_enemyAmbientVecCount = [[3,5],1,false];
+
+    ani_enemyInfReinfCount = [2,3]; // format [min groups, max groups]
+    ani_enemyVecReinfCount = [2,3]; // format [min vecs, max vecs]
   };
 };
 
@@ -154,12 +169,10 @@ switch(ani_suppression) do {
 
 {
   [_x, ani_vec_respawnDelay, ani_vec_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
-  //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
 } forEach [ani_vec1, ani_vec2, ani_vec3, ani_vec4, ani_vec5, ani_vec6, ani_vec7, ani_vec8];
 
 {
   [_x, ani_chopper_respawnDelay, ani_chopper_desertedDelay] execFSM "fsm\ani_vehicleRespawn.fsm";
-  //[_x, 10, 10] execFSM "fsm\ani_vehicleRespawn.fsm";
 } forEach [ani_helo1, ani_helo2, ani_helo3, ani_helo4, ani_helo5];
 
 // init SLP (Spawning)
@@ -173,8 +186,6 @@ if(ani_enemyAmbientPatrols == 1) then {
   [] execVM "ambientPatrols.sqf";
   sleep 15;
 };
-if(ani_populateEnemyOPs == 1) then {
-  [] execVM "enemyOP.sqf";
-  sleep 15;
-};
+[] execVM "enemyOP.sqf";
+sleep 15;
 [] execVM "missionManager.sqf";

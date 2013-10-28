@@ -1,3 +1,14 @@
+0.3.4
+- performance optimizations to counter desync
+- one new city location
+- new reinforcement system (reinforcements spawn at closest active enemy outpost)
+- fixed typo which crippled AFR rebel army
+- new paramters:
+	- overcast (rain)
+	- enemy reinforcements
+	- populate enemy outposts
+	- enemy ambient patrols
+
 0.3.3
 - mortar mission hotfix
 - hotfix for all missions (deletion of mission objects)

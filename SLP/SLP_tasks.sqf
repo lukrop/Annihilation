@@ -87,8 +87,12 @@ switch (_tskname) do
     };
 
   case "SCOUT_GC" : {
-      [_grp, _tsk2, _tsk1, 5, "MOVE", "STEALTH", "GREEN", "LIMITED", "STAG COLUMN", "", [5+(random 5),10+(random 5),15+(random 5)]] call CBA_fnc_taskPatrol;
+      [_grp, _tsk2, _tsk1, 5, "MOVE", "STEALTH", "WHITE", "LIMITED", "STAG COLUMN", "", [5+(random 5),10+(random 5),15+(random 5)]] call CBA_fnc_taskPatrol;
       _doGC = true;
+    };
+
+  case "SCOUT" : {
+      [_grp, _tsk2, _tsk1, 5, "MOVE", "STEALTH", "WHITE", "LIMITED", "STAG COLUMN", "", [5+(random 5),10+(random 5),15+(random 5)]] call CBA_fnc_taskPatrol;
     };
 
   } else {

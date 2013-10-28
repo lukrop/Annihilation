@@ -13,6 +13,7 @@ private ["_minDist", "_lastDist", "_closestOP", "_aoCenter", "_return"];
 
 _aoCenter = _this select 0;
 _minDist = 999999999999;
+
 {
 	_lastDist = (getMarkerPos _aoCenter) distance (getMarkerPos _x);
 	if(_lastDist < _minDist) then {
