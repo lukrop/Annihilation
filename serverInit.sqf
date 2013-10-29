@@ -22,15 +22,15 @@ switch (ani_enemyCount) do {
 
     // vec format [[min groups, max groups], [min vecs per group, max vecs per group], fill cargo space?]
     // alternative vec format [[min groups, max groups], fixed vecs per group, fill cargo space?]
-    ani_enemyInfPatrolCount = [[1,2],[3,4]];
-    ani_enemyInfDefendCount = [[1,2],[5,6]]; // 1 group with 5 to 7 units
+    ani_enemyInfPatrolCount = [[2,3],[3,4]];
+    ani_enemyInfDefendCount = [1,[5,8]]; // 1 group with 5 to 7 units
     ani_enemyVecPatrolCount = [[0,2],1,false];
     ani_enemyVecDefendCount = [];
     ani_enemyInfScoutCount = [1,[2,4]];
     ani_enemyScouts = [1,2]; // amount of scout groups (with diffrent positions) - [0,0] disables 4 is the maximum
 
-    ani_enemyAmbientInfCount = [[2,4],[3,5]];
-    ani_enemyAmbientVecCount = [[1,3],1,false];
+    ani_enemyAmbientInfCount = [[3,4],[3,4]];
+    ani_enemyAmbientVecCount = [2,1,false];
 
     ani_enemyInfReinfCount = [1,1]; // format [min groups, max groups]
     ani_enemyVecReinfCount = [1,1]; // format [min vecs, max vecs]
@@ -81,24 +81,24 @@ switch (ani_enemyCount) do {
 
 switch (ani_enemySkill) do {
 case 0: {
-    ani_skill_inf = [0.15,0.35];
-    ani_skill_vec = [0.25,0.4];
-    ani_skill_air = [0.3,0.45];
+    ani_skill_inf = [0.1,0.3];
+    ani_skill_vec = [0.1,0.3];
+    ani_skill_air = [0.2,0.4];
   };
 case 1: {
-    ani_skill_inf = [0.25,0.45];
-    ani_skill_vec = [0.35,0.5];
-    ani_skill_air = [0.4,0.55];
+    ani_skill_inf = [0.3,0.5];
+    ani_skill_vec = [0.3,0.5];
+    ani_skill_air = [0.4,0.6];
   };
 case 2: {
-    ani_skill_inf = [0.35,0.55];
-    ani_skill_vec = [0.45,0.6];
-    ani_skill_air = [0.5,0.65];
+    ani_skill_inf = [0.5,0.7];
+    ani_skill_vec = [0.5,0.7];
+    ani_skill_air = [0.6,0.8];
   };
 case 3: {
-    ani_skill_inf = [0.45,0.85];
-    ani_skill_vec = [0.65,0.9];
-    ani_skill_air = [0.7,0.95];
+    ani_skill_inf = [0.7,0.9];
+    ani_skill_vec = [0.7,0.9];
+    ani_skill_air = [0.8,1];
   };
 };
 

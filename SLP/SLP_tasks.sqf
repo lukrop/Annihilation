@@ -136,7 +136,7 @@ if(_doGC) then {
     _grp = _this select 0;
     waitUntil{sleep 5; ani_missionState != "IN_PROGRESS"};
     {
-      while{[_x, 800] call CBA_fnc_nearPlayer} do {sleep 10 + (random 5)};
+      while{[_x, 800] call CBA_fnc_nearPlayer} do {sleep 30 + (random 5)};
       deleteVehicle _x;
     } forEach units _grp;
     deleteGroup _grp;

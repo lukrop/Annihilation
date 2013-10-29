@@ -45,8 +45,24 @@ if(count ani_enemyOPMarkers > 0) then {
 			[_grp, getPos _vec, 0, "GETIN NEAREST", "AWARE", "GREEN", "NORMAL", "COLUMN", "", [0,0,0]] call CBA_fnc_addWaypoint;
 			[_grp, _AOCenterPos, 60, "GETOUT", "SAFE", "GREEN", "NORMAL", "COLUMN", "", [0,0,0]] call CBA_fnc_addWaypoint;
 			[_grp, _AOCenterPos, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+			[_grp, _AOCenterPos, 30, "MOVE", "SAFE", "YELLOW", "NORMAL", "COLUMN",
+			"[group this, getPos this, 300, 7, 'MOVE', 'SAFE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [3,6,9]] call CBA_fnc_taskPatrol",
+			[0,0,0]] call CBA_fnc_addWaypoint;
 		} else {
 			[_grp, _AOCenterPos, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+			[_grp, _AOCenterPos, 30, "MOVE", "SAFE", "YELLOW", "NORMAL", "COLUMN",
+			"[group this, getPos this, 300, 7, 'MOVE', 'SAFE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [3,6,9]] call CBA_fnc_taskPatrol",
+			[0,0,0]] call CBA_fnc_addWaypoint;
+		};
+
+		[_grp] spawn {
+		    _grp = _this select 0;
+		    waitUntil{sleep 5; ani_missionState != "IN_PROGRESS"};
+		    {
+		      while{[_x, 1500] call CBA_fnc_nearPlayer} do {sleep 30 + (random 5)};
+		      deleteVehicle _x;
+		    } forEach units _grp;
+			deleteGroup _grp;
 		};
 		sleep 15;
 	};
@@ -58,6 +74,19 @@ if(count ani_enemyOPMarkers > 0) then {
 	for "_i" from 1 to _maxVecs do {
 		_grp = [_reinfVecPos, east, [ani_enemyVehicles call BIS_fnc_selectRandom],[], [], ani_skill_vec] call BIS_fnc_spawnGroup;
 		[_grp, _AOCenterPos, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
+		[_grp, _AOCenterPos, 30, "MOVE", "SAFE", "YELLOW", "NORMAL", "COLUMN",
+			"[group this, getPos this, 300, 7, 'MOVE', 'SAFE', 'YELLOW', 'LIMITED', 'STAG COLUMN', '', [3,6,9]] call CBA_fnc_taskPatrol",
+			[0,0,0]] call CBA_fnc_addWaypoint;
 		sleep 10;
+
+		[_grp] spawn {
+		    _grp = _this select 0;
+		    waitUntil{sleep 5; ani_missionState != "IN_PROGRESS"};
+		    {
+		      while{[_x, 1500] call CBA_fnc_nearPlayer} do {sleep 30 + (random 5)};
+		      deleteVehicle _x;
+		    } forEach units _grp;
+			deleteGroup _grp;
+		};
 	};
 };
