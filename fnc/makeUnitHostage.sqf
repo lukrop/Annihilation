@@ -11,15 +11,11 @@
 */
 _unit = _this select 0;
 
+doStop _unit;
 _unit setCaptive true;
 removeAllWeapons _unit;
-_unit disableAI "FSM";
-_unit disableAI "TARGET";
-_unit disableAI "AUTOTARGET";
 _unit disableAI "MOVE";
-_unit setUnitPos "UP";
-_unit forceSpeed 0;
 // this animation name is madness.. unit has hands behind head
 _unit switchMove "amovpercmstpsnonwnondnon_amovpercmstpssurwnondnon";
 
-[[_unit, localize "STR_ANI_RESCUE", "fnc\rescueHostage.sqf"], "ani_addActionMP", nil, true] spawn BIS_fnc_MP;
+[[_unit, localize "STR_ANI_RESCUE", "fnc\rescueHostage.sqf"], "ani_addAction", true, true] spawn BIS_fnc_MP;

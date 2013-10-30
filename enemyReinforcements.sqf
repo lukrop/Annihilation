@@ -41,7 +41,7 @@ if(count ani_enemyOPMarkers > 0) then {
 		[], [], ani_skill_inf, [], [6, 0.5]] call BIS_fnc_spawnGroup;
 
 		if((_reinfPos distance _AOCenterPos) > 500) then {
-			_vec = createVehicle [ani_enemyTruckClass, _reinfVecPos, [], 0, "NONE"];
+			_vec = createVehicle [ani_enemyTruckClass, _reinfVecPos, [], 15, "NONE"];
 			[_grp, getPos _vec, 0, "GETIN NEAREST", "AWARE", "GREEN", "NORMAL", "COLUMN", "", [0,0,0]] call CBA_fnc_addWaypoint;
 			[_grp, _AOCenterPos, 60, "GETOUT", "SAFE", "GREEN", "NORMAL", "COLUMN", "", [0,0,0]] call CBA_fnc_addWaypoint;
 			[_grp, _AOCenterPos, 30, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", "", [0,0,0]] call CBA_fnc_addWaypoint;
@@ -64,9 +64,9 @@ if(count ani_enemyOPMarkers > 0) then {
 		    } forEach units _grp;
 			deleteGroup _grp;
 		};
-		sleep 15;
+		sleep 30;
 	};
-
+	sleep 30;
 	_minVecs = ani_enemyVecReinfCount select 0;
 	_maxVecs = ani_enemyVecReinfCount select 1;
 	_vecs = _minVecs max (round (random _maxVecs));

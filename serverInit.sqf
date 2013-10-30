@@ -141,30 +141,24 @@ if(ani_acre == 1) then {
   } forEach _leaders;
 };
 
-switch(ani_suppression) do {
-  case 1: {
-    //tpwcas_isHc = false;
-    tpwcas_st = 5;
-    tpwcas_reveal = 1;
-    tpwcas_debug = 0;
-    tpwcas_minskill = 0.1;
-    tpwcas_playershake = 0;
-    tpwcas_playervis = 0;
-    tpwcas_mode = 2;
-    if(isServer and isDedicated) then {tpwcas_mode = 3};
+if(ani_suppression == 1) then {
+  //tpwcas_isHc = false;
+  tpwcas_st = 5;
+  tpwcas_reveal = 0.5;
+  tpwcas_debug = 0;
+  tpwcas_minskill = 0.05;
+  tpwcas_playershake = 0;
+  tpwcas_playervis = 0;
+  tpwcas_mode = 2;
+  if(isServer and isDedicated) then {tpwcas_mode = 3};
 
-    if(ani_tpwlos == 1) then {
-      tpwcas_los_enable = 1;
-    } else {
-      tpwcas_los_enable = 0;
-    };
+  if(ani_tpwlos == 1) then {
+    tpwcas_los_enable = 1;
+  } else {
+    tpwcas_los_enable = 0;
+  };
 
-    [tpwcas_mode] execVM "tpwcas\tpwcas_script_init.sqf";
-  };
-  case 2: {
-     // bullet threshold , delay to start, debug, max dist, player sup, ai sup, ai seek cover
-    [5,1,0,700,0,1,1] execVM "scripts\tpw_ebs.sqf";
-  };
+  [tpwcas_mode] execVM "tpwcas\tpwcas_script_init.sqf";
 };
 
 {

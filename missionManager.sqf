@@ -69,30 +69,37 @@ while {count ani_missions > 0} do {
   switch(_missionType) do {
     case "cache": {
       _posArray = [0] call ani_getMissionLocation;
+      _missionStyle = 0;
     };
     case "killhvt": {
       _posArray = [0] call ani_getMissionLocation;
+      _missionStyle = 0;
     };
     case "killhvtstatic": {
       _posArray = [0] call ani_getMissionLocation;
+      _missionStyle = 0;
     };
     case "rescuepilot": {
       _posArray = [0] call ani_getMissionLocation;
+      _missionStyle = 0;
     };
     case "mortar": {
       _posArray = [1] call ani_getMissionLocation;
+      _missionStyle = 1;
     };
     case "uav": {
       _posArray = [1] call ani_getMissionLocation;
+      _missionStyle = 1;
     };
   };
 
   // ##### DEBUG/TESTING #####
-/*
-  _missionStyle = 1;
-  _missionType = "mortar";
+  /*
+  _posArray = [0] call ani_getMissionLocation;
+  _missionStyle = 0;
+  _missionType = "rescuepilot";
   hint format ["%1 | %2", _missionType, _posArray select 0];
-*/
+  */
   // ##### DEBUG/TESTING #####
 
   ani_currentMission = [_posArray select 0, _missionType];

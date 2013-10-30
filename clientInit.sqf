@@ -25,3 +25,11 @@ if(ani_acre == 1) then {
 // Viewdistance script
 [] execVM "taw_vd\init.sqf";
 
+if(ani_suppression == 2) then {
+  // bullet threshold , delay to start, debug, max dist, player sup, ai sup, ai seek cover
+  [5,5,0,700,0,1,1] execVM "scripts\tpw_ebs.sqf";
+};
+
+if(ani_tpw_fall == 1) then {
+  [100,700,10,1,30] execVM "scripts\tpw_fall.sqf";
+};

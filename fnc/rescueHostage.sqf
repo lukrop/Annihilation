@@ -15,15 +15,18 @@
 
 _hostage = _this select 0;
 _caller = _this select 1;
-_id = _this select 2;
+_index = _this select 2;
 
-//[_hostage] call ani_removeAllActionsMP;
-[[_hostage], "ani_removeAllActionsMP", nil, true] spawn BIS_fnc_MP;
+// [[_hostage], "ani_removeAllActions", true, true] spawn BIS_fnc_MP;
 
-[_hostage] join (group _caller);
-_hostage setCaptive false;
-_hostage enableAI "FSM";
-_hostage enableAI "TARGET";
-_hostage enableAI "AUTOTARGET";
+//_hostage playMoveNow "AmovPercMstpSlowWrflDnon";
+_hostage removeAction _index;
 _hostage enableAI "MOVE";
-_hostage forceSpeed -1;
+//[_hostage] join (group _caller);
+[_hostage] join _caller;
+doStop _hostage;
+_hostage setCaptive false;
+
+//_hostage enableAI "TARGET";
+//_hostage enableAI "AUTOTARGET";
+//_hostage forceSpeed -1;

@@ -60,10 +60,14 @@ ani_pilot = _pilotGrp createUnit [_pilotClass, _crashPos, [], 0, "FORM"];
 //publicVariable "ani_pilot";
 // move him to random house position
 _pilotPos = [ani_pilot, (getPos ani_pilot), 30] call ani_moveInRandomBuilding;
+
 // make the pilot a hostage
 [ani_pilot] call ani_makeUnitHostage;
+// ani_pilot execVM "scripts\mcc\create_hostage.sqf";
+// [[[ani_pilot],"scripts\mcc\create_hostage.sqf"],"BIS_fnc_execVM",true,true] spawn BIS_fnc_MP;
+
 // spawn two guards
-[_pilotPos, east, [ani_hvtGuardClass, ani_hvtGuardClass], [[1,2,0]]] call BIS_fnc_spawnGroup;
+[_pilotPos, east, [ani_hvtGuardClass, ani_hvtGuardClass], [], [], ani_skill_inf] call BIS_fnc_spawnGroup;
 
 _chopper allowDamage true;
 

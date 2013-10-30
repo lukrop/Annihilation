@@ -1,14 +1,14 @@
 /*
 TPW EBS - Engine based suppression for Arma3 SP
-Version: 1.11
-Authors: tpw, mrflay, ollem 
+Version: 1.18
+Authors: tpw,ollem 
 Thanks: -coulum-, fabrizio_t 
-Date: 20130917
+Date: 20131019
 Disclaimer: Feel free to use and modify this code, on the proviso that you post back changes and improvements so that everyone can benefit from them, and acknowledge the original author (tpw) in any derivative works. 	
 
 To use: 
 1 - Save this script into your mission directory as eg tpw_ebs.sqf
-2 - Call it with 0 = [5,1,0,500,1,1,1] execvm "\scripts\tpw_ebs.sqf"; where 5 = bullet threshold, 1 = delay until suppression functions start (sec), 0 = debugging, 500 = suppression radius, 1 = player suppression effects, 1 = suppression applied to AI, 1 = AI will seek cover when suppressed.
+2 - Call it with 0 = [5,10,0,500,1,1,1] execvm "\scripts\tpw_ebs.sqf"; where 5 = bullet threshold, 10 = delay until suppression functions start (sec), 0 = no debugging, 500 = suppression radius, 1 = player suppression effects, 1 = suppression applied to AI, 1 = AI will seek cover when suppressed.
 
 THIS SCRIPT WON'T RUN ON DEDICATED SERVERS
 */
@@ -21,218 +21,150 @@ WaitUntil {!isNull FindDisplay 46};
 /////////////
 // VARIABLES
 /////////////
+tpw_ebs_version = "1.18"; // Version string
+
 tpw_ebs_thresh = _this select 0; // unit is suppressed if this many bullets pass by in 5 secs
-tpw_ebs_sleep = _this select 1; // how long til suppression functions start
-tpw_ebs_debug = _this select 2; // debugging will colour the suppression shell (blue = unsuppressed, green = own side, yellow = enemy <5 bullets, red = enemy >5 bullets)
+tpw_ebs_sleep = _this select 1; // how long until suppression functions start
+tpw_ebs_debug = _this select 2; // debugging will colour suppressed units (blue = unsuppressed, green = own side, yellow = enemy <5 bullets, red = enemy >5 bullets)
 tpw_ebs_radius = _this select 3; // units must be closer to player than this (m) for suppression to work
 tpw_ebs_playersup = _this select 4; // suppression effects applied to player
 tpw_ebs_aisup = _this select 5; // suppression effects applied to AI
 tpw_ebs_findcover = _this select 6; // AI will seek cover if suppressed
-ww_coveractive = 0; // Windwalker AIcover. TPW EBS will not assign units to cover if WW AIcover is already doing so.
+
+tpw_ebs_detectradius = 10; // detection radius around each bullet (m)
+tpw_ebs_bulletlife = 1; // bullet lifetime (sec)
+tpw_ebs_maxdist = 1000; // bullets fired from further than this don't suppress (m)
+tpw_ebs_mindist = 10; // bullets fired from less than this don't suppress (m)
+tpw_ebs_minspeed = 1500; // bullets must be travelling faster than this to suppress (no pistols)
+
+if (isnil "ww_coveractive") then {ww_coveractive = 0}; // Windwalking AIcover. TPW EBS will not assign units to cover if WW AIcover is already doing so.
 tpw_ebs_active = true; //Global enable/disable
 tpw_ebs_unitarray = []; // Array of suppressible units
-tpw_ebs_version = 1.11; // Version string
+tpw_ebs_bulletarray = []; // Array of fired bullets
+tpw_ebs_pfeh = false; // Is per frame eventhandler running?
 
 // Stance arrays for each weapon
 tpw_ebs_standarray = ["AmovPercMstpSrasWnonDnon","AmovPercMstpSrasWpstDnon","AmovPercMstpSrasWrflDnon","AmovPercMstpSrasWlnrDnon"];
 tpw_ebs_croucharray = ["AmovPknlMstpSrasWnonDnon","AmovPknlMstpSrasWpstDnon","AmovPknlMstpSrasWrflDnon","AmovPknlMstpSrasWlnrDnon"];
 tpw_ebs_pronearray = ["AmovPpneMstpSrasWnonDnon","AmovPpneMstpSrasWpstDnon","AmovPpneMstpSrasWrflDnon","AmovPpneMstpSrasWlnrDnon"];
 
-// Arrays of things which will deactivate the shell if nearby
-tpw_ebs_exparray = [
-"Timebombcore",
-"Rocketcore",
-"Submunitioncore",
-"Bombcore",
-"Grenade",
-"Missilecore",
-"Shellcore",
-"Helicopter"];
-
-////////////
-// FUNCS
-///////////
-
-// ADD SUPPRESSION SHELL
-tpw_ebs_fnc_addshell = 
+// PERIODICALLY APPLY FIRED EVENTHANDLER TO ALL UNITS
+tpw_ebs_fnc_apply =
 	{
-	private ["_unit"];
-	_unit = _this select 0;
-	
-	//Only add shell if none exists and not near explosive/heli
-	if ((_unit getvariable ["tpw_ebs_shell", 0] == 0 ) && (_unit getvariable ["tpw_ebs_near", 0] == 0)) then
+	while {true} do
 		{
-		[_unit] call tpw_ebs_fnc_bigshell;
-		_unit addeventhandler ["killed", {deletevehicle ((_this select 0) getvariable "tpw_ebs_attachedshell")}]; // remove shell if killed
-		_unit setvariable ["tpw_ebs_shell", 1];
-		_unit action ["SwitchWeapon",_unit,_unit,0]; // initial weapon switch so weapon detection works
-		};
-	};
-
-// 5m shell
-tpw_ebs_fnc_bigshell = 
-	{
-	private ["_unit","_shell"];
-	_unit = _this select 0;
-	(_unit getvariable ["tpw_ebs_attachedshell",objnull]) removeAllEventHandlers "hitpart";
-	deletevehicle (_unit getvariable ["tpw_ebs_attachedshell",objnull]);	
-	_shell = "FLAY_FireGeom_L" createVehicle [0,0,0];
-	_shell addeventhandler ["hitpart",{_this call tpw_ebs_fnc_supstate}];
-	_shell setvariable ["tpw_ebs_attachedunit",_unit]; 
-	_unit setvariable ["tpw_ebs_attachedshell",_shell];
-	_shell attachTo [_unit, [0,0,0]];
-	_unit setvariable ["tpw_ebs_shell", 1];
-	};
-	
-// 3m shell	
-tpw_ebs_fnc_medshell = 
-	{
-	private ["_unit","_shell"];
-	_unit = _this select 0;
-	(_unit getvariable ["tpw_ebs_attachedshell",objnull]) removeAllEventHandlers "hitpart";
-	deletevehicle (_unit getvariable ["tpw_ebs_attachedshell",objnull]);	
-	_shell = "FLAY_FireGeom_M" createVehicle [0,0,0];
-	_shell addeventhandler ["hitpart",{_this call tpw_ebs_fnc_supstate}];
-	_shell setvariable ["tpw_ebs_attachedunit",_unit]; 
-	_unit setvariable ["tpw_ebs_attachedshell",_shell];
-	_shell attachTo [_unit, [0,0,0]];
-	_unit setvariable ["tpw_ebs_shell", 1];
-	};
-
-// 2m shell	
-tpw_ebs_fnc_smallshell = 
-	{
-	private ["_unit","_shell"];
-	_unit = _this select 0;
-	(_unit getvariable ["tpw_ebs_attachedshell",objnull]) removeAllEventHandlers "hitpart";
-	deletevehicle (_unit getvariable ["tpw_ebs_attachedshell",objnull]);	
-	_shell = "FLAY_FireGeom_S" createVehicle [0,0,0];
-	_shell addeventhandler ["hitpart",{_this call tpw_ebs_fnc_supstate}];
-	_shell setvariable ["tpw_ebs_attachedunit",_unit]; 
-	_unit setvariable ["tpw_ebs_attachedshell",_shell];
-	_shell attachTo [_unit, [0,0,0]];
-	_unit setvariable ["tpw_ebs_shell", 1];
-	};	
-	
-// REMOVE SUPPRESSION SHELL	
-tpw_ebs_fnc_removeshell =
-	{
-	private ["_unit","_shell"];
-	_unit = _this select 0;
-	
-	//Only run if unit already has a shell
-	if (_unit getvariable ["tpw_ebs_shell", 0] == 1) then
-		{
-		(_unit getvariable ["tpw_ebs_attachedshell",objnull]) removeAllEventHandlers "hitpart";
-		deletevehicle (_unit getvariable "tpw_ebs_attachedshell");
-		_unit setvariable ["tpw_ebs_shell", 0];
-		
-		// Remove unit from array of suppressible units
-		tpw_ebs_unitarray = tpw_ebs_unitarray - [_unit];
-		};
-	};
-
-// CHECK IF SHELL NEAR EXPLOSIVES/HELICOPTERS
-tpw_ebs_fnc_checknear = 
-	{
-	private ["_unit","_list"];
-	_unit = _this select 0;
-	_unit setvariable ["tpw_ebs_near", 0];
-		{
-		_list = (position _unit) nearObjects [_x,15];
-		if (count _list > 0) exitwith 
 			{
-			//hintsilent format ["%1",_list];
-			[_unit] call tpw_ebs_fnc_removeshell;
-			_unit setvariable ["tpw_ebs_near", 1];
-			};
-		} foreach tpw_ebs_exparray;
-	};	
+			if (_x getvariable ["tpw_ebs_eh",0] == 0) then 
+				{
+				_x addeventhandler ["fired",{_this call tpw_ebs_fnc_fired}];
+				_x setvariable ["tpw_ebs_eh",1];
+				};
+			} foreach allunits;
+		sleep 10;	
+		};	
+	};
+
+// BULLET FIRED
+tpw_ebs_fnc_fired =
+	{
+	private ["_bullet","_shooter","_pos","_lifetime"];
+	_shooter = _this select 0;
+	_bullet = _this select 6;
 	
-// WHEN SUPPRESSION SHELL IS HIT
+	// Add bullet to array if it supersonic and close enough to player
+	if (
+	_shooter distance player < tpw_ebs_maxdist && 
+	{speed _bullet > tpw_ebs_minspeed} 
+	) then
+		{
+		_lifetime = diag_ticktime + tpw_ebs_bulletlife; 
+		tpw_ebs_bulletarray set [count tpw_ebs_bulletarray,[_bullet,_lifetime,_shooter]];
+		
+		// Start bullet detection PFEH if it's not already running
+		if !(tpw_ebs_pfeh) then 
+			{
+			tpw_ebs_handle = [tpw_ebs_fnc_detect,0] call cba_fnc_addPerFrameHandler;
+			tpw_ebs_pfeh = true;
+			};
+		};
+	};
+
+// DETECT UNITS AROUND BULLETS 
+tpw_ebs_fnc_detect =
+	{
+	private ["_bulletarray","_near","_bullet","_ct","_lifetime"];
+	for "_ct" from 0 to (count tpw_ebs_bulletarray - 1) do	
+		{
+		_bulletarray = tpw_ebs_bulletarray select _ct;
+		_bullet = _bulletarray select 0;
+		_lifetime = _bulletarray select 1;
+		if (alive _bullet && {diag_ticktime < _lifetime}) then 
+			{
+			_near = (getposatl _bullet) nearEntities [["camanbase"],tpw_ebs_detectradius];	
+			if (count _near > 0) then 
+				{
+				[_near,_bulletarray] spawn tpw_ebs_fnc_supstate;
+				};
+			}
+		else
+			{
+			tpw_ebs_bulletarray set [_ct,-1];
+			}	
+		}; 
+	tpw_ebs_bulletarray = tpw_ebs_bulletarray - [-1];
+	};
+
+// DETERMINE SUPPRESSION STATE
 tpw_ebs_fnc_supstate =
 	{
-	private ["_shell","_shellinfo","_unit","_unitside","_shooter","_shooterside","_velocity","_ammo","_hitval","_hitrng","_allbullets","_enemybullets","_supstate","_direct","_exp","_explosive","_expdist","_dmg","_dir"];
-
-	_shellinfo = _this select 0;
-	_shell =_shellinfo select 0; 
-	_unit = _shell getvariable "tpw_ebs_attachedunit";
-
-	//Exit if no info can be gleaned from what hit the shell - disable shell in case another of the same happens
-	if (count (_shellinfo select 6) < 5 ) exitwith 
-		{
-		[_unit] call tpw_ebs_fnc_removeshell;
-		};
-	
-	_shooter = _shellinfo select 1;
-	_velocity = speed (_shellinfo select 2);
-	_exp = (_shellinfo select 6) select 3; // explosive?
-	_direct = _shellinfo select 10; // direct or indirect hit?
-	_unitside = side _unit;
+	private ["_unit","_shooter","_shooterside","_allbullets","_enemybullets","_supstate","_near","_bulletarray","_i"];
+	_near = _this select 0;
+	_bulletarray = _this select 1;
+	_shooter = _bulletarray select 2;
 	_shooterside = side _shooter;
-	_allbullets = _unit getvariable ["tpw_ebs_allbullets", 0];		
-	_enemybullets = _unit getvariable ["tpw_ebs_enemybullets", 0];
-
-	// Ignore subsonic bullets ie pistols and silenced
-	if (_velocity < 1500 && _direct) exitwith {};
-	
-	// Increment bullet counters	
-	_allbullets  = _allbullets + 1;
-	if (_unitside != _shooterside) then 
+	for "_i" from 0 to (count _near - 1) do 
 		{
-		_enemybullets  = _enemybullets + 1;
-		_unit setvariable ["tpw_ebs_enemy",_shooter]; 
-		};
-	
-	// Initial skill, stance and fatigue
-	if (_allbullets == 1) then
-		{
-		_unit setvariable ["tpw_ebs_skill",skill _unit];
-		_unit setvariable ["tpw_ebs_stance",stance _unit];
-		_unit setvariable ["tpw_ebs_fatigue",getfatigue _unit];
-		};
-	
-	// Determine suppression state
-	_supstate = 1;	
-	if (_enemybullets > 0) then
-		{
-		_supstate = 2;
-		};
-	if (_enemybullets > tpw_ebs_thresh) then
-		{
-		_supstate = 3;
-		};
-
-	// If hit by explosion
-	if (_exp > 0) then
-		{
-		_ammo = (_shellinfo select 6) select 4; // ammo object name
-		_hitrng = (_shellinfo select 6) select 2; // indirect hit range
-		_hitval = (_shellinfo select 6) select 1; // indirect hit value
-		_explosive = nearestObject [_unit, _ammo]; // object that exploded
-		_expdist = _explosive distance _unit; // distance from unit
-		_dir = [_explosive,_unit] call BIS_fnc_dirTo; // direction from explosive to unit
-		
-		if !(lineintersects [eyepos _unit,getposasl _explosive,_unit,_explosive]) then //explosion will only affect unit that can see it
+		_unit = _near select _i;
+		if (_shooter distance _unit > tpw_ebs_mindist) then
 			{
-			// Fudge some damage values and apply them
-			_dmg = ((3 * _hitrng) - _expdist) / (3 * _hitrng); // range based damage
-			_dmg = (_hitval / 20) * _dmg; // hitval based damage
-			if (_dmg > 0.8) then {_dmg = 1};
-			_unit setdamage ((damage _unit) + _dmg); // apply damage to unit 
-			_unit setBleedingRemaining 30; // apply bleeding to unit
-			if !(isnil "tpw_fall_active") then {[_unit,0,_dmg] call tpw_fall_fnc_hitproc}; // TPW FALL from explosion
+			_allbullets = _unit getvariable ["tpw_ebs_allbullets", 0];		
+			_enemybullets = _unit getvariable ["tpw_ebs_enemybullets", 0];
+
+			// Increment bullet counters	
+			_allbullets  = _allbullets + 1;
+			if (side _unit != _shooterside) then 
+				{
+				_enemybullets  = _enemybullets + 1;
+				};
+			
+			// Initial skill, stance and fatigue
+			if (_allbullets == 1 || _allbullets == 2) then
+				{
+				_unit setvariable ["tpw_ebs_skill",skill _unit];
+				_unit setvariable ["tpw_ebs_stance",stance _unit];
+				_unit setvariable ["tpw_ebs_fatigue",getfatigue _unit];
+				};
+			
+			// Determine suppression state
+			_supstate = 1;	
+			if (_enemybullets > 0) then
+				{
+				_supstate = 2;
+				};
+			if (_enemybullets > tpw_ebs_thresh) then
+				{
+				_supstate = 3;
+				};
+			
+			// Update unit's variables
+			_unit setvariable ["tpw_ebs_enemy",_shooter];
+			_unit setvariable ["tpw_ebs_allbullets",_allbullets]; // all bullets
+			_unit setvariable ["tpw_ebs_enemybullets",_enemybullets]; // enemy bullets
+			_unit setvariable ["tpw_ebs_supstate",_supstate]; // suppression state
+			_unit setvariable ["tpw_ebs_uptime",time + 5 + (random 5)]; // how long until unit is unsuppressed
+			_unit setvariable ["tpw_ebs_downtime",time + (random 1)]; // how long until unit reacts to bullet
 			};
-			_supstate = 3;
-		[_unit] call tpw_ebs_fnc_removeshell; // Remove shell so that unit will react natively to any further explosions over the next few sec.	
-		};		
-	
-	// Update unit's variables
-	_unit setvariable ["tpw_ebs_allbullets",_allbullets]; // all bullets
-	_unit setvariable ["tpw_ebs_enemybullets",_enemybullets]; // enemy bullets
-	_unit setvariable ["tpw_ebs_supstate",_supstate]; // suppression state
-	_unit setvariable ["tpw_ebs_uptime",time + 5 + (random 5)]; // how long until unit is unsuppressed
-	_unit setvariable ["tpw_ebs_downtime",time + (random 1)]; // how long until unit reacts to bullet
+		};
 	};
 	
 // DETERMINE UNIT'S WEAPON TYPE 
@@ -275,34 +207,23 @@ tpw_ebs_fnc_weptype =
 // FIND COVER
 tpw_ebs_fnc_findcover = 
 	{
-	private ["_unit","_shooter","_cover","_ball","_debugball","_box","_height","_coverpos"];
+	private ["_unit","_shooter","_cover","_box","_height","_coverpos","_i","_item"];
 	_unit = _this select 0;
 	_debugball = false;
 	_shooter = 	_unit getvariable ["tpw_ebs_enemy",objnull];
 	_cover = nearestobjects [position _unit,["house","landvehicle"],100];
+	for "_i" from 0 to (count _cover - 1) do 
 		{
-		_box = boundingbox _x;
+		_item = _cover select _i;
+		_box = boundingbox _item;
 		_height = ((_box select 1) select 2) - ((_box select 0) select 2);
 		if (_height > 1) exitwith 
-			{_coverpos = getposatl _x;
-			if (tpw_ebs_debug == 1) then 
-				{
-				_ball = "sign_sphere100cm_F" createvehicle _coverpos;
-				_ball attachto [_x,[0,0,5]];
-				_debugball = true;
-				};
+			{_coverpos = getposatl _item;
 			while {alive _unit && !(isnull _shooter) && (_unit getvariable "tpw_ebs_supstate" > 1) && !(lineintersects [eyepos _unit,eyepos _shooter])} do
 				{
 				_unit domove _coverpos;
 				sleep 1;
 				};
-			};
-		} foreach _cover;
-	if (tpw_ebs_debug == 1) then 
-		{
-		if (_debugball) then 
-			{ 
-			deleteVehicle _ball;
 			};
 		};
 	};	
@@ -310,20 +231,17 @@ tpw_ebs_fnc_findcover =
 // MAIN SUPPRESSION PROCESSING LOOP
 tpw_ebs_fnc_procsup =
 	{
-	private ["_unit","_supstate","_stance","_ctr","_nearair","_cover","_fallstate"];
+	private ["_unit","_supstate","_stance"];
 	while {true} do
 		{
+		for "_i" from 0 to (count tpw_ebs_unitarray - 1) do
 			{
-			_unit = _x;
+			_unit = tpw_ebs_unitarray select _i;
 			_supstate = _unit getvariable ["tpw_ebs_supstate", 0];
-										
-			// Deactivate shell if near explosives/helicopters
-			[_unit] call tpw_ebs_fnc_checknear;
 			
 			// Only bother with suppression functions if... (lazy evaluation)
 			if (
-			(_unit getvariable ["tpw_ebs_shell",0] == 1) // unit has shell
-			&& 	{_supstate > _unit getvariable ["tpw_ebs_lastsup",0]}  // supression state has increased
+			_supstate > _unit getvariable ["tpw_ebs_lastsup",0]  // supression state has increased
 			&& {time >= _unit getvariable ["tpw_ebs_downtime",0]}  // reaction delay time has passed
 			&& {_unit getvariable ["tpw_fallstate",0] == 0} // unit is not TPW FALLing
 			) then
@@ -340,7 +258,7 @@ tpw_ebs_fnc_procsup =
 				switch _supstate do
 					{
 					case 1:
-						{
+						{							
 						// Crouch if not prone
 						if (_stance != "PRONE") then
 							{
@@ -350,9 +268,6 @@ tpw_ebs_fnc_procsup =
 						};	
 					case 2:
 						{
-						//Medium shell
-						[_unit] call tpw_ebs_fnc_medshell;
-						
 						// Crouch if not prone
 						if (_stance != "PRONE") then
 							{
@@ -384,15 +299,14 @@ tpw_ebs_fnc_procsup =
 							};
 						};
 
-
 					case 3:
 						{
-						//Small shell
-						[_unit] call tpw_ebs_fnc_smallshell;
-						
-						// Hit the deck regardless
-						_unit setunitpos "down";
-						_unit playmove (tpw_ebs_pronearray select (_unit getvariable "tpw_ebs_weptype"));
+						// Hit the deck if no nearby cover
+						if (count (nearestobjects [position _unit,["house","landvehicle"],10]) == 0) then
+							{						
+							_unit setunitpos "down";
+							_unit playmove (tpw_ebs_pronearray select (_unit getvariable "tpw_ebs_weptype"));
+							};
 						
 						//Find cover
 						if (tpw_ebs_findcover == 1 && {ww_coverActive == 0}) then
@@ -409,103 +323,49 @@ tpw_ebs_fnc_procsup =
 			// Reset suppression after enough time
 			if (time >= (_unit getvariable ["tpw_ebs_uptime", time + 30])) then 			
 				{
-				[_unit] call tpw_ebs_fnc_bigshell;
 				_unit setvariable ["tpw_ebs_allbullets",0];
 				_unit setvariable ["tpw_ebs_enemybullets",0];
 				_unit setvariable ["tpw_ebs_supstate",0];
 				_unit setskill (_unit getvariable "tpw_ebs_skill");
-
-				// Reset stances (playmove will force it)
-				[_unit] call tpw_ebs_fnc_weptype;
-				switch (_unit getvariable ["tpw_ebs_stance", -1]) do
-					{
-					case "STAND":
-						{
-						_unit setunitpos "auto";
-						_unit playmove (tpw_ebs_standarray select (_unit getvariable "tpw_ebs_weptype"));
-						};	
-					case "CROUCH":
-						{
-						_unit setunitpos "auto";
-						_unit playmove (tpw_ebs_croucharray select (_unit getvariable "tpw_ebs_weptype"));
-						
-						};
-					default	
-						{
-						_unit setunitpos "auto";
-						};
-					};
+				_unit setunitpos "auto";
 				_unit setvariable ["tpw_ebs_lastsup",0];	
 				_unit setvariable ["tpw_ebs_uptime",time + 30];	
 				};
 			
-			// Debugging
+			// Debugging			
 			if (tpw_ebs_debug == 1) then 
 				{
 				switch _supstate do
 					{
 					case 1: 
 						{
-						(_unit getvariable "tpw_ebs_attachedshell") setObjectTexture [0, "#(argb,8,8,3)color(0,1,0,0.2,CA)"];
+						[[_unit], "tpw_ebs_fnc_green",false] spawn BIS_fnc_MP;
 						};
 					case 2: 
 						{
-						(_unit getvariable "tpw_ebs_attachedshell") setObjectTexture [0, "#(argb,8,8,3)color(1,1,0,0.2,CA)"];
+						[[_unit], "tpw_ebs_fnc_yellow",false] spawn BIS_fnc_MP;
 						};
 					case 3: 
 						{
-						(_unit getvariable "tpw_ebs_attachedshell") setObjectTexture [0, "#(argb,8,8,3)color(1,0,0,0.2,CA)"];
+						[[_unit], "tpw_ebs_fnc_red",false] spawn BIS_fnc_MP;
 						};
 					default
 						{
-						(_unit getvariable "tpw_ebs_attachedshell") setObjectTexture [0, "#(argb,8,8,3)color(0,0,1,0.1,CA)"];
+						[[_unit], "tpw_ebs_fnc_blue",false] spawn BIS_fnc_MP;
 						};
 					};
-				};
-			} foreach tpw_ebs_unitarray;
+				};				
+			};
+		
+		// Check for live bullets and disable detection PFEH if none
+		if (tpw_ebs_pfeh && {count tpw_ebs_bulletarray == 0}) then
+			{
+			tpw_ebs_pfeh = false;
+			[tpw_ebs_handle] call CBA_fnc_removePerFrameHandler;
+			};
 		sleep 1;
 		};
 	};
-
-// PERIODICALLY SCAN APPROPRIATE UNITS INTO ARRAY FOR SUPPRESSION	
-tpw_ebs_fnc_screen =
-	{
-	private ["_shell","_nearair"];
-	while {true} do
-		{
-		tpw_ebs_unitarray = [];
-			{
-			if (alive _x) then 
-				{
-				if (_x distance vehicle player < tpw_ebs_radius) then
-					{
-					if (_x == vehicle _x) then
-						{
-						if (_x != player) then
-							{
-							// Deactivate shell if near explosives/helicopters
-							[_x] call tpw_ebs_fnc_checknear;
-							
-							// Add to the array of suppressible units 
-							tpw_ebs_unitarray set [count tpw_ebs_unitarray,_x];
-
-							// Add suppression detection shell if needed
-							[_x] call tpw_ebs_fnc_addshell;
-							
-							};
-						};
-					}
-					else
-					{
-					// Remove shell from distant units
-					[_x] call tpw_ebs_fnc_removeshell;
-					};
-				};
-			} foreach allunits;
-		sleep 5;
-		};
-	};	
-
 
 // PLAYER SUPPRESSION	
 tpw_ebs_fnc_playersup =
@@ -515,12 +375,6 @@ tpw_ebs_fnc_playersup =
 		{
 		if (player == vehicle player) then
 			{		
-			// Deactivate shell if near explosive/helicopter
-			[player] call tpw_ebs_fnc_checknear;
-		
-			// Re-add shell if OK to do so
-			[player] call tpw_ebs_fnc_addshell;
-			
 			_supstate = player getvariable ["tpw_ebs_supstate",0];
 
 			// Set suppression effects only if suppression state has changed
@@ -563,18 +417,57 @@ tpw_ebs_fnc_playersup =
 		};
 	};	
 
-// PERIODICALLY RESET ALL UNITS SUPPRESSION STATUS TO PREVENT THINGS GETTING STUCK
-tpw_ebs_fnc_reset =
-{
+// PERIODICALLY SCAN APPROPRIATE UNITS INTO ARRAY FOR SUPPRESSION	
+tpw_ebs_fnc_screen =
+	{
+	private ["_shell","_nearair"];
 	while {true} do
 		{
+		tpw_ebs_unitarray = [];
 			{
-			_x setvariable ["tpw_ebs_supstate",0];
-			} foreach tpw_ebs_unitarray;
-		player setvariable ["tpw_ebs_supstate",0];
-		sleep random 60;
+			if (
+			alive _x && 
+			{_x distance vehicle player < tpw_ebs_radius} && 
+			{_x == vehicle _x} && 
+			{_x != player}
+			) then
+				{
+				// Add to the array of suppressible units 
+				tpw_ebs_unitarray set [count tpw_ebs_unitarray,_x];
+				};
+			} foreach allunits;
+		sleep 5;
 		};
-	};
+	};	
+
+// CHANGE UNIFORM COLOURS FOR DEBUGGING
+tpw_ebs_fnc_red =
+		{
+		private ["_unit"];
+		_unit = _this select 0;
+		_unit setObjectTexture [0,"#(argb,8,8,3)color(1,0,0,1,ca)"];  
+		};
+		
+tpw_ebs_fnc_yellow =
+		{
+		private ["_unit"];
+		_unit = _this select 0;
+		_unit setObjectTexture [0,"#(argb,8,8,3)color(1,1,0,1,ca)"];  
+		};
+
+tpw_ebs_fnc_green =
+		{
+		private ["_unit"];
+		_unit = _this select 0;
+		_unit setObjectTexture [0,"#(argb,8,8,3)color(0,1,0,1,ca)"];  
+		};
+
+tpw_ebs_fnc_blue =
+		{
+		private ["_unit"];
+		_unit = _this select 0;
+		_unit setObjectTexture [0,"#(argb,8,8,3)color(0,0,1,1,ca)"];  
+		};		
 	
 //////////
 // RUN IT
@@ -583,21 +476,18 @@ tpw_ebs_fnc_reset =
 // DELAY
 sleep  tpw_ebs_sleep;
 
-// SELECTION LOOP	
-0 = [] spawn tpw_ebs_fnc_screen;
-sleep 1;
+// BULLET DETECTION
+0 = [] spawn tpw_ebs_fnc_apply;
 
-// MAIN AI SUPPRESSION LOOP
+// AI SUPPRESSION 
 if (tpw_ebs_aisup == 1) then 
 	{
+	0 = [] spawn tpw_ebs_fnc_screen;
 	0 = [] spawn tpw_ebs_fnc_procsup;
-	0 = [] spawn tpw_ebs_fnc_reset;
 	};
 	
-// PLAYER SUPPRESSION LOOP
+// PLAYER SUPPRESSION 
 if (tpw_ebs_playersup == 1) then
 	{
-	[player] call tpw_ebs_fnc_checknear;
-	[player] call tpw_ebs_fnc_addshell;
 	0 = [] spawn tpw_ebs_fnc_playersup;
 	};

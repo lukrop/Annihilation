@@ -41,7 +41,8 @@ if(isNil "paramsArray") then{
   0,  // tpwcas
   0,  // tpwlos
   0,   // acre
-  1  // jip markers
+  1,  // jip markers
+  0,  // tpw fall
   ];
 };
 _i = 0;
@@ -69,6 +70,7 @@ ani_suppression = paramsArray select _i; _i = _i + 1;
 ani_tpwlos = paramsArray select _i; _i = _i + 1;
 ani_acre = paramsArray select _i; _i = _i + 1;
 ani_jip_markers = paramsArray select _i; _i = _i + 1;
+ani_tpw_fall = paramsArray select _i; _i = _i + 1;
 
 // set Date/Time
 setDate [2035,10,6,ani_daytime,0];
@@ -77,6 +79,8 @@ setDate [2035,10,6,ani_daytime,0];
 skipTime -24;
 86400 setOvercast (ani_overcast / 100);
 skipTime 24;
+
+progressLoadingScreen 0.5;
 
 if(ani_overcast >= 60) then {
   60 setRain (ani_overcast / 100);

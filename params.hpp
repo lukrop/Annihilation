@@ -166,4 +166,11 @@ class Params {
     default=1;
     texts[]={"Disabled","Enabled"};
   };
+
+  class ani_tpw_fall {
+    title="TESTING: TPW Fall - units fall to the ground if hit";
+    values[]={0,1};
+    default=0;
+    texts[]={"Disabled","Enabled"};
+  };
 };
