@@ -1,86 +1,58 @@
 /*
+	File: cache.sqf
 	Author: lukrop
-	Date: 10/1/2013
-  Description: Mission script. Creates task, creates cache, creates the trigger,
-  spawns some enemy infantry, waits until cache is destroyed and sets task to succeeded.
 
-	Parameters:
-        ARRAY: position markers array
-              [center marker name, vec spawn marker, [reinforcment pos markers], [spawn pos markers]]
-        NUMBER: mission style. 0=city, 1=land
+	License: see LICENSE.txt
+	Description:
+		Mission script. Creates task, creates cache, creates the trigger,
+		spawns some enemy infantry, waits until cache is destroyed and
+		sets task to succeeded.
 
-	Returns: -
+	Parameter(s):
+	-
 
+	Returns:
+	-
 */
-private ["_posArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_aocenter", "_taskID", "_reinfCount", "_reinfSpawn"];
 
-_posArray = _this select 0;
-_missionStyle = _this select 1;
+private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID"];
 
-_vecSpawnMarker = _posArray select 1;
-_reinfMarkers = _posArray select 2;
-_spawnMarkers = _posArray select 3;
-
+_markerArray = ["city"] call lkr_fnc_getMissionLocation;
 
 // MARKER
-_marker = _posArray select 0;
-// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-[_marker, 1, "ColorRed"] call ani_changeMarker;
+_marker = _markerArray select 0;
+_centerPos = getMarkerPos _marker;
 
-if(ani_jip_markers == 1) then {
-  {
-    //_x setMarkerType "hd_unknown"
-     [[_x, 1, "Default", "hd_unknown"], "ani_changeMarker", false, true] spawn BIS_fnc_MP;
-    //[_x, 1, "Default", "hd_unknown"] call ani_changeMarker;
-  } forEach _spawnMarkers;
-};
-
-_aocenter = getMarkerPos _marker;
+_spawnMarkers = _markerArray select 1;
 
 // CREATE TASK
 _taskID = "cacheSearch";
 [
-west, // who gets the task
-_taskID, // task id
-[localize "STR_ANI_CACHE_DESCRIPTION", localize "STR_ANI_CACHE", localize "STR_ANI_SAD"], // description, title, marker
-_aocenter, // destination
-"Assigned", // set as current / state
-9 // priority
+	west, // who gets the task
+	_taskID, // task id
+	[localize "STR_ANI_CACHE_DESCRIPTION", localize "STR_ANI_CACHE", localize "STR_ANI_SAD"], // description, title, marker
+	_centerPos, // destination
+	"Assigned", // set as current / state
+	9 // priority
 ] call BIS_fnc_taskCreate;
 
-// CREATE CACHE
-//_cachePos = [_aocenter, random 360, 30 max (random 100)] call SHK_pos;
+// spawn the weapon cache
 _cachePos = getMarkerPos (_spawnMarkers call BIS_fnc_selectRandom);
-ani_cache = ani_cacheClass createVehicle _cachePos;
-ani_cache setDir (random 360);
-clearWeaponCargo ani_cache;
-clearMagazineCargo ani_cache;
+lkr_wepcache = "O_supplyCrate_F" createVehicle _cachePos;
+lkr_wepcache setDir (random 360);
+clearWeaponCargo lkr_wepcache;
+clearMagazineCargo lkr_wepcache;
+clearItemCargo lkr_wepcache;
 
 // LOGIC
-ani_cacheDestroyed = false;
-[_cachePos, "STATE:", ["!alive ani_cache", "ani_cacheDestroyed=true", ""]] call CBA_fnc_createTrigger;
+lkr_wepCacheDestroyed = false;
+["lkr_wepcache", "lkr_wepCacheDestroyed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-// spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_cache] spawn ani_spawnEnemies;
-if(ani_enemyReinforcements == 1) then {
-  [_marker] execVM "enemyReinforcements.sqf";
-};
+[_cachePos, _cachePos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
 
-waitUntil{sleep 0.5; ani_cacheDestroyed};
-ani_missionState = "SUCCESS";
+// wait until the cache is destroyed
+waitUntil{sleep 1; lkr_wepCacheDestroyed};
+// set the task as succeeded
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-
-// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-[_marker, 0.3, "ColorGreen"] call ani_changeMarker;
-
-sleep 60;
-while{not ([ani_cache, 200] call CBA_fnc_nearPlayer)} do {sleep 30};
-deleteVehicle ani_cache;
-
-/*
-{
-  //_x setMarkerAlpha 0
-  // [[_x, 0], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-  [_x, 0] call ani_changeMarker;
-} forEach _spawnMarkers;
-*/
+// add to garbage collector queue
+lkr_wepcache call lkr_fnc_gcAdd;

@@ -1,30 +1,29 @@
 /*
+	File: uav.sqf
 	Author: lukrop
-	Date: 10/1/2013
-  Description: Mission script. Creates task, creates uav, creates the trigger,
-  spawns some enemy infantry, waits until uav is destroyed and sets task to succeeded.
 
-	Parameters:
-        ARRAY: position markers array
-              [center marker name, [reinforcment pos markers]]
-        NUMBER: mission type. 0=city, 1=land
+	License: see LICENSE.txt
+	Description:
+		Mission script. Creates task, creates uav, creates the trigger,
+		spawns some enemy infantry, waits until uav is destroyed and
+		sets task to succeeded.
 
-	Returns: -
+	Parameter(s):
+	-
 
+	Returns:
+	-
 */
 
-_posArray = _this select 0;
-_missionStyle = _this select 1;
+_markerArray = ["land"] call lkr_fnc_getMissionLocation;
 
-_reinfMarkers = _posArray select 1;
+_scoutMarker = _markerArray select 1;
 
 // MARKER
-_marker = _posArray select 0;
-// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-[_marker, 1, "ColorRed"] call ani_changeMarker;
+_marker = _markerArray select 0;
+[[_marker, 1], "lkr_fnc_changeMarker", true, true] spawn BIS_fnc_MP;
 
-
-_aocenter = getMarkerPos _marker;
+_centerPos = getMarkerPos _marker;
 
 // CREATE TASK
 _taskID = "uavSearch";
@@ -32,34 +31,26 @@ _taskID = "uavSearch";
 west, // who gets the task
 _taskID, // task id
 [localize "STR_ANI_UAV_DESCRIPTION", localize "STR_ANI_UAV", localize "STR_ANI_SAD"], // description, title, marker
-_aocenter, // destination
+_centerPos, // destination
 "Assigned", // set as current / state
 9 // priority
 ] call BIS_fnc_taskCreate;
 
 // CREATE UAV
-_uavPos = [_aocenter, random 360, 50 max (random 300)] call SHK_pos;
-//_uavPos = getMarkerPos (_spawnMarkers call BIS_fnc_selectRandom);
-ani_uav = ani_uavClass createVehicle _uavPos;
-ani_uav setDir (random 360);
+lkr_uav = lkr_uav_C createVehicle _centerPos;
+// find a random position with enough place for the uav
+_uavPos = [_centerPos, random 360, 30 max (random 300), 0, [0, 200], lkr_uav] call SHK_pos;
+lkr_uav setPos _uavPos;
+lkr_uav setDir (random 360);
 
 // LOGIC
-ani_uavDestroyed = false;
-[_uavPos, "STATE:", ["!alive ani_uav", "ani_uavDestroyed=true", ""]] call CBA_fnc_createTrigger;
+lkr_uav_destroyed = false;
+["lkr_uav", "lkr_uav_destroyed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-// spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_uav] spawn ani_spawnEnemies;
-if(ani_enemyReinforcements == 1) then {
-  [_marker] execVM "enemyReinforcements.sqf";
-};
+[_uavPos, _uavPos, [1,1], [3,4]] call lkr_fnc_spawnOccupation;
 
-waitUntil{sleep 0.5; ani_uavDestroyed};
+waitUntil{sleep 2; lkr_uav_destroyed};
 // set mission success
-ani_missionState = "SUCCESS";
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-// change marker color to green
-[_marker, 0.3, "ColorGreen"] call ani_changeMarker;
-// cleanup
-sleep 120;
-while{not ([ani_uav, 500] call CBA_fnc_nearPlayer)} do {sleep 30};
-deleteVehicle ani_uav;
+// add to garbage collector queue
+lkr_uav call lkr_fnc_gcAdd;

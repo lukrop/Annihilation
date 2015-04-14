@@ -1,9 +1,0 @@
-ani_spawnEnemies = compile preprocessFile "fnc\spawnEnemies.sqf";
-ani_moveInRandomBuilding = compile preprocessFile "fnc\moveInRandomBuilding.sqf";
-ani_makeUnitHostage = compile preprocessFile "fnc\makeUnitHostage.sqf";
-ani_addAction = compile preprocessFile "fnc\addAction.sqf";
-ani_removeAllActions = compile preprocessFile "fnc\removeAllActions.sqf";
-ani_changeMarker = compile preprocessFile "fnc\changeMarker.sqf";
-ani_getGroupLeaders = compile preprocessFile "fnc\getGroupLeaders.sqf";
-ani_getMissionLocation = compile preprocessFile "fnc\getMissionLocation.sqf";
-ani_getClosestOP = compile preprocessFile "fnc\getClosestOP.sqf";

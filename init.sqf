@@ -1,121 +1,72 @@
 /*
+	File: init.sqf
 	Author: lukrop
-	Date: 10/1/2013
-  Description: Mission init. Sets parameters and calls player and server inits.
 
-	Parameters: -
+	License: see LICENSE.txt
+	Description:
+		Executed when mission is started (before briefing screen)
 
-	Returns: -
+	Parameter(s):
+	-
 
+	Returns:
+	-
 */
-
-startLoadingScreen ["Loading..."];
 
 // disable saving
 enableSaving [false, false];
 
-progressLoadingScreen 0.1;
+// if using Task Force Radio, don't add a long range radio automatically
+tf_no_auto_long_range_radio = true;
+// if using Task Force Radio, set all short range radios to the same frequency for each side
+tf_same_sw_frequencies_for_side = true;
 
-// read paramters
-if(isNil "paramsArray") then{
-  paramsArray = [
-  6,  // Daytime
-  30,  // overcast
-  0,  // enemy faction
-  0,  // enemy count
-  0,  // Enemy skill
-  1,  // enemy reinforcements
-  1,  // enemy ambient patrols
-  1,  // populate enemy outposts
-  1,  // recruiting enabled
-  8,  // recruiting max group size
-  1,  // revive enabled
-  10, // revive lifes
-  1, // mobile respawn
-  1, // mobile respawn vas
-  60, // vec respawn delay
-  1800, // vec deserted delay
-  120, // chopper respawn delay
-  1800, // chopper deserted delay
-  1,  // ammoboxes
-  0,  // tpwcas
-  0,  // tpwlos
-  0,   // acre
-  1,  // jip markers
-  0,  // tpw fall
-  ];
-};
-_i = 0;
-ani_daytime = paramsArray select _i; _i = _i + 1;
-ani_overcast = paramsArray select _i; _i = _i + 1;
-ani_enemyFaction = paramsArray select _i; _i = _i + 1; // see factions.txt for details
-ani_enemyCount = paramsArray select _i; _i = _i + 1;
-ani_enemySkill = paramsArray select _i; _i = _i + 1;
-ani_enemyReinforcements = paramsArray select _i; _i = _i + 1;
-ani_enemyAmbientPatrols = paramsArray select _i; _i = _i + 1;
-ani_populateEnemyOPs = paramsArray select _i; _i = _i + 1;
-ani_recruit = paramsArray select _i; _i = _i + 1;
-ani_maxRecruitUnits = paramsArray select _i; _i = _i + 1;
-ani_revive = paramsArray select _i; _i = _i + 1;
-ani_reviveLifes = paramsArray select _i; _i = _i + 1;
-ani_mobileRespawn = paramsArray select _i; _i = _i + 1;
-ani_mobileRespawnVAS = paramsArray select _i; _i = _i + 1;
-ani_vec_respawnDelay = paramsArray select _i; _i = _i + 1;
-ani_vec_desertedDelay = paramsArray select _i; _i = _i + 1;
-ani_chopper_respawnDelay = paramsArray select _i; _i = _i + 1;
-ani_chopper_desertedDelay = paramsArray select _i; _i = _i + 1;
-ani_ammoBoxes = paramsArray select _i; _i = _i + 1;
-ani_addonAmmoBoxes = paramsArray select _i; _i = _i + 1;
-ani_suppression = paramsArray select _i; _i = _i + 1;
-ani_tpwlos = paramsArray select _i; _i = _i + 1;
-ani_acre = paramsArray select _i; _i = _i + 1;
-ani_jip_markers = paramsArray select _i; _i = _i + 1;
-ani_tpw_fall = paramsArray select _i; _i = _i + 1;
+// compile shk_pos
+call compile preprocessFileLineNumbers "SHK_pos\shk_pos_init.sqf";
 
-// set Date/Time
-setDate [2035,10,6,ani_daytime,0];
+// wait until the config is loaded and the paramters are initialized
+waitUntil {!isNil "lkr_config_loaded"};
 
-// set overcast
-skipTime -24;
-86400 setOvercast (ani_overcast / 100);
-skipTime 24;
-
-progressLoadingScreen 0.5;
-
-if(ani_overcast >= 60) then {
-  60 setRain (ani_overcast / 100);
+// setup random roadside IEDs
+if(param_ied == 1) then {
+  call compile preprocessFileLineNumbers "EPD\Ied_Init.sqf";
 };
 
-if(ani_revive == 1) then {
-  // init revive
-  call compile preprocessFile "=BTC=_revive\=BTC=_revive_init.sqf";
-  if(ani_reviveLifes == 0) then {
-    BTC_active_lifes = 0;
-  } else {
-    BTC_lifes = ani_reviveLifes;
-  };
-  BTC_active_mobile = ani_mobileRespawn;
-  if(ani_mobileRespawn == 1) then {
-    MHQ addAction["<t color='#ff1111'>Virtual Ammobox</t>", "VAS\open.sqf"];
-  };
+/*
+// init =BTC= revive
+if(param_revive == 1) then {
+	// init revive
+	call compile preprocessFileLineNumbers "=BTC=_revive\=BTC=_revive_init.sqf";
+
+	// set revive lifes
+	if(param_btc_revive_lifes == 0) then {
+		// disable the life counter
+		BTC_active_lifes = 0;
+	} else {
+		// set the amount of lifes
+		BTC_lifes = param_btc_revive_lifes;
+	};
+
+	// setup the mobile respawn vehicle
+	BTC_active_mobile = param_btc_mobile_respawn;
+	if(param_btc_mobile_respawn == 1) then {
+		// spawn the mobile respawn vehicle
+		if(isServer) then {
+			lkr_mhq = lkr_mhq_vehicle_C createVehicle (getMarkerPos "lkr_mhq_spawn");
+			// init the mhq
+			lkr_mhq call lkr_fnc_initMHQ;
+			// enable vehicle respawn, 120 minutes abandoned delay, 1 minute destroyed delay
+			[lkr_mhq, 120, 1, {call lkr_fnc_initMHQ}] call lkr_fnc_ICE_vehRespawn;
+		};
+	};
+	// setup the flag to allow teleport to mhq
+	BTC_objects_actions_west = [lkr_flag];
+	// set the mhq vec as mobile respawn
+	BTC_vehs_mobile_west = [lkr_mhq];
 };
 
-if(ani_revive == 2) then {
-  call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+// init FAR revive
+if(param_revive == 2) then {
+	call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
 };
-
-// compile ani functions
-call compile preprocessFileLineNumbers "fnc\compile.sqf";
-
-progressLoadingScreen 0.8;
-
-#include "config.sqf"
-
-[] execVM "serverInit.sqf";
-[] execVM "clientInit.sqf";
-
-if(ani_jip_markers == 1) then {
-  [[[], "onPlayerJIP.sqf"], "BIS_fnc_execVM", false, true] spawn BIS_fnc_MP;
-};
-
-endLoadingScreen;
+*/

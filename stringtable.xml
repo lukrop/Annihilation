@@ -1,81 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="Annihilation">
-  <Package name="Missions">
-    <Key ID="STR_ANI_HVT">
-      <Original>HVT</Original>
-      <German>HVT</German>
-    </Key>
-    <Key ID="STR_ANI_SAD">
-      <Original>SAD</Original>
-      <German>SuZ</German>
-    </Key>
-    <Key ID="STR_ANI_CSAR">
-      <Original>CSAR</Original>
-      <German>Retten</German>
-    </Key>
-    <Key ID="STR_ANI_RESCUE">
-      <Original>Rescue</Original>
-      <German>Retten</German>
-    </Key>
-    <Key ID="STR_ANI_CACHE">
-      <Original>SAD Cache</Original>
-      <German>SuZ Waffenlager</German>
-    </Key>
-    <Key ID="STR_ANI_CACHE_DESCRIPTION">
-      <Original>We got intel on a weapon cache in the AO. You need to find it and destroy it.</Original>
-      <German>Wir haben Information über ein Waffenlager im Einsatzgebiet erhalten. Sie müsssen es finden und zerstören.</German>
-    </Key>
-    <Key ID="STR_ANI_KILLHVT">
-      <Original>Eliminate HVT</Original>
-      <German>HVT eliminieren</German>
-    </Key>
-    <Key ID="STR_ANI_KILLHVT_DESCRIPTION">
-      <Original>We got intel that a high-ranking enemy officer is in the AO. Find him and eliminate him.</Original>
-      <German>Wir haben Information, dass sich ein feindlicher Offizier (HVT) im Einsatzgebiet aufhält. Sie müsssen ihn finden und eliminieren.</German>
-    </Key>
-    <Key ID="STR_ANI_MORTAR">
-      <Original>Take out mortar</Original>
-      <German>Mörser ausschalten</German>
-    </Key>
-    <Key ID="STR_ANI_MORTAR_DESCRIPTION">
-      <Original>Our troops are taking mortar fire from the AO. Find the mortar emplacement and destroy it.</Original>
-      <German>Unsere Truppen stehen unter schwerem Mörserbeschuss aus dem Einsatzgebiet. Sie müssen die Mörserstellung finden und ausschalten.</German>
-    </Key>
-    <Key ID="STR_ANI_UAV">
-      <Original>SAD UAV</Original>
-      <German>Drone zerstören</German>
-    </Key>
-    <Key ID="STR_ANI_UAV_DESCRIPTION">
-      <Original>We lost contact to one of our drones. You need to search and destroy it before the enemy gets his hands on it.</Original>
-      <German>Wir haben den Kontakt zu einer unserer Drohnen verloren. Sie müssen die Drohne finden und zerstören bevor sie in die Hände des Feindes fällt.</German>
-    </Key>
-    <Key ID="STR_ANI_RESCUEPILOT">
-      <Original>CSAR Pilot</Original>
-      <German>Pilot retten</German>
-    </Key>
-    <Key ID="STR_ANI_RESCUEPILOT_DESCRIPTION">
-      <Original>One of our birds got shot down. You need to search and rescue the pilot. We marked the crashsite on the map, we suspect the enemies have already captured him an are holding him hostage in one of the nearby buildings. Bring him back to the base.</Original>
-      <German>Einer unserer Hubschrauber wurde abgeschossen. Sie müssen den Piloten retten und zurück in die Basis bringen. Wir vermuten, dass der Feind den Piloten bereits gefangen genommen hat und ihn als Geisel in einem der naheliegenden Häuser hält. Wir haben die Unglücksstelle auf der Karte markiert.</German>
-    </Key>
-  </Package>
-  <Package name="Diary">
-    <Key ID="STR_ANI_DIARY_MISSION">
-      <Original>After 2 minutes you'll get a mission asigned, gear up in the meantime.&lt;br/&gt;&lt;br/&gt;Squad leaders can recruit AI units at the HEMTT.&lt;br/&gt;&lt;br/&gt;The Eagle recon squad has access to artillery and mortar support.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 has access to a AH-99 Blackfoot for CAS missions.&lt;br/&gt;&lt;br/&gt; If the Mobile HQ is active you can teleport yourself to the MHQ at the flagpole.</Original>
-      <German>Nach 2 Minuten wir Ihnen eine Mission erteilt, Sie können sich in der Zwischenzeit ausrüsten.&lt;br/&gt;&lt;br/&gt;Squad Leader können KI Einheiten beim HEMTT (LKW) rekrutieren.&lt;br/&gt;&lt;br/&gt;Der Eagle recon squad hat Zugriff auf Artillerie- und Mörserunterstützung.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 hat die Möglichkeit einen AH-99 Blackfoot für CAS zu rufen.&lt;br/&gt;&lt;br/&gt;Wenn das Mobile HQ aktiviert ist kann sich jeder beim Flaggenmast zum MHQ telportieren.</German>
-    </Key>
-    <Key ID="STR_ANI_DIARY_SITUATION">
-      <Original>NATO forces have been deployed on Altis and are trying to hold off a massive Iranian military offensive from the east.&lt;br/&gt;&lt;br/&gt;Your task as QRF is to conduct various small operations in the north-western part of Altis.</Original>
-      <German>NATO Kräfte wurden auf Altis positioniert und versuchen eine massive iranische Militäroffensive aus dem Osten abzuhalten.&lt;br/&gt;&lt;br/&gt;Ihre Aufgabe als QRF ist verschiedene kleine Operationen im nord-westlichen Teil von Altis durchzuführen.</German>
-    </Key>
-    <Key ID="STR_ANI_DIARY_EXECUTION">
-      <Original>At commanders discretion.</Original>
-      <German>Nach Ermessen des Kommandos.</German>
-    </Key>
-    <Key ID="STR_ANI_DIARY_SIGNAL">
-      <Original>Reaper 1-1 - SR 1&lt;br/&gt;Reaper 1-2 - SR 2&lt;br/&gt;Reaper 1-3 - SR3&lt;br/&gt;Eagle - SR4&lt;br/&gt;Stallion 1 - SR5&lt;br/&gt;Stallion 2 - SR6&lt;br/&gt;&lt;br/&gt;Platoon net - LR 1</Original>
-    </Key>
-  </Package>
-</Project>
 <Project name="Virtual Ammobox System">
 	<Package name="Main">
 		<Key ID="STR_VAS_Main_Weapons">
@@ -363,6 +286,9 @@
 			<Russian>Загрузить при появлении</Russian>
 			<Spanish>Equipar En Respawn</Spanish>
 		</Key>
+		<Key ID="STR_VAS_Load_TransferBtn">
+			<Original>Transfer</Original>
+		</Key>
 		<Key ID="STR_VAS_Load_btnLoad">
 			<Original>Load</Original>
 			<German>Laden</German>
@@ -419,62 +345,175 @@
 			<Spanish>Nombre De Equipamiento Customizado</Spanish>
 		</Key>
 	</Package>
+	<Package name="VASTransferMenu">
+		<Key ID="STR_VAS_Transfer_MainMenu">
+			<Original>Virtual Ammobox System - Transfer Menu</Original>
+		</Key>
+		<Key ID="STR_VAS_Transfer_SaveMenu">
+			<Original>Virtual Ammobox System - Save Transfer</Original>
+		</Key>
+		<Key ID="STR_VAS_Transfer_Request">
+			<Original>wants to transfer you their saved loadout.</Original>
+		</Key>
+		<Key ID="STR_VAS_Transfer_Request2">
+			<Original>Would you like to receive this request and save it?</Original>
+		</Key>
+		<Key ID="STR_VAS_Transfer_NoSlotSelection">
+			<Original>You either did not select a slot that you wanted to transfer to another user or the slot had no information.</Original>
+		</Key>
+		<Key ID="STR_VAS_Transfer_BadUnit">
+			<Original>The selected user either doesn't exist.</Original>
+		</Key>
+	</Package>
 	<Package name="VASPrompts">
 		<Key ID="STR_VAS_Prompt_selectSlotFail">
 			<Original>You didn't select a slot to delete!</Original>
 			<Italian>Non hai selezionato uno slot da cancellare</Italian>
+			<French>Aucun emplacement choisi pour être supprimé!</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteSlotNoInfo">
 			<Original>You can't delete that slot, it has no information!</Original>
 			<Italian>Non puoi cancellare questo slot, è già vuoto</Italian>
+			<French>Vous ne pouvez pas supprimer cette emplacement, aucun enregistrement détecté!</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteSlotWarning">
 			<Original>You are about to delete slot</Original>
 			<Italian>Stai per cancellare lo slot</Italian>
+			<French>Vous êtes sur le point de supprimer cet emplacement</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteCanelled">
 			<Original>You cancelled deleting slot</Original>
 			<Italian>Hai cancellato lo slot cancellandolo</Italian>
+			<French>Vous avez annulé la suppression de l'emplacement</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteSuccess">
 			<Original>You deleted slot</Original>
 			<Italian>Hai cancellato lo slot</Italian>
+			<French>Vous avez supprimé cet emplacement</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteYes">
 			<Original>Yes</Original>
 			<Italian>Sì</Italian>
+			<Spanish>Sì</Spanish>
+			<French>Oui</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_deleteNo">
 			<Original>No</Original>
 			<Italian>No</Italian>
+			<Spanish>No</Spanish>
+			<French>Non</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_slotNoInfo">
 			<Original>You didn't select a slot!</Original>
 			<Italian>Non hai selezionato uno slot!</Italian>
+			<French>Vous n'avez pas choisi d'emplacement!</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_onRespawnFail">
 			<Original>No slot was selected to be loaded upon respawn!</Original>
 			<Italian>Non hai selezionato nessuno slot da caricare al respawn!</Italian>
+			<French>Aucun emplacement n'a été sélectionné pour être chargé lors de la réapparition!</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_slotSelFail">
 			<Original>You didn't select a slot!</Original>
 			<Italian>Non hai selezionato uno slot</Italian>
+			<French>Vous n'avez pas choisi d'emplacement!</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_addToWeapon">
 			<Original>Weapon</Original>
 			<Italian>Armi</Italian>
+			<French>Armes</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_addToInv">
 			<Original>Inventory</Original>
 			<Italian>Inventario</Italian>
+			<French>Inventaire</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_acc1">
 			<Original>What do you want to do with that attachment?</Original>
 			<Italian>Cosa vuoi fare con questo accessorio?</Italian>
+			<French>Que voulez-vous faire avec cet emplacement?</French>
 		</Key>
 		<Key ID="STR_VAS_Prompt_acc2">
 			<Original>Please know that if you choose to add it to your weapon your current existing attachment in that slot will be lost.</Original>
 			<Italian>Attenzione, se attacchi l'accessorio alla tua arma, l'accessorio attaccato attualmente sarà sostituito.</Italian>
+			<French>Si vous choisissez de placer cette objet sur votre arme, sachez que l'objet actuellement placé sur l'arme sera automatiquement supprimé</French>
 		</Key>
 	</Package>
+</Project>
+<Project name="Annihilation">
+  <Package name="Missions">
+    <Key ID="STR_ANI_HVT">
+      <Original>HVT</Original>
+      <German>HVT</German>
+    </Key>
+    <Key ID="STR_ANI_SAD">
+      <Original>SAD</Original>
+      <German>SuZ</German>
+    </Key>
+    <Key ID="STR_ANI_CSAR">
+      <Original>CSAR</Original>
+      <German>Retten</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUE">
+      <Original>Rescue</Original>
+      <German>Retten</German>
+    </Key>
+    <Key ID="STR_ANI_CACHE">
+      <Original>SAD Cache</Original>
+      <German>SuZ Waffenlager</German>
+    </Key>
+    <Key ID="STR_ANI_CACHE_DESCRIPTION">
+      <Original>We got intel on a weapon cache in the AO. You need to find it and destroy it.</Original>
+      <German>Wir haben Information über ein Waffenlager im Einsatzgebiet erhalten. Sie müsssen es finden und zerstören.</German>
+    </Key>
+    <Key ID="STR_ANI_KILLHVT">
+      <Original>Eliminate HVT</Original>
+      <German>HVT eliminieren</German>
+    </Key>
+    <Key ID="STR_ANI_KILLHVT_DESCRIPTION">
+      <Original>We got intel that a high-ranking enemy officer is in the AO. Find him and eliminate him.</Original>
+      <German>Wir haben Information, dass sich ein feindlicher Offizier (HVT) im Einsatzgebiet aufhält. Sie müsssen ihn finden und eliminieren.</German>
+    </Key>
+    <Key ID="STR_ANI_MORTAR">
+      <Original>Take out mortar</Original>
+      <German>Mörser ausschalten</German>
+    </Key>
+    <Key ID="STR_ANI_MORTAR_DESCRIPTION">
+      <Original>Our troops are taking mortar fire from the AO. Find the mortar emplacement and destroy it.</Original>
+      <German>Unsere Truppen stehen unter schwerem Mörserbeschuss aus dem Einsatzgebiet. Sie müssen die Mörserstellung finden und ausschalten.</German>
+    </Key>
+    <Key ID="STR_ANI_UAV">
+      <Original>SAD UAV</Original>
+      <German>Drone zerstören</German>
+    </Key>
+    <Key ID="STR_ANI_UAV_DESCRIPTION">
+      <Original>We lost contact to one of our drones. You need to search and destroy it before the enemy gets his hands on it.</Original>
+      <German>Wir haben den Kontakt zu einer unserer Drohnen verloren. Sie müssen die Drohne finden und zerstören bevor sie in die Hände des Feindes fällt.</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUEPILOT">
+      <Original>CSAR Pilot</Original>
+      <German>Pilot retten</German>
+    </Key>
+    <Key ID="STR_ANI_RESCUEPILOT_DESCRIPTION">
+      <Original>One of our birds got shot down. You need to search and rescue the pilot. We marked the crashsite on the map, we suspect the enemies have already captured him an are holding him hostage in one of the nearby buildings. Bring him back to the base.</Original>
+      <German>Einer unserer Hubschrauber wurde abgeschossen. Sie müssen den Piloten retten und zurück in die Basis bringen. Wir vermuten, dass der Feind den Piloten bereits gefangen genommen hat und ihn als Geisel in einem der naheliegenden Häuser hält. Wir haben die Unglücksstelle auf der Karte markiert.</German>
+    </Key>
+  </Package>
+  <Package name="Diary">
+    <Key ID="STR_ANI_DIARY_MISSION">
+      <Original>After 2 minutes you'll get a mission asigned, gear up in the meantime.&lt;br/&gt;&lt;br/&gt;Squad leaders can recruit AI units at the HEMTT.&lt;br/&gt;&lt;br/&gt;The Eagle recon squad has access to artillery and mortar support.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 has access to a AH-99 Blackfoot for CAS missions.&lt;br/&gt;&lt;br/&gt; If the Mobile HQ is active you can teleport yourself to the MHQ at the flagpole.</Original>
+      <German>Nach 2 Minuten wir Ihnen eine Mission erteilt, Sie können sich in der Zwischenzeit ausrüsten.&lt;br/&gt;&lt;br/&gt;Squad Leader können KI Einheiten beim HEMTT (LKW) rekrutieren.&lt;br/&gt;&lt;br/&gt;Der Eagle recon squad hat Zugriff auf Artillerie- und Mörserunterstützung.&lt;br/&gt;&lt;br/&gt;Reaper 1-3 hat die Möglichkeit einen AH-99 Blackfoot für CAS zu rufen.&lt;br/&gt;&lt;br/&gt;Wenn das Mobile HQ aktiviert ist kann sich jeder beim Flaggenmast zum MHQ telportieren.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_SITUATION">
+      <Original>NATO forces have been deployed on Altis and are trying to hold off a massive Iranian military offensive from the east.&lt;br/&gt;&lt;br/&gt;Your task as QRF is to conduct various small operations in the north-western part of Altis.</Original>
+      <German>NATO Kräfte wurden auf Altis positioniert und versuchen eine massive iranische Militäroffensive aus dem Osten abzuhalten.&lt;br/&gt;&lt;br/&gt;Ihre Aufgabe als QRF ist verschiedene kleine Operationen im nord-westlichen Teil von Altis durchzuführen.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_EXECUTION">
+      <Original>At commanders discretion.</Original>
+      <German>Nach Ermessen des Kommandos.</German>
+    </Key>
+    <Key ID="STR_ANI_DIARY_SIGNAL">
+      <Original>Reaper 1-1 - SR 1&lt;br/&gt;Reaper 1-2 - SR 2&lt;br/&gt;Reaper 1-3 - SR3&lt;br/&gt;Eagle - SR4&lt;br/&gt;Stallion 1 - SR5&lt;br/&gt;Stallion 2 - SR6&lt;br/&gt;&lt;br/&gt;Platoon net - LR 1</Original>
+    </Key>
+  </Package>
 </Project>

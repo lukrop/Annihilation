@@ -1,85 +1,71 @@
 /*
+	File: killhvt.sqf
 	Author: lukrop
-	Date: 10/1/2013
-  Description: Mission script. Creates task, creates hvt + guards, creates the trigger,
-  spawns some enemy infantry, waits until hvt is dead and sets task to succeeded.
 
-	Parameters:
-        ARRAY: position markers array
-              [center marker name, vec spawn marker, [reinforcment pos markers], [spawn pos markers]]
-        NUMBER: mission type. 0=city, 1=land
+	License: see LICENSE.txt
+	Description:
+		Mission script. Creates task, creates hvt and waits
+		until the hvt is killed. Then it sets the task as succeeded.
+		Patrolling hvt version.
 
-	Returns: -
+	Parameter(s):
+	-
 
+	Returns:
+	-
 */
 
-private ["_posArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_aocenter", "_taskID", "_reinfCount"];
+private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID"];
 
-_posArray = _this select 0;
-_missionStyle = _this select 1;
-
-_vecSpawnMarker = _posArray select 1;
-_reinfMarkers = _posArray select 2;
-_spawnMarkers = _posArray select 3;
-
+_markerArray = ["city"] call lkr_fnc_getMissionLocation;
 
 // MARKER
-_marker = _posArray select 0;
-// [[_marker, 1, "ColorRed"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-[_marker, 1, "ColorRed"] call ani_changeMarker;
+_marker = _markerArray select 0;
+_centerPos = getMarkerPos _marker;
 
-_aocenter = getMarkerPos _marker;
+_spawnMarkers = _markerArray select 1;
 
 // CREATE TASK
 _taskID = "killhvt";
 [
-west, // who gets the task
-_taskID, // task id
-[localize "STR_ANI_KILLHVT_DESCRIPTION", localize "STR_ANI_KILLHVT", localize "STR_ANI_HVT"], // description, title, marker
-_aocenter, // destination
-"Assigned", // set as current / state
-9 // priority
+	lkr_friendly_side, // who gets the task
+	_taskID, // task id
+	[localize "STR_ANI_KILLHVT_DESCRIPTION", localize "STR_ANI_KILLHVT", localize "STR_ANI_HVT"], // description, title, marker
+	_centerPos, // destination
+	"Assigned", // set as current / state
+	9 // priority
 ] call BIS_fnc_taskCreate;
 
 // CREATE HVT
-
 _hvtPos = getMarkerPos (_spawnMarkers call BIS_fnc_selectRandom);
 
-_guardClass = ani_hvtGuardClass;
-_hvtClass = ani_hvtClass;
-_hvtGrp = createGroup east;
+_hvtGrp = createGroup lkr_enemy_side;
 
-_hvtGrp createUnit [_guardClass, _hvtPos, [], 0, "FORM"];
-ani_hvt = _hvtGrp createUnit [_hvtClass, _hvtPos, [], 0, "FORM"];
+// spawn first guard
+_hvtGrp createUnit [lkr_hvt_guard_C, _hvtPos, [], 0, "FORM"];
+// spawn hvt
+lkr_hvt = _hvtGrp createUnit [lkr_hvt_C, _hvtPos, [], 0, "FORM"];
+
+// randomly add one or two gurads
 if((round random 5) >= 1) then {
-  _hvtGrp createUnit [_guardClass, _hvtPos, [], 0, "FORM"];
+	_hvtGrp createUnit [lkr_hvt_guard_C, _hvtPos, [], 0, "FORM"];
 };
 if((round random 5) >= 3) then {
-  _hvtGrp createUnit [_guardClass, _hvtPos, [], 0, "FORM"];
+	_hvtGrp createUnit [lkr_hvt_guard_C, _hvtPos, [], 0, "FORM"];
 };
 
+// do not cache the hvt group
+_hvtGrp setVariable ["f_cacheExcl", true, true];
+
+// let hvt group patrol
 [_hvtGrp, _hvtGrp, 50, 6, "MOVE", "SAFE", "GREEN", "LIMITED", "STAG COLUMN"] call CBA_fnc_taskPatrol;
 
-// spawn enemies and reinforcements
-[_missionStyle, _marker, _reinfMarkers, ani_hvt] spawn ani_spawnEnemies;
-if(ani_enemyReinforcements == 1) then {
-  [_marker] execVM "enemyReinforcements.sqf";
-};
+lkr_hvt_killed = false;
+["lkr_hvt", "lkr_hvt_killed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-// LOGIC
-ani_hvtKilled = false;
-[_hvtPos, "STATE:", ["!alive ani_hvt", "ani_hvtKilled=true", ""]] call CBA_fnc_createTrigger;
+[_hvtPos, _hvtPos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
 
-waitUntil{sleep 0.5;ani_hvtKilled};
-ani_missionState = "SUCCESS";
+waitUntil{sleep 2; lkr_hvt_killed};
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
-
-// [[_marker, 0.3, "ColorGreen"], "ani_changeMarker", nil, true] spawn BIS_fnc_MP;
-[_marker, 0.3, "ColorGreen"] call ani_changeMarker;
-
-sleep 120;
-while{not ([ani_hvt, 500] call CBA_fnc_nearPlayer)} do {sleep 30};
-{hideBody _x} forEach units _hvtGrp;
-sleep 5;
-{deleteVehicle _x} forEach units _hvtGrp;
-deleteGroup _hvtGrp;
+// add to garbage collector queue
+lkr_hvt call lkr_fnc_gcAdd;
