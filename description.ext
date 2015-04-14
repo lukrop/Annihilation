@@ -22,7 +22,7 @@ allowFunctionsLog = 1;
 
 author="lukrop";
 onLoadName = "Annihilation NATO";
-onLoadMission = "Complete random missions.<br/>Version: 0.5";
+onLoadMission = "Complete random missions.<br/>Version: 0.4";
 loadScreen = "loadingscreen.jpg";
 
 
