@@ -46,10 +46,15 @@ for "_i" from 1 to _defendGroupCount do {
 
 for "_i" from 1 to _patrolGroupCount do {
 	// spawn 3 to 5 units, tasked with patrolling the _defendPos up to a radius of 200 meters
-	[_spawnPos, [3,5], ["patrol", _defendPos, 200]] call lkr_fnc_spawnEnemyGroup;
-	sleep 5 + (random 5);
+	[_spawnPos, [4,6], ["patrol", _defendPos, 200]] call lkr_fnc_spawnEnemyGroup;
+	sleep 10 + (random 5);
 	// randomly also spawn a vehicle patroling the defend pos
-	if(random 1 < 0.7) then {
-		[_spawnPos, ["patrol", _defendPos, 250]] call lkr_fnc_spawnEnemyCar;
+	if(random 1 < 0.5) then {
+		[_spawnPos, ["patrol", _defendPos, 500]] call lkr_fnc_spawnEnemyCar;
+        sleep 10 + (random 5);
+	};
+    if(random 1 < 0.15) then {
+		[_spawnPos, ["patrol", _defendPos, 500]] call lkr_fnc_spawnEnemyArmor;
+        sleep 10 + (random 5);
 	};
 };

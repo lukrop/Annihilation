@@ -16,7 +16,7 @@
 	-
 */
 
-private ["_markerArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_centerPos", "_taskID", "_reinfCount"];
+private ["_markerArray", "_missionStyle", "_vecSpawnMarker", "_reinfMarkers", "_spawnMarkers", "_marker", "_centerPos", "_taskID", "_reinfCount", "_crashPos", "_param"];
 
 _markerArray = ["all"] call lkr_fnc_getMissionLocation;
 
@@ -72,7 +72,11 @@ _trigger = [_base, "AREA:", [30, 30, 0, false], "ACT:", ["VEHICLE", "PRESENT", f
 _trigger = _trigger select 0;
 _trigger triggerAttachVehicle [lkr_pilot];
 
-[_crashPos, _crashPos, [0,0], [3,5]] call lkr_fnc_spawnOccupation;
+if(lkr_hc_present && isMultiplayer) then {
+    [[_crashPos, _crashPos, [0,0], [35]], "lkr_fnc_spawnOccupation", lkr_hc_id] call BIS_fnc_MP;
+} else {
+    [_crashPos, _crashPos, [0,0], [3,5]] call lkr_fnc_spawnOccupation;
+};
 
 waitUntil{sleep 1; lkr_pilot_killed or lkr_pilot_rescued};
 if(lkr_pilot_killed) then {

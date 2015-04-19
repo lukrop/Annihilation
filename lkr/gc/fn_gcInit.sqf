@@ -15,7 +15,7 @@
 */
 
 // only run the gc on the server
-if(!isServer) exitWith{};
+//if(!isServer) exitWith{};
 // wait until the config is loaded
 //waitUntil {!isNil "lkr_config_loaded"};
 

@@ -17,6 +17,7 @@ class lkr
 		class spawnGroup {};
 		class spawnEnemyGroup {};
 		class spawnEnemyCar {};
+        class spawnEnemyArmor {};
 		class groupExecuteTask {};
 		class hideMarkers {
 			preInit = 1;

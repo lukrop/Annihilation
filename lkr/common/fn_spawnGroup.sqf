@@ -48,7 +48,7 @@ for "_i" from 0 to _unit_count do {
 	_unit setSkill _skill;
 	//["Unit: %1 has skill: %2", _unit, _skill] call BIS_fnc_logFormat;
 	// sleep between 1 and 2 seconds to let the net engine catch up
-	sleep ([1,2] call lkr_fnc_getNumberBetween);
+	//sleep ([1,2] call lkr_fnc_getNumberBetween);
 };
 // return group
 _group

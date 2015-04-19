@@ -39,6 +39,7 @@ switch(param_enemy_faction) do {
 		"O_Soldier_A_F","O_Soldier_AT_F","O_Soldier_AA_F","O_engineer_F","O_recon_F","O_recon_M_F","O_recon_LAT_F",
 		"O_recon_medic_F","O_recon_exp_F","O_recon_JTAC_F", "O_Soldier_AAR_F","O_Soldier_AAT_F","O_Soldier_AAA_F"];
 		lkr_enemy_vecs_C = ["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Wheeled_02_rcws_F"];
+        lkr_enemy_armor_C = [];
 
 		lkr_hvt_C = "O_officer_F";
 		lkr_hvt_guard_C = "O_Soldier_lite_F";
@@ -56,6 +57,7 @@ switch(param_enemy_faction) do {
         "I_Soldier_repair_F","I_Soldier_exp_F","I_engineer_F","I_helicrew_F","I_officer_F","I_Spotter_F",
         "I_Sniper_F","I_Soldier_AAR_F","I_Soldier_AAT_F","I_Soldier_AAA_F"];
         lkr_enemy_vecs_C = ["I_MRAP_03_hmg_F","I_MRAP_03_gmg_F"];
+        lkr_enemy_armor_C = [];
 
 		lkr_hvt_C = "I_officer_F";
 		lkr_hvt_guard_C = "I_Soldier_F";
@@ -74,6 +76,7 @@ switch(param_enemy_faction) do {
 			"LOP_AM_Soldier_AR", "LOP_AM_Soldier", "LOP_AM_Soldier_AT", "LOP_AM_Soldier_AR"];
 		// enemy vehicles
 		lkr_enemy_vecs_C = ["LOP_AM_Technical_M2", "LOP_AM_Landrover_M2"];
+        lkr_enemy_armor_C = [];
 
 		lkr_hvt_C = "LOP_AM_Soldier_SL";
 		lkr_hvt_guard_C = "LOP_AM_Soldier";
@@ -91,7 +94,8 @@ switch(param_enemy_faction) do {
 			"LOP_ChDKZ_Soldier_AT", "LOP_ChDKZ_Soldier_Marksman", "LOP_ChDKZ_Soldier_Engineer", "LOP_ChDKZ_Soldier_AT", "LOP_ChDKZ_Soldier",
 			"LOP_ChDKZ_Soldier_AR", "LOP_ChDKZ_Soldier", "LOP_ChDKZ_Soldier_AT", "LOP_ChDKZ_Soldier_AR"];
 		// enemy vehicles
-		lkr_enemy_vecs_C = ["LOP_ChDKZ_BTR60", "LOP_ChDKZ_M113"];
+		lkr_enemy_vecs_C = ["B_G_Offroad_01_armed_F"];
+        lkr_enemy_armor_C = ["LOP_ChDKZ_BTR60", "LOP_ChDKZ_M113"];
 
 		lkr_hvt_C = "LOP_ChDKZ_Soldier_SL";
 		lkr_hvt_guard_C = "LOP_ChDKZ_Soldier";
@@ -109,7 +113,8 @@ switch(param_enemy_faction) do {
 			"LOP_AFR_Soldier_AT", "LOP_AFR_Soldier_Marksman", "LOP_AFR_Soldier_Engineer", "LOP_AFR_Soldier_AT", "LOP_AFR_Soldier",
 			"LOP_AFR_Soldier_AR", "LOP_AFR_Soldier", "LOP_AFR_Soldier_AT", "LOP_AFR_Soldier_AR"];
 		// enemy vehicles
-		lkr_enemy_vecs_C = ["LOP_AFR_Technical_M2", "LOP_AFR_Landrover_M2", "LOP_AFR_M113"];
+		lkr_enemy_vecs_C = ["LOP_AFR_Technical_M2", "LOP_AFR_Landrover_M2", "B_G_Offroad_01_armed_F"];
+        lkr_enemy_armor_C = ["LOP_AFR_M113", "LOP_ChDKZ_BTR60"];
 
 		lkr_hvt_C = "LOP_AFR_Soldier_SL";
 		lkr_hvt_guard_C = "LOP_AFR_Soldier";
@@ -127,7 +132,8 @@ switch(param_enemy_faction) do {
 			"rhs_msv_machinegunner_assistant", "rhs_msv_at", "rhs_msv_strelok_rpg_assist", "rhs_msv_marksman", "",
 			"rhs_msv_engineer", "rhs_msv_aa", "rhs_msv_medic", "rhs_msv_LAT"];
 		// enemy vehicles
-		lkr_enemy_vecs_C = ["rhs_btr70_msv", "rhs_bmp2_msv"];
+		lkr_enemy_vecs_C = ["rhs_btr70_msv"];
+        lkr_enemy_armor_C = ["rhs_bmp2_msv", "rhs_bmd2"];
 
 		lkr_hvt_C = "rhs_msv_officer";
 		lkr_hvt_guard_C = "rhs_msv_rifleman";
@@ -135,6 +141,25 @@ switch(param_enemy_faction) do {
         lkr_mortarClass = " rhs_weap_2p130 ";
         // mortar Gun
         lkr_mortarGunnerClass = "rhs_msv_rifleman";
+	};
+    // RHS Insurgents
+	case 6: {
+		// enemy infantry group leaders
+		lkr_enemy_inf_leaders_C = ["rhs_g_Soldier_SL_F", "rhs_g_Soldier_TL_F"];
+		// repeat akm dudes to increase their saturation
+		lkr_enemy_inf_units_C = ["rhs_g_Soldier_LAT_F", "rhs_g_Soldier_F", "rhs_g_Soldier_AA_F", "rhs_g_medic_F",
+			"rhs_g_Soldier_F", "rhs_g_Soldier_M_F", "hs_g_Soldier_F2", "rhs_g_Soldier_F3", "",
+			"rhs_g_Soldier_AT_F", "hs_g_Soldier_lite_F", "rhs_g_Soldier_LAT_F"];
+		// enemy vehicles
+		lkr_enemy_vecs_C = ["B_G_Offroad_01_armed_F"];
+        lkr_enemy_armor_C = ["rhs_btr70_chdkz", "rhs_bmd2_chdkz"];
+
+		lkr_hvt_C = "rhs_g_Soldier_SL_F";
+		lkr_hvt_guard_C = "rhs_g_Soldier_F";
+        // mortar class
+        lkr_mortarClass = " rhs_weap_2p130 ";
+        // mortar Gun
+        lkr_mortarGunnerClass = "rhs_g_Soldier_F";
 	};
 };
 

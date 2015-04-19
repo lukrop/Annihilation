@@ -13,7 +13,7 @@
 	Returns: -
 
 */
-
+private ["_aoArray", "_missionStyle", "_reinfMarkers", "_marker", "_aocenter"]
 _aoArray = _this select 0;
 _missionStyle = _this select 1;
 
@@ -86,10 +86,18 @@ while {!lkr_mortarDestroyed} do {
 }
 };
 
+/*
 // spawn enemies and reinforcements
 [_missionStyle, _marker, _reinfMarkers, lkr_mortar1] spawn ani_spawnEnemies;
 if(ani_enemyReinforcements == 1) then {
   [_marker] execVM "enemyReinforcements.sqf";
+};
+*/
+
+if(lkr_hc_present && isMultiplayer) then {
+    [[_mortarPos, _mortarPos, [1,1], [2,3]], "lkr_fnc_spawnOccupation", lkr_hc_id] call BIS_fnc_MP;
+} else {
+    [_mortarPos, _mortarPos, [1,1], [2,3]] call lkr_fnc_spawnOccupation;
 };
 
 waitUntil{sleep (1 + (random 2)); lkr_mortarDestroyed};

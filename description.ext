@@ -21,8 +21,8 @@ enableDebugConsole = 1;
 allowFunctionsLog = 1;
 
 author="lukrop";
-onLoadName = "Annihilation NATO";
-onLoadMission = "Complete random missions.<br/>Version: 0.5";
+onLoadName = "Annihilation USMC";
+onLoadMission = "Complete random missions.<br/>Version: 0.4";
 loadScreen = "loadingscreen.jpg";
 
 
@@ -34,6 +34,8 @@ class Header
 };
 
 #include "ani_recruit\recruitDialog.hpp"
+#include "bon_recruit_units\dialog\common.hpp"
+#include "bon_recruit_units\dialog\recruitment.hpp"
 
 #include "taw_vd\dialog.hpp"
 

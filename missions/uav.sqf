@@ -15,13 +15,15 @@
 	-
 */
 
+private ["_markerArray", "_scoutMarker", "_centerPos", "_uavPos"];
+
 _markerArray = ["land"] call lkr_fnc_getMissionLocation;
 
 _scoutMarker = _markerArray select 1;
 
 // MARKER
 _marker = _markerArray select 0;
-[[_marker, 1], "lkr_fnc_changeMarker", true, true] spawn BIS_fnc_MP;
+[[_marker, 0.3], "lkr_fnc_changeMarker", true, true] spawn BIS_fnc_MP;
 
 _centerPos = getMarkerPos _marker;
 
@@ -47,7 +49,11 @@ lkr_uav setDir (random 360);
 lkr_uav_destroyed = false;
 ["lkr_uav", "lkr_uav_destroyed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-[_uavPos, _uavPos, [1,1], [3,4]] call lkr_fnc_spawnOccupation;
+if(lkr_hc_present && isMultiplayer) then {
+    [[_uavPos, _uavPos, [1,1], [3,4]], "lkr_fnc_spawnOccupation", lkr_hc_id] call BIS_fnc_MP;
+} else {
+    [_uavPos, _uavPos, [1,1], [3,4]] call lkr_fnc_spawnOccupation;
+};
 
 waitUntil{sleep 2; lkr_uav_destroyed};
 // set mission success

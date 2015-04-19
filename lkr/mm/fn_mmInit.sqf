@@ -16,6 +16,8 @@
 // the mission manager (ergo creation of missions/units) is only
 // executed on the server since it would be a mess otherwise.
 if(!isServer) exitWith {};
+
+
 // wait until config is loaded and paramters are set
 waitUntil{!isNil "lkr_config_loaded"};
 
@@ -26,6 +28,8 @@ lkr_time_between_missions = 120;
 // mission pool
 lkr_available_missions = ["cache", "killhvt", "killhvtstatic", "uav", "rescuepilot"];
 //lkr_available_missions = ["rescuepilot"];
+lkr_request_mission = false;
+publicVariable "lkr_request_mission";
 
 // start the main loop
 call lkr_fnc_mmLoop;

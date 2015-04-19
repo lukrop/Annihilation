@@ -67,20 +67,20 @@ class Params {
 
 	class param_enemy_faction {
 		title="  - Faction";
-		values[] = {0,1,2,3,4,5};
-		texts[] = {"CSAT", "AAF", "Middle eastern", "Eastern european", "African", "MSV (Russian"};
-		default = 2;
+		values[] = {0,1,2,3,4,5,6};
+		texts[] = {"CSAT", "AAF", "Middle eastern", "Eastern european", "African", "MSV (Russian)", "RHS Insurgents"};
+		default = 6;
 		code = "param_enemy_faction = %1";
 	};
 
-	
+	/*
 	class param_enemy_count {
 		title = "  - Count";
 		values[] = {0,1,2,3};
 		texts[] = {"low (1-3 players)", "medium (3-8 players)", "high (8-12 players)", "very high(12-20 players)"};
 		default = 1;
 		code = "param_enemy_count = %1";
-	};
+	};*/
 	
 	class param_enemy_skill {
 		title = "  - Skill";

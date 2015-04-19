@@ -15,7 +15,7 @@
 	-
 */
 
-private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID"];
+private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID", "_hvtPos"];
 
 _markerArray = ["city"] call lkr_fnc_getMissionLocation;
 
@@ -46,6 +46,12 @@ _hvtGrp createUnit [lkr_hvt_guard_C, _hvtPos, [], 0, "FORM"];
 // spawn hvt
 lkr_hvt = _hvtGrp createUnit [lkr_hvt_C, _hvtPos, [], 0, "FORM"];
 
+lkr_hvt allowDamage false;
+[] spawn {
+    sleep 60;
+    lkr_hvt allowDamage true;
+};
+
 // randomly add one or two gurads
 if((round random 5) >= 1) then {
 	_hvtGrp createUnit [lkr_hvt_guard_C, _hvtPos, [], 0, "FORM"];
@@ -63,9 +69,12 @@ _hvtGrp setVariable ["f_cacheExcl", true, true];
 lkr_hvt_killed = false;
 ["lkr_hvt", "lkr_hvt_killed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-[_hvtPos, _hvtPos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
-
-waitUntil{sleep 2; lkr_hvt_killed};
+if(lkr_hc_present && isMultiplayer) then {
+    [[_hvtPos, _hvtPos, [1,2], [3,4]], "lkr_fnc_spawnOccupation", lkr_hc_id] call BIS_fnc_MP;
+} else {
+    [_hvtPos, _hvtPos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
+};
+waitUntil{sleep 2 + (random 2); lkr_hvt_killed};
 [_taskID, "Succeeded"] call BIS_fnc_taskSetState;
 // add to garbage collector queue
 lkr_hvt call lkr_fnc_gcAdd;

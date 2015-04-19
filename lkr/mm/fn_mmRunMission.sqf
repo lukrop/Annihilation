@@ -13,6 +13,7 @@
 	-
 */
 // get paramter
+
 _mission = [_this, 0, "", [""]] call BIS_fnc_param;
 // create path to mission file - a mission file should be
 // in missions\missionName.sqf

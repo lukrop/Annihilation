@@ -15,7 +15,7 @@
 	-
 */
 
-private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID"];
+private ["_markerArray", "_spawnMarkers", "_marker", "_centerPos", "_taskID", "_cachePos"];
 
 _markerArray = ["city"] call lkr_fnc_getMissionLocation;
 
@@ -48,8 +48,11 @@ clearItemCargo lkr_wepcache;
 lkr_wepCacheDestroyed = false;
 ["lkr_wepcache", "lkr_wepCacheDestroyed"] call lkr_fnc_triggerOnObjectDestroyed;
 
-[_cachePos, _cachePos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
-
+if(lkr_hc_present && isMultiplayer) then {
+    [[_cachePos, _cachePos, [1,2], [3,4]], "lkr_fnc_spawnOccupation", lkr_hc_id] call BIS_fnc_MP;
+} else {
+    [_cachePos, _cachePos, [1,2], [3,4]] call lkr_fnc_spawnOccupation;
+};
 // wait until the cache is destroyed
 waitUntil{sleep 1; lkr_wepCacheDestroyed};
 // set the task as succeeded
